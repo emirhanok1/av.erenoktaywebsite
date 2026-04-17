@@ -1,8 +1,23 @@
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ============================================================
+   PROJE FONT VE RENK DEĞİŞKENLERİ
+   ============================================================ */
+:root {
+  /* Font değişkenleri (next/font/google ile layout.tsx'te set edilir) */
+  --font-playfair: 'Playfair Display';
+  --font-inter: 'Inter';
+
+  /* Marka renkleri */
+  --color-primary: #1e3a5f;
+  --color-primary-light: #2d5282;
+  --color-primary-dark: #152a45;
+  --color-accent: #c9a84c;
+  --color-accent-light: #d4b96a;
+  --color-accent-dark: #a8872e;
+}
 
 @layer utilities {
   .text-balance {
