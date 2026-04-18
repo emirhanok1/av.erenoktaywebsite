@@ -180,8 +180,11 @@ export const config = {
 - shadcn/ui bileşenleri önceliklidir
 - Özel bileşenler için Radix UI primitifleri kullanılır
 - shadcn/ui bileşen kodu `src/components/ui/` altında — dışarıdan değiştirilmez
-- Yeni bileşen eklemek için: `npx shadcn-ui@latest add [bileşen]`
-- shadcn/ui v2 kullanılır — "latest" belirtilmez
+- Yeni bileşen eklemek için: `npx shadcn@latest add [bileşen]`
+- shadcn/ui v2 kullanılır — "latest" belirtilir
+- **ZORUNLU**: shadcn `style: "default"` kullanılır.
+- **YASAK**: `base-nova` ve `new-york` stilleri KESİNLİKLE YASAK.
+- Her yeni UI kurulumunda `components.json` içindeki stilin "default" olduğu teyit edilir.
 
 ### Tailwind CSS Kuralları
 - Mobile-first zorunlu — desktop-first YASAK
@@ -195,6 +198,13 @@ export const config = {
 - `prettier-plugin-tailwindcss` ile otomatik sıralama zorunlu
 - Magic color değerleri YASAK — sadece tasarım sistemi token'ları
 - Inline style YASAK — Tailwind sınıfları kullanılır
+- **ZORUNLU**: `tailwind.config.ts` içindeki `content` dizisi şu klasörleri KESİNLİKLE içermelidir:
+  - `./src/pages/**/*.{...}`
+  - `./src/components/**/*.{...}`
+  - `./src/app/**/*.{...}`
+  - `./src/features/**/*.{...}`
+  - `./src/lib/**/*.{...}`
+  - `./src/hooks/**/*.{...}`
 
 ### Container Yapılandırması (Kesin)
 ```javascript

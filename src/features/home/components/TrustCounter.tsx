@@ -16,14 +16,18 @@ export function TrustCounter({ end, suffix = '', label }: TrustCounterProps) {
   const shouldReduceMotion = useReducedMotion()
 
   useEffect(() => {
-    if (!isInView || shouldReduceMotion) {
-      if (shouldReduceMotion) setCount(end)
+    if (!isInView) return
+
+    if (shouldReduceMotion) {
+      setCount(end)
       return
     }
 
     let start = 0
-    const duration = 2000 // 2 seconds
-    const increment = end / (duration / 16) // roughly 60fps
+    const duration = 1800 // ms
+    const steps = 60
+    const increment = end / steps
+    const intervalMs = duration / steps
 
     const timer = setInterval(() => {
       start += increment
@@ -33,22 +37,25 @@ export function TrustCounter({ end, suffix = '', label }: TrustCounterProps) {
       } else {
         setCount(Math.ceil(start))
       }
-    }, 16)
+    }, intervalMs)
 
     return () => clearInterval(timer)
   }, [isInView, end, shouldReduceMotion])
 
   return (
-    <div ref={ref} className="flex flex-col items-center justify-center text-center space-y-2 opacity-0 animate-in fade-in duration-1000 fill-mode-forwards">
-      <div className="flex items-center">
+    <div
+      ref={ref}
+      className="flex flex-col items-center justify-center text-center space-y-2"
+    >
+      <div className="flex items-end leading-none">
         <span className="font-heading text-[42px] font-medium text-navy leading-none">
           {count}
         </span>
-        <span className="font-heading text-[42px] font-medium text-accent leading-none">
+        <span className="font-heading text-[32px] font-medium text-accent leading-none mb-0.5">
           {suffix}
         </span>
       </div>
-      <span className="text-[12px] font-bold tracking-[0.2em] text-muted-foreground uppercase uppercase">
+      <span className="text-[11px] font-bold tracking-[0.2em] text-muted-foreground uppercase">
         {label}
       </span>
     </div>

@@ -50,12 +50,14 @@ export default function AdminSidebar({ userEmail }: { userEmail?: string }) {
                 return (
                   <SidebarMenuItem key={item.url}>
                     <SidebarMenuButton 
-                      render={<Link href={item.url} />}
+                      asChild
                       isActive={isActive} 
                       tooltip={item.title}
                     >
-                      <span className="mr-2">{item.icon}</span>
-                      <span>{item.title}</span>
+                      <Link href={item.url}>
+                        <span className="mr-2">{item.icon}</span>
+                        <span>{item.title}</span>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 )

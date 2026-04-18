@@ -107,12 +107,13 @@ export default function Header() {
             </Button>
 
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
-              <SheetTrigger
-                render={
-                  <Button variant="ghost" size="icon" className="lg:hidden text-navy p-0 w-8 h-8" aria-label="Menüyü aç" />
-                }
-              >
-                <Menu size={32} />
+              <SheetTrigger asChild>
+                <button
+                  className="lg:hidden text-navy p-0 w-8 h-8 flex items-center justify-center outline-none"
+                  aria-label="Menüyü aç"
+                >
+                  <Menu size={32} />
+                </button>
               </SheetTrigger>
               <SheetContent side="right" className="bg-secondary text-white border-none p-0 w-80">
                 <SheetHeader className="p-6 border-b border-white/10 text-left">
