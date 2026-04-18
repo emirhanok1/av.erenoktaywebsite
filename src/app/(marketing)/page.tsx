@@ -1,21 +1,48 @@
 import { Metadata } from 'next'
+import { getActiveSlides } from '@/services/slides'
+import { getLegalServiceSchema } from '@/lib/schemas/legal-service'
+
+import HeroSlider from '@/features/home/components/HeroSlider'
+import TrustBar from '@/features/home/components/TrustBar'
+import ServicesSection from '@/features/home/components/ServicesSection'
+import AboutSection from '@/features/home/components/AboutSection'
+import CTABand from '@/features/home/components/CTABand'
+
+// Revalidate home page every hour
+export const revalidate = 3600
 
 export const metadata: Metadata = {
-  title: 'Anasayfa',
+  title: 'Avukat Eren Oktay — Hukuk Bürosu',
+  description: 'Eren Oktay Hukuk Bürosu olarak, ticaret hukuku ve aile hukuku başta olmak üzere geniş bir yelpazede profesyonel hukuki danışmanlık hizmeti sunuyoruz.',
+  openGraph: {
+    title: 'Avukat Eren Oktay — Hukuk Bürosu',
+    description: 'Eren Oktay Hukuk Bürosu olarak, ticaret hukuku ve aile hukuku başta olmak üzere geniş bir yelpazede profesyonel hukuki danışmanlık hizmeti sunuyoruz.',
+    url: 'https://erenokay.av.tr',
+    siteName: 'Eren Oktay Hukuk Bürosu',
+    locale: 'tr_TR',
+    type: 'website',
+  },
 }
 
-export default function HomePage() {
+export default async function HomePage() {
+  const slides = await getActiveSlides()
+  const schema = getLegalServiceSchema()
+
   return (
-    <div className="min-h-[80vh] flex flex-col items-center justify-center p-4">
-      <div className="text-center space-y-4">
-        <h1 className="text-4xl md:text-6xl font-heading text-navy">
-          Hukukun Sessiz Gücü,<br/>
-          <em className="text-accent italic">Müvekkilin Yanında.</em>
-        </h1>
-        <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-          Eren Oktay Hukuk Bürosu — Anasayfa içerikleri Faz 4 kapsamında inşa edilecektir.
-        </p>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(schema).replace(/</g, '\\u003c')
+        }}
+      />
+      <div className="flex flex-col w-full overflow-hidden">
+        <HeroSlider slides={slides} />
+        <TrustBar />
+        <ServicesSection />
+        <AboutSection />
+        <CTABand />
       </div>
-    </div>
+    </>
   )
 }

@@ -1,0 +1,98 @@
+import React from 'react'
+import Link from 'next/link'
+import { Scale, Building2, Shield, ArrowRight } from 'lucide-react'
+import { AnimatedReveal } from './AnimatedReveal'
+
+const SERVICES = [
+  {
+    id: 1,
+    title: 'Ticaret & Şirketler Hukuku',
+    icon: <Scale className="text-accent" strokeWidth={1.5} size={28} />,
+    items: ['Ticari sözleşmeler', 'M&A işlemleri', 'Şirket kuruluşu'],
+  },
+  {
+    id: 2,
+    title: 'Gayrimenkul & İnşaat Hukuku',
+    icon: <Building2 className="text-accent" strokeWidth={1.5} size={28} />,
+    items: ['Kat karşılığı sözleşmeler', 'Kentsel dönüşüm', 'Tapu davaları'],
+  },
+  {
+    id: 3,
+    title: 'Aile & Miras Hukuku',
+    icon: <Shield className="text-accent" strokeWidth={1.5} size={28} />,
+    items: ['Boşanma davaları', 'Vasiyetname', 'Mal paylaşımı'],
+  },
+]
+
+export default function ServicesSection() {
+  return (
+    <section className="bg-white py-20 lg:py-[120px] overflow-hidden" aria-labelledby="services-title">
+      <div className="container mx-auto px-4">
+        
+        {/* Header */}
+        <AnimatedReveal className="max-w-2xl mb-16 lg:mb-24">
+          <span className="text-accent font-heading font-medium tracking-[0.2em] text-xs uppercase flex items-center gap-4 mb-6">
+            <span className="w-12 h-[1px] bg-accent inline-block" />
+            UZMANLIK ALANLARIMIZ
+          </span>
+          <h2 id="services-title" className="text-3xl md:text-4xl lg:text-5xl font-heading text-navy mb-6 leading-tight">
+            Karmaşık Hukuki Süreçlerde <br className="hidden md:block" />
+            <em className="text-accent italic font-light">Stratejik</em> Danışmanlık
+          </h2>
+          <p className="text-muted-foreground text-lg leading-relaxed">
+            Müvekkillerimizin hukuki haklarını korumak ve ticari başarılarını güvence altına almak için proaktif ve sonuç odaklı çözümler üretiyoruz.
+          </p>
+        </AnimatedReveal>
+
+        {/* Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-l border-t border-gray-200">
+          {SERVICES.map((service, index) => (
+            <AnimatedReveal 
+              key={service.id} 
+              delay={index * 0.15} 
+              className="group border-r border-b border-gray-200 p-8 lg:p-[44px_38px] hover:bg-gray-50 transition-colors duration-500 relative flex flex-col h-full"
+            >
+              {/* Number */}
+              <div className="text-accent/60 font-heading text-sm tracking-widest mb-8">
+                0{service.id} <span className="opacity-50">/</span> HİZMET
+              </div>
+
+              {/* Icon Box */}
+              <div className="w-14 h-14 border border-accent/30 rounded-lg flex items-center justify-center mb-8 bg-white group-hover:border-accent transition-colors duration-500">
+                {service.icon}
+              </div>
+
+              {/* Title */}
+              <h3 className="text-[23px] font-heading text-navy mb-8 leading-tight">
+                {service.title}
+              </h3>
+
+              {/* List */}
+              <ul className="mt-auto space-y-4 pt-8 border-t border-gray-100 mb-12">
+                {service.items.map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-muted-foreground text-sm">
+                    <div className="w-1.5 h-1.5 rounded-full bg-accent/60" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              {/* Footer Link */}
+              <Link 
+                href="/pratik-bilgiler" 
+                className="inline-flex items-center gap-3 text-navy font-semibold text-xs tracking-widest uppercase mt-auto group/link"
+              >
+                <span>Detaylı Bilgi</span>
+                <ArrowRight 
+                  size={16} 
+                  className="text-accent transition-transform duration-300 group-hover/link:translate-x-1.5" 
+                />
+              </Link>
+            </AnimatedReveal>
+          ))}
+        </div>
+
+      </div>
+    </section>
+  )
+}
