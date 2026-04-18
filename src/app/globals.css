@@ -2,108 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ============================================================
-   PROJE FONT VE RENK DEĞİŞKENLERİ
-   ============================================================ */
-:root {
-  /* Font değişkenleri (next/font/google ile layout.tsx'te set edilir) */
-  --font-playfair: 'Playfair Display';
-  --font-inter: 'Inter';
+@layer base {
+  :root {
+    --background: #f8f9fa;
+    --foreground: #141a22;
+    --card: #ffffff;
+    --card-foreground: #141a22;
+    --popover: #ffffff;
+    --popover-foreground: #141a22;
+    --primary: #1e3a5f;
+    --primary-foreground: #ffffff;
+    --secondary: #142844;
+    --secondary-foreground: #ffffff;
+    --muted: #5a6472;
+    --muted-foreground: #8a94a2;
+    --accent: #c9a84c;
+    --accent-foreground: #142844;
+    --destructive: #df1c1c;
+    --destructive-foreground: #ffffff;
+    --border: #e5e7eb;
+    --input: #e5e7eb;
+    --ring: #c9a84c;
+    --radius: 0.5rem;
+  }
 
-  /* Marka renkleri */
-  --color-primary: #1e3a5f;
-  --color-primary-light: #2d5282;
-  --color-primary-dark: #152a45;
-  --color-accent: #c9a84c;
-  --color-accent-light: #d4b96a;
-  --color-accent-dark: #a8872e;
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-inter), sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-medium;
+    color: #1e3a5f;
+    font-family: var(--font-playfair), serif;
+  }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .font-heading {
+    font-family: var(--font-playfair), serif;
   }
-}
-
-@layer base {
-  .theme {
-    --font-heading: var(--font-sans);
-    --font-sans: var(--font-sans);
-  }
-  :root {
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.708 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
-    --radius: 0.625rem;
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.205 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.708 0 0);
-  }
-  .dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.205 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.922 0 0);
-    --primary-foreground: oklch(0.205 0 0);
-    --secondary: oklch(0.269 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.704 0.191 22.216);
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.556 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.488 0.243 264.376);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.556 0 0);
-  }
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-  html {
-    @apply font-sans;
+  .font-sans {
+    font-family: var(--font-inter), sans-serif;
   }
 }
