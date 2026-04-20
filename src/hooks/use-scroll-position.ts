@@ -1,18 +1,41 @@
 import { useState, useEffect } from 'react'
 
 export function useScrollPosition() {
-  const [scrollPosition, setScrollPosition] = useState(0)
+  const [state, setState] = useState({
+    scrollY: 0,
+    scrollPercent: 0,
+  })
 
   useEffect(() => {
-    const updatePosition = () => {
-      setScrollPosition(window.pageYOffset)
+    let ticking = false
+
+    const update = () => {
+      const el = document.documentElement
+      const scrollY = window.pageYOffset
+      const scrollPercent = Math.min(
+        100,
+        (el.scrollTop / 
+          (el.scrollHeight - el.clientHeight)
+        ) * 100
+      )
+      setState({ scrollY, scrollPercent })
+      ticking = false
     }
 
-    window.addEventListener('scroll', updatePosition)
-    updatePosition()
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(update)
+        ticking = true
+      }
+    }
 
-    return () => window.removeEventListener('scroll', updatePosition)
+    window.addEventListener(
+      'scroll', onScroll, { passive: true }
+    )
+    update()
+    return () => 
+      window.removeEventListener('scroll', onScroll)
   }, [])
 
-  return scrollPosition
+  return state
 }

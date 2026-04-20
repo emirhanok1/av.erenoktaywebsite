@@ -26,7 +26,7 @@ const NAV_ITEMS = [
 ]
 
 export default function Header() {
-  const scrollY = useScrollPosition()
+  const { scrollY } = useScrollPosition()
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
 
