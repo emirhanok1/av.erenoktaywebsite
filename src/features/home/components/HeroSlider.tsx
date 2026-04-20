@@ -15,7 +15,36 @@ interface HeroSliderProps {
   slides: Slide[]
 }
 
+const DEFAULT_SLIDES: Slide[] = [
+  {
+    id: 'default-1',
+    title: 'Hukukun sessiz gücü, müvekkilin yanında.',
+    subtitle: 'KURUMSAL HUKUK · TECRÜBELİ EKİP',
+    image_url: null,
+    link: null,
+    sort_order: 1,
+  },
+  {
+    id: 'default-2',
+    title: 'Ticari ilişkilerde öngörü, kararlılık.',
+    subtitle: 'TİCARET VE ŞİRKETLER HUKUKU',
+    image_url: null,
+    link: null,
+    sort_order: 2,
+  },
+  {
+    id: 'default-3',
+    title: 'Mülkiyetin değerini koruyan hukuki mimari.',
+    subtitle: 'GAYRİMENKUL VE İNŞAAT HUKUKU',
+    image_url: null,
+    link: null,
+    sort_order: 3,
+  },
+]
+
 export default function HeroSlider({ slides }: HeroSliderProps) {
+  const displaySlides = slides.length > 0 ? slides : DEFAULT_SLIDES
+
   const autoplay = useMemo(
     () => Autoplay({ delay: 7000, stopOnInteraction: false }),
     []
@@ -63,8 +92,6 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
     return () => window.removeEventListener('keydown', handleKey)
   }, [emblaApi, onSelect])
 
-  if (!slides || slides.length === 0) return null
-
   return (
     <section
       className="relative bg-navy w-full overflow-hidden"
@@ -74,7 +101,7 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
       {/* Embla viewport — overflow-hidden must be on THIS div */}
       <div ref={emblaRef} className="overflow-hidden w-full">
         <div className="flex">
-          {slides.map((slide, index) => {
+          {displaySlides.map((slide, index) => {
             const isFirst = index === 0
             const words = slide.title.split(' ')
             const lastWord = words.pop()
@@ -87,7 +114,7 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
                 className="flex-none w-full min-w-0"
                 role="group"
                 aria-roledescription="slide"
-                aria-label={`${index + 1} / ${slides.length}`}
+                aria-label={`${index + 1} / ${displaySlides.length}`}
               >
                 {/* Slide inner: aspect + min-height */}
                 <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] lg:aspect-[16/7] min-h-[580px] flex items-center">
@@ -180,7 +207,7 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
 
           {/* Dot indicators */}
           <div className="flex gap-2 pointer-events-auto" role="tablist" aria-label="Slide seçimi">
-            {slides.map((_, index) => (
+            {displaySlides.map((_, index) => (
               <button
                 key={index}
                 role="tab"
@@ -202,7 +229,7 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
             <div className="hidden sm:block text-white/50 font-heading font-medium tracking-widest text-sm select-none tabular-nums">
               <span className="text-white">{String(selectedIndex + 1).padStart(2, '0')}</span>
               <span className="mx-1.5">/</span>
-              <span>{String(slides.length).padStart(2, '0')}</span>
+              <span>{String(displaySlides.length).padStart(2, '0')}</span>
             </div>
 
             <div className="flex gap-2">
