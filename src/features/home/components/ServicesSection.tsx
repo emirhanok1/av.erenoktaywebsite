@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { Scale, Building2, Shield, ArrowRight } from 'lucide-react'
+import { cn } from '@/lib/utils'
 import { AnimatedReveal } from './AnimatedReveal'
 
 const SERVICES = [
@@ -50,16 +51,23 @@ export default function ServicesSection() {
             <AnimatedReveal 
               key={service.id} 
               delay={index * 0.15} 
-              className="group border-r border-b border-gray-200 p-8 lg:p-[44px_38px] hover:bg-gray-50 transition-colors duration-500 relative flex flex-col h-full"
+              className="group border-r border-b border-gray-200 p-8 lg:p-[44px_38px] hover:bg-gray-50 transition-colors duration-500 relative flex flex-col h-full overflow-hidden"
             >
+              {/* Üst altın çizgi */}
+              <div className="absolute top-0 left-0 right-0 h-0.5 bg-gold scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
               {/* Number */}
               <div className="text-accent/60 font-heading text-sm tracking-widest mb-8">
                 0{service.id} <span className="opacity-50">/</span> HİZMET
               </div>
 
               {/* Icon Box */}
-              <div className="w-14 h-14 border border-accent/30 rounded-lg flex items-center justify-center mb-8 bg-white group-hover:border-accent transition-colors duration-500">
-                {service.icon}
+              <div className="w-14 h-14 border border-accent/30 rounded-lg flex items-center justify-center mb-8 bg-white transition-all duration-500 group-hover:bg-gold group-hover:border-gold group-hover:-translate-y-1 group-hover:-rotate-[4deg]">
+                {React.cloneElement(service.icon as React.ReactElement, {
+                  className: cn(
+                    (service.icon as React.ReactElement).props.className,
+                    "group-hover:text-navy"
+                  )
+                })}
               </div>
 
               {/* Title */}
@@ -85,7 +93,7 @@ export default function ServicesSection() {
                 <span>Detaylı Bilgi</span>
                 <ArrowRight 
                   size={16} 
-                  className="text-accent transition-transform duration-300 group-hover/link:translate-x-1.5" 
+                  className="text-accent transition-all duration-300 group-hover:text-gold group-hover:translate-x-1.5" 
                 />
               </Link>
             </AnimatedReveal>

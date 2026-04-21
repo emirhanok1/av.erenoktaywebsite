@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useCallback, useEffect, useState, useMemo } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
@@ -94,15 +93,40 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
 
   return (
     <section
-      className="relative bg-navy w-full overflow-hidden"
+      className="relative bg-navy h-screen w-full overflow-hidden"
       aria-label="Öne çıkan başlıklar"
       aria-roledescription="carousel"
     >
-      {/* Embla viewport — overflow-hidden must be on THIS div */}
-      <div ref={emblaRef} className="overflow-hidden w-full">
+      {/* Diagonal doku */}
+      <div
+        className="absolute inset-0 pointer-events-none z-[1]"
+        style={{
+          backgroundImage: `repeating-linear-gradient(
+            -55deg,
+            rgba(201,168,76,0.07) 0px,
+            rgba(201,168,76,0.07) 1px,
+            transparent 1px,
+            transparent 52px
+          )`,
+        }}
+      />
+
+      {/* Vignette */}
+      <div
+        className="absolute inset-0 pointer-events-none z-[2]"
+        style={{
+          background: `radial-gradient(
+            ellipse at 50% 50%,
+            transparent 40%,
+            rgba(12,26,46,0.55) 100%
+          )`,
+        }}
+      />
+
+      {/* Embla viewport */}
+      <div ref={emblaRef} className="overflow-hidden w-full h-screen relative z-[3]">
         <div className="flex">
           {displaySlides.map((slide, index) => {
-            const isFirst = index === 0
             const words = slide.title.split(' ')
             const lastWord = words.pop()
             const titleStart = words.join(' ')
@@ -116,40 +140,14 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
                 aria-roledescription="slide"
                 aria-label={`${index + 1} / ${displaySlides.length}`}
               >
-                {/* Slide inner: aspect + min-height */}
-                <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] lg:aspect-[16/7] min-h-[580px] flex items-center">
+                {/* Slide inner */}
+                <div className="relative w-full h-screen flex items-center">
 
-                  {/* Right half background image (desktop only) */}
-                  <div className="absolute inset-y-0 right-0 w-1/2 hidden lg:block z-0">
-                    {slide.image_url ? (
-                      <Image
-                        src={slide.image_url}
-                        alt={slide.title}
-                        fill
-                        priority={isFirst}
-                        sizes="(max-width: 768px) 0vw, 50vw"
-                        className="object-cover"
-                      />
-                    ) : (
-                      /* Diagonal-line pattern placeholder when no image */
-                      <div
-                        className="w-full h-full opacity-10"
-                        style={{
-                          backgroundImage:
-                            'repeating-linear-gradient(45deg, #c9a84c 0, #c9a84c 1px, transparent 1px, transparent 8px)',
-                        }}
-                      />
-                    )}
-                    {/* Gradient fade from left so text stays readable */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/60 to-transparent" />
-                  </div>
-
-                  {/* Left-to-right overlay for mobile */}
-                  <div className="absolute inset-0 bg-navy/85 lg:bg-transparent z-0" />
+                  {/* Tam ekran lacivert arka plan (Doku ve Vignette section seviyesinde eklendi) */}
 
                   {/* Text content */}
                   <div className="container mx-auto px-4 lg:px-8 relative z-10 w-full">
-                    <div className="max-w-2xl lg:w-1/2 space-y-8 flex flex-col items-center text-center lg:items-start lg:text-left py-16 lg:py-24">
+                    <div className="max-w-3xl mx-auto space-y-8 flex flex-col items-center text-center pt-[120px] pb-20 px-4">
                       {/* Kicker */}
                       <span className="text-accent font-heading font-medium tracking-[0.2em] text-xs uppercase flex items-center gap-4">
                         <span className="w-12 h-[1px] bg-accent inline-block shrink-0" />
@@ -157,12 +155,19 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
                       </span>
 
                       {/* H1 */}
-                      <h1 className="text-white text-4xl md:text-5xl lg:text-[56px] font-heading leading-[1.1] tracking-tight">
+                      <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-heading leading-[1.1] tracking-tight">
                         {titleStart}{' '}
                         {lastWord && (
                           <em className="text-accent italic font-light">{lastWord}</em>
                         )}
                       </h1>
+
+                      {/* Diamond separator */}
+                      <div className="flex items-center justify-center gap-5">
+                        <div className="h-px w-20 bg-gold/60" />
+                        <div className="w-2 h-2 bg-gold rotate-45 shrink-0" />
+                        <div className="h-px w-20 bg-gold/60" />
+                      </div>
 
                       {/* Lede */}
                       <p className="text-white/75 text-base md:text-lg font-sans leading-relaxed max-w-xl">
