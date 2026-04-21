@@ -26,16 +26,30 @@ const NAV_ITEMS = [
 ]
 
 export default function Header() {
-  const { scrollY } = useScrollPosition()
+  const { scrollY, scrollPercent } = useScrollPosition()
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
 
-  const isScrolled = scrollY > 50
+  const isScrolled = scrollY > 60
 
   return (
     <>
+      {/* PROGRESS BAR */}
+      <div
+        className="fixed top-0 left-0 h-[2px] z-[60] transition-[width] duration-150 pointer-events-none"
+        style={{ 
+          width: `${scrollPercent}%`,
+          backgroundColor: '#c9a84c'
+        }}
+      />
+
       {/* TOP BAR */}
-      <div className="bg-secondary text-white/80 py-2.5 text-xs hidden md:block">
+      <div 
+        className={cn(
+          "fixed top-0 z-[55] w-full bg-secondary text-white/80 py-2.5 text-xs hidden md:block transition-all duration-300",
+          isScrolled ? "opacity-0 -translate-y-full pointer-events-none" : "opacity-100 translate-y-0"
+        )}
+      >
         <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="flex items-center gap-6">
             <a href="tel:+902125550000" className="flex items-center gap-2 hover:text-accent transition-colors">
@@ -64,20 +78,31 @@ export default function Header() {
       {/* MAIN HEADER */}
       <header
         className={cn(
-          'sticky top-0 z-50 w-full transition-all duration-300 bg-white border-b',
-          isScrolled ? 'py-3 shadow-md' : 'py-5 shadow-none'
+          'fixed left-0 right-0 z-50 w-full transition-all duration-300',
+          isScrolled
+            ? 'top-0 bg-white border-b border-border shadow-sm py-3'
+            : 'top-[40px] bg-transparent border-b border-transparent py-5'
         )}
       >
         <div className="container mx-auto px-4 flex justify-between items-center">
           {/* LOGO */}
           <Link href={ROUTES.HOME} className="group flex items-center gap-4 outline-none">
             <div className="relative w-11 h-11 border-[1.5px] border-accent flex items-center justify-center transition-transform group-hover:scale-105">
-              <div className="absolute inset-1 border border-navy" />
-              <span className="font-heading italic font-medium text-lg text-navy relative z-10">E·O</span>
+              <div className={cn("absolute inset-1 border transition-colors duration-300", isScrolled ? "border-navy" : "border-white")} />
+              <span className={cn(
+                "font-heading italic font-medium text-lg relative z-10 transition-colors duration-300",
+                isScrolled ? "text-navy" : "text-white"
+              )}>E·O</span>
             </div>
             <div className="flex flex-col leading-tight">
-              <span className="font-heading font-medium text-lg tracking-[0.08em] text-navy">EREN OKTAY</span>
-              <span className="text-[10px] tracking-[0.32em] text-muted-foreground uppercase mt-0.5">Hukuk Bürosu</span>
+              <span className={cn(
+                'font-heading font-medium text-lg tracking-[0.08em] transition-colors duration-300',
+                isScrolled ? 'text-navy' : 'text-white'
+              )}>EREN OKTAY</span>
+              <span className={cn(
+                "text-[10px] tracking-[0.32em] uppercase mt-0.5 transition-colors duration-300",
+                isScrolled ? "text-muted-foreground" : "text-white/60"
+              )}>Hukuk Bürosu</span>
             </div>
           </Link>
 
@@ -89,9 +114,13 @@ export default function Header() {
                 href={item.href}
                 className={cn(
                   'text-sm font-medium tracking-wide transition-colors relative py-1',
-                  pathname === item.href
-                    ? 'text-navy after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-accent'
-                    : 'text-foreground hover:text-navy'
+                  isScrolled
+                    ? pathname === item.href
+                      ? 'text-navy after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-accent'
+                      : 'text-foreground hover:text-navy'
+                    : pathname === item.href
+                      ? 'text-accent after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-accent'
+                      : 'text-white/90 hover:text-white'
                 )}
               >
                 {item.label}
@@ -109,7 +138,10 @@ export default function Header() {
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
                 <button
-                  className="lg:hidden text-navy p-0 w-8 h-8 flex items-center justify-center outline-none"
+                  className={cn(
+                    "lg:hidden p-0 w-8 h-8 flex items-center justify-center outline-none transition-colors duration-300",
+                    isScrolled ? "text-navy" : "text-white"
+                  )}
                   aria-label="Menüyü aç"
                 >
                   <Menu size={32} />
