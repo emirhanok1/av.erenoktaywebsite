@@ -4,6 +4,7 @@
 
 @layer base {
   :root {
+    --header-height: 88px;
     --background: #f8f9fa;
     --foreground: #141a22;
     --card: #ffffff;

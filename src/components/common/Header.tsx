@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Phone, Mail, Clock, Menu } from 'lucide-react'
@@ -14,6 +14,7 @@ import {
   SheetTrigger,
   SheetHeader,
   SheetTitle,
+  SheetDescription,
 } from '@/components/ui/sheet'
 
 const NAV_ITEMS = [
@@ -29,12 +30,7 @@ export default function Header() {
   const { scrollY, scrollPercent } = useScrollPosition()
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
-  const [topBarHeight, setTopBarHeight] = useState(40)
-
-  useEffect(() => {
-    const el = document.getElementById('topbar')
-    if (el) setTopBarHeight(el.offsetHeight)
-  }, [])
+  const TOPBAR_HEIGHT = 40
 
   const isHomePage = pathname === '/'
   const isScrolled = scrollY > 60
@@ -44,7 +40,7 @@ export default function Header() {
     <>
       {/* PROGRESS BAR */}
       <div
-        className="fixed top-0 left-0 h-[2px] z-[60] transition-[width] duration-150 pointer-events-none"
+        className="fixed top-0 left-0 h-[2px] z-modal transition-[width] duration-150 pointer-events-none"
         style={{ 
           width: `${scrollPercent}%`,
           backgroundColor: '#c9a84c'
@@ -55,7 +51,7 @@ export default function Header() {
       <div 
         id="topbar"
         className={cn(
-          "fixed top-0 z-[55] w-full bg-secondary text-white/80 py-2.5 text-xs hidden md:block transition-all duration-300",
+          "fixed top-0 z-topbar w-full bg-secondary text-white/80 py-2.5 text-xs hidden md:block transition-all duration-300",
           isScrolled ? "opacity-0 -translate-y-full pointer-events-none" : "opacity-100 translate-y-0"
         )}
       >
@@ -87,13 +83,13 @@ export default function Header() {
       {/* MAIN HEADER */}
       <header
         className={cn(
-          'fixed left-0 right-0 z-50 w-full transition-all duration-300',
+          'fixed left-0 right-0 z-header w-full transition-all duration-300',
           !showTransparent
             ? 'bg-white border-b border-border shadow-sm py-3'
             : 'bg-transparent border-b border-transparent py-5'
         )}
         style={{
-          top: isScrolled ? '0px' : `${topBarHeight}px`
+          top: isScrolled ? '0px' : `${TOPBAR_HEIGHT}px`
         }}
       >
         <div className="container mx-auto px-4 flex justify-between items-center">
@@ -165,9 +161,14 @@ export default function Header() {
                   <Menu size={32} />
                 </button>
               </SheetTrigger>
-              <SheetContent side="right" className="bg-secondary text-white border-none p-0 w-80">
+              <SheetContent side="left" className="w-[300px] bg-navy border-white/10 p-0">
                 <SheetHeader className="p-6 border-b border-white/10 text-left">
-                  <SheetTitle className="text-white font-heading text-xl tracking-wider">Menü</SheetTitle>
+                  <SheetTitle className="text-white font-heading text-xl tracking-wider">
+                    Menü
+                  </SheetTitle>
+                  <SheetDescription className="sr-only">
+                    Site navigasyon menüsü
+                  </SheetDescription>
                 </SheetHeader>
                 <div className="flex flex-col h-full">
                   <nav className="flex flex-col p-6 gap-2">

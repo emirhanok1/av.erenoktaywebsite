@@ -69,12 +69,17 @@ export default function AboutSection() {
 
           {/* Right Visual Image */}
           <AnimatedReveal delay={0.3} className="relative lg:pl-10">
-            {/* The Main Image Placeholder */}
-            <div className="relative w-full aspect-[4/5] bg-[linear-gradient(135deg,var(--navy-light)_0%,var(--navy)_100%)]">
-              {/* Optional Pattern Overlay */}
-              <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" />
-              
-              {/* Overlay Badge Top Right */}
+            {/* Portrait container with overflow hidden */}
+            <div className="relative overflow-hidden w-full aspect-[4/5]">
+              <div className="relative w-full h-full">
+                {/* The Main Image Placeholder/Content */}
+                <div className="absolute inset-0 bg-[linear-gradient(135deg,var(--navy-light)_0%,var(--navy)_100%)]">
+                  {/* Optional Pattern Overlay */}
+                  <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" />
+                </div>
+              </div>
+
+              {/* Overlay Badge Top Right - stays fixed relative to container */}
               <div className="absolute -top-6 -right-6 lg:-right-10 w-24 h-24 md:w-32 md:h-32 rounded-full border border-accent/40 bg-[#f8f9fa] flex items-center justify-center p-2 z-20">
                 <div className="w-full h-full rounded-full border border-dashed border-accent flex items-center justify-center">
                   <div className="text-center">
@@ -84,7 +89,7 @@ export default function AboutSection() {
                 </div>
               </div>
 
-              {/* Overlay Card Bottom Left */}
+              {/* Overlay Card Bottom Left - stays fixed relative to container */}
               <div className="absolute -bottom-8 -left-4 lg:-left-12 bg-navy border-b-4 border-accent p-6 md:p-8 md:pr-12 shadow-2xl z-20 max-w-[85%] md:max-w-[75%]">
                 <p className="font-heading italic text-white/90 text-sm md:text-base leading-relaxed mb-4">
                   &quot;Müvekkillerimizin hedefleri, bizim hukuki pusulamızdır.&quot;

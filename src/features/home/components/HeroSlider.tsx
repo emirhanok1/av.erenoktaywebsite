@@ -93,7 +93,7 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
 
   return (
     <section
-      className="relative bg-navy h-screen w-full overflow-hidden"
+      className="relative bg-navy h-[100dvh] w-full overflow-hidden"
       aria-label="Öne çıkan başlıklar"
       aria-roledescription="carousel"
     >
@@ -122,9 +122,9 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
           )`,
         }}
       />
-
+      
       {/* Embla viewport */}
-      <div ref={emblaRef} className="overflow-hidden w-full h-screen relative z-[3]">
+      <div ref={emblaRef} className="overflow-hidden w-full h-[100dvh] relative z-[3]">
         <div className="flex">
           {displaySlides.map((slide, index) => {
             const words = slide.title.split(' ')
@@ -141,13 +141,16 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
                 aria-label={`${index + 1} / ${displaySlides.length}`}
               >
                 {/* Slide inner */}
-                <div className="relative w-full h-screen flex items-center">
+                <div className="relative w-full h-[100dvh] flex items-center">
 
                   {/* Tam ekran lacivert arka plan (Doku ve Vignette section seviyesinde eklendi) */}
 
                   {/* Text content */}
                   <div className="container mx-auto px-4 lg:px-8 relative z-10 w-full">
-                    <div className="max-w-3xl mx-auto space-y-8 flex flex-col items-center text-center pt-[120px] pb-20 px-4">
+                    <div 
+                      className="max-w-3xl mx-auto space-y-8 flex flex-col items-center text-center pb-20 px-4"
+                      style={{ paddingTop: 'calc(var(--header-height) + 32px)' }}
+                    >
                       {/* Kicker */}
                       <span className="text-accent font-heading font-medium tracking-[0.2em] text-xs uppercase flex items-center gap-4">
                         <span className="w-12 h-[1px] bg-accent inline-block shrink-0" />
@@ -207,7 +210,7 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
       </div>
 
       {/* Controls bar */}
-      <div className="absolute bottom-6 left-0 right-0 z-30 pointer-events-none">
+      <div className="absolute bottom-6 left-0 right-0 z-ctabar pointer-events-none">
         <div className="container mx-auto px-4 lg:px-8 flex justify-between items-center">
 
           {/* Dot indicators */}

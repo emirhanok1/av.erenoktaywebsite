@@ -142,6 +142,13 @@ const config: Config = {
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out'
+  		},
+  		zIndex: {
+  			topbar: '55',
+  			header: '50',
+  			whatsapp: '40',
+  			ctabar: '30',
+  			modal: '60'
   		}
   	}
   },

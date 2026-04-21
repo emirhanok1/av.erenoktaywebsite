@@ -36,9 +36,9 @@ export function useReveal(threshold = 0.15) {
 
   const motionProps = shouldReduceMotion
     ? {
-        initial: { opacity: 0 },
-        animate: { opacity: isVisible ? 1 : 0 },
-        transition: { duration: 0.5 },
+        initial: { opacity: 1, y: 0 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0 },
       }
     : {
         initial: { opacity: 0, y: 16 },
