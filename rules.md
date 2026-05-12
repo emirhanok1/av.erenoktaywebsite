@@ -514,7 +514,54 @@ NEXT_PUBLIC_WHATSAPP_NUMBER=
 - Admin: Sadece Avukat Eren Oktay erişebilir (tek kullanıcı sistemi)
 
 ---
+## 15. ADMIN PANEL KURALLARI (Faz 7 için)
+
+- Her Server Action'ın ilk satırında `getUser()` kontrolü zorunlu:
+  ```typescript
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) throw new Error('Unauthorized')
+  ```
+- Her başarılı CRUD işleminden sonra `revalidatePath()` zorunlu:
+  - `slides` → `revalidatePath('/')`
+  - `posts` → `revalidatePath('/duyurular')`
+  - `articles` → `revalidatePath('/pratik-bilgiler')`
+  - `faq` → `revalidatePath('/sss')`
+- Admin formlarında çifte validasyon:
+  - Client: Zod resolver
+  - Server: `schema.safeParse(formData)`
+
+---
+
+## 16. İÇ SAYFA KURALLARI (Faz 5 için)
+
+- Pagination URL bazlı olacak (`useState` ile client-side YASAK)
+  - `?page=2` şeklinde searchParams kullanılacak
+- Pratik Bilgiler ve Duyurular sayfalarında yasal uyarı (disclaimer) zorunlu:
+  - *"Bu sitedeki bilgiler hukuki tavsiye niteliğinde değildir."*
+- SSS accordion'da kapalı cevaplar DOM'da kalmalı (SEO için)
+  - shadcn accordion varsayılan bunu sağlar
+
+---
+
+## 17. PERFORMANS KURALLARI (Ekleme)
+
+- Framer Motion: `LazyMotion` + `domAnimation` ile kullanılacak (Faz 9'da refactor)
+- WhatsApp butonu: mount'tan 2s sonra veya ilk scroll'da görünür olacak (Faz 9'da implement edilecek)
+- Blur placeholder: Supabase görselleri için `blurDataURL` eklenecek (Faz 9)
+
+---
+
+## 18. GÜVENLİK KURALLARI (Ekleme)
+
+- `next.config.js`'e security headers eklenecek (Faz 10 öncesi):
+  - `X-Frame-Options: DENY`
+  - `Content-Security-Policy`
+- İletişim ve randevu formlarında honeypot alanı zorunlu (Faz 6'da)
+- Canonical URL her sayfada zorunlu (Faz 8'de implement edilecek)
+
+---
 # Bu kurallar projenin tüm yaşam döngüsü boyunca geçerlidir.
 # Hiçbir kural "pratiklik" gerekçesiyle çiğnenemez.
 # Kural çatışması durumunda: Güvenlik > Performans > DX
 # ============================================================
+
