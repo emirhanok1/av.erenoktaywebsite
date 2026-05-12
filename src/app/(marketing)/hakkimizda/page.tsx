@@ -9,21 +9,8 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div className="flex flex-col min-h-screen">
-      {/* 1. Sayfa Hero */}
-      <section className="bg-navy pt-32 pb-20 text-white">
-        <div className="container">
-          <div className="max-w-3xl">
-            <span className="text-accent text-sm font-bold tracking-wider uppercase mb-4 block">Hakkımızda</span>
-            <h1 className="font-heading text-fluid-h1 mb-6">İlkeli, Şeffaf ve Sonuç Odaklı Hukuki Danışmanlık</h1>
-            <p className="text-fluid-body text-slate-300">
-              Müvekkillerimizin hukuki sorunlarına en etkin ve kalıcı çözümleri üretmek için yılların getirdiği tecrübe ile çalışıyoruz.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 2. Avukat Profili */}
-      <section className="py-24 bg-white">
+      {/* 1. Avukat Profili */}
+      <section className="pt-32 pb-24 bg-white">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Sol: Görsel */}
