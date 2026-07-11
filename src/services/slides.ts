@@ -8,6 +8,8 @@ export type Slide = {
   image_url: string | null
   link: string | null
   sort_order: number
+  is_active: boolean
+  created_at?: string
 }
 
 export const getActiveSlides = cache(async (): Promise<Slide[]> => {
@@ -36,3 +38,19 @@ export const getActiveSlides = cache(async (): Promise<Slide[]> => {
     return []
   }
 })
+
+export const getAdminSlides = cache(async (): Promise<Slide[]> => {
+  const supabase = await createClient()
+  const { data, error } = await supabase
+    .from('slides')
+    .select('id, title, subtitle, image_url, link, sort_order, is_active, created_at')
+    .eq('is_archived', false)
+    .order('sort_order', { ascending: true })
+
+  if (error) {
+    console.error('Admin slides fetch:', error.message)
+    return []
+  }
+  return (data as Slide[]) ?? []
+})
+
