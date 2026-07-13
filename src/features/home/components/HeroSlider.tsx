@@ -2,6 +2,7 @@
 
 import React, { useCallback, useEffect, useState, useMemo } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
@@ -150,6 +151,20 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
                 <div className="relative w-full h-[100dvh] flex items-center">
 
                   {/* Tam ekran lacivert arka plan (Doku ve Vignette section seviyesinde eklendi) */}
+                  {slide.image_url && (
+                    <div className="absolute inset-0 z-0">
+                      <Image
+                        src={slide.image_url}
+                        alt={slide.title}
+                        fill
+                        priority={index === 0}
+                        sizes="100vw"
+                        className="object-cover"
+                      />
+                      {/* Lacivert overlay - metin okunabilirliği için */}
+                      <div className="absolute inset-0 bg-navy/75" />
+                    </div>
+                  )}
 
                   {/* Text content */}
                   <div className="container mx-auto px-4 lg:px-8 relative z-10 w-full">
