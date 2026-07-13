@@ -21,7 +21,7 @@ import { useTransition } from 'react'
 // Menü tanımları
 const ITEMS = [
   { title: "Dashboard", url: ROUTES.ADMIN.DASHBOARD, icon: "🏠" },
-  { title: "Slider", url: ROUTES.ADMIN.SLIDES, icon: "🖼️" },
+  { title: "Slider", url: ROUTES.ADMIN.SLIDER, icon: "🖼️" },
   { title: "Duyurular", url: ROUTES.ADMIN.POSTS, icon: "📰" },
   { title: "Pratik Bilgiler", url: ROUTES.ADMIN.ARTICLES, icon: "📝" },
   { title: "SSS", url: ROUTES.ADMIN.FAQ, icon: "❓" },

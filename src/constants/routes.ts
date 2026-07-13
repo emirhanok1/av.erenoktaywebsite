@@ -8,7 +8,9 @@ export const ROUTES = {
   PRIVACY: '/kvkk',
   ADMIN: {
     DASHBOARD: '/admin',
-    SLIDES: '/admin/slider',
+    SLIDER: '/admin/slider',
+    SLIDER_NEW: '/admin/slider/yeni',
+    SLIDER_EDIT: (id: string) => `/admin/slider/${id}`,
     POSTS: '/admin/haberler',
     ARTICLES: '/admin/makaleler',
     FAQ: '/admin/sss',

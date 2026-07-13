@@ -3,9 +3,10 @@
 import { useTransition } from 'react'
 import { ArrowUp, ArrowDown, Power, Edit, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { toggleSlideActive, moveSlide, archiveSlide } from '../../actions/slides.actions'
+import { toggleSlideActive, moveSlide, archiveSlide } from '../actions/slides.actions'
 import { toast } from 'sonner'
 import Link from 'next/link'
+import { ROUTES } from '@/constants/routes'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -82,7 +83,7 @@ export default function SlideRowActions({ id, isActive, isFirst, isLast }: Slide
       </Button>
       
       <Button variant="outline" size="icon" asChild title="Düzenle">
-        <Link href={`/admin/slider/${id}`}>
+        <Link href={ROUTES.ADMIN.SLIDER_EDIT(id)}>
           <Edit className="h-4 w-4" />
         </Link>
       </Button>

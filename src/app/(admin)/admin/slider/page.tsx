@@ -6,6 +6,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Badge } from '@/components/ui/badge'
 import SlideRowActions from '@/features/admin/components/SlideRowActions'
 import Image from 'next/image'
+import { ROUTES } from '@/constants/routes'
 
 export const metadata = {
   title: 'Slider Yönetimi | Admin',
@@ -19,7 +20,7 @@ export default async function AdminSliderPage() {
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold tracking-tight text-primary">Slider Yönetimi</h1>
         <Button asChild>
-          <Link href="/admin/slider/yeni">
+          <Link href={ROUTES.ADMIN.SLIDER_NEW}>
             <Plus className="mr-2 h-4 w-4" /> Yeni Slide Ekle
           </Link>
         </Button>

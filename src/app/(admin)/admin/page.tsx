@@ -30,7 +30,7 @@ export default async function AdminDashboardPage() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Link href={ROUTES.ADMIN.SLIDES} className="block group">
+        <Link href={ROUTES.ADMIN.SLIDER} className="block group">
           <Card className="hover:shadow-md transition-shadow h-full border-transparent hover:border-primary/50 group-hover:border-primary/50 cursor-pointer">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Slider</CardTitle>

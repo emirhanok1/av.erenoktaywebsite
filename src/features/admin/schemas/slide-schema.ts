@@ -12,7 +12,7 @@ export const slideSchema = z.object({
     .max(200)
     .optional()
     .or(z.literal('')),
-  is_active: z.boolean().default(true),
+  is_active: z.boolean(),
 })
 
 export type SlideFormValues = z.infer<typeof slideSchema>

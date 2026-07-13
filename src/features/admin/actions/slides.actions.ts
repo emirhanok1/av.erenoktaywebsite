@@ -3,6 +3,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { revalidatePath } from 'next/cache'
 import { slideSchema } from '../schemas/slide-schema'
+import { ROUTES } from '@/constants/routes'
 
 export async function createSlide(formData: FormData) {
   const supabase = await createClient()
@@ -22,7 +23,7 @@ export async function createSlide(formData: FormData) {
   const result = slideSchema.safeParse(rawData)
 
   if (!result.success) {
-    return { error: 'Doğrulama hatası: ' + result.error.errors[0].message }
+    return { error: 'Doğrulama hatası: ' + result.error.issues[0].message }
   }
 
   let image_url = null
@@ -79,7 +80,7 @@ export async function createSlide(formData: FormData) {
   }
 
   revalidatePath('/')
-  revalidatePath('/admin/slider')
+  revalidatePath(ROUTES.ADMIN.SLIDER)
 
   return { success: true }
 }
@@ -102,7 +103,7 @@ export async function updateSlide(id: string, formData: FormData) {
   const result = slideSchema.safeParse(rawData)
 
   if (!result.success) {
-    return { error: 'Doğrulama hatası: ' + result.error.errors[0].message }
+    return { error: 'Doğrulama hatası: ' + result.error.issues[0].message }
   }
 
   let image_url = undefined
@@ -133,13 +134,36 @@ export async function updateSlide(id: string, formData: FormData) {
 
     image_url = publicUrlData.publicUrl
 
-    // Eski resmi silme mantığı eklenebilir
+    const { data: oldSlide } = await supabase
+      .from('slides')
+      .select('image_url')
+      .eq('id', id)
+      .single()
+
+    if (oldSlide?.image_url) {
+      const parts = oldSlide.image_url.split('/media/')
+      if (parts.length > 1) {
+        const oldPath = parts[1]
+        const { error: removeError } = await supabase.storage.from('media').remove([oldPath])
+        if (removeError) {
+          console.error('Eski görsel silinemedi:', removeError.message)
+        }
+      }
+    }
   }
 
-  const updateData: any = {
+  type SlideUpdate = {
+    title: string
+    subtitle: string | null
+    link: string | null
+    is_active: boolean
+    image_url?: string
+  }
+
+  const updateData: SlideUpdate = {
     title: result.data.title,
-    subtitle: result.data.subtitle,
-    link: result.data.link,
+    subtitle: result.data.subtitle || null,
+    link: result.data.link || null,
     is_active: result.data.is_active,
   }
 
@@ -157,7 +181,7 @@ export async function updateSlide(id: string, formData: FormData) {
   }
 
   revalidatePath('/')
-  revalidatePath('/admin/slider')
+  revalidatePath(ROUTES.ADMIN.SLIDER)
 
   return { success: true }
 }
@@ -178,7 +202,7 @@ export async function archiveSlide(id: string) {
   if (error) return { error: error.message }
 
   revalidatePath('/')
-  revalidatePath('/admin/slider')
+  revalidatePath(ROUTES.ADMIN.SLIDER)
   return { success: true }
 }
 
@@ -198,7 +222,7 @@ export async function toggleSlideActive(id: string, current: boolean) {
   if (error) return { error: error.message }
 
   revalidatePath('/')
-  revalidatePath('/admin/slider')
+  revalidatePath(ROUTES.ADMIN.SLIDER)
   return { success: true }
 }
 
@@ -219,15 +243,6 @@ export async function moveSlide(id: string, direction: 'up' | 'down') {
   if (!currentSlide) return { error: 'Slide bulunamadı' }
 
   const currentOrder = currentSlide.sort_order
-
-  const { data: swapTarget } = await supabase
-    .from('slides')
-    .select('id, sort_order')
-    .eq('is_archived', false)
-    .order('sort_order', { ascending: direction === 'down' })
-    .gt(direction === 'down' ? 'sort_order' : 'non_existent_field', direction === 'down' ? currentOrder : -1) // Temporary hack for gt/lt logic
-    .lt(direction === 'up' ? 'sort_order' : 'non_existent_field', direction === 'up' ? currentOrder : 999999) // Cleaned below
-    .limit(1)
 
   // Proper query for swap target
   let query = supabase
@@ -252,6 +267,6 @@ export async function moveSlide(id: string, direction: 'up' | 'down') {
   }
 
   revalidatePath('/')
-  revalidatePath('/admin/slider')
+  revalidatePath(ROUTES.ADMIN.SLIDER)
   return { success: true }
 }

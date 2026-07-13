@@ -22,6 +22,8 @@ const DEFAULT_SLIDES: Slide[] = [
     image_url: null,
     link: null,
     sort_order: 1,
+    is_active: true,
+    created_at: new Date().toISOString(),
   },
   {
     id: 'default-2',
@@ -30,6 +32,8 @@ const DEFAULT_SLIDES: Slide[] = [
     image_url: null,
     link: null,
     sort_order: 2,
+    is_active: true,
+    created_at: new Date().toISOString(),
   },
   {
     id: 'default-3',
@@ -38,6 +42,8 @@ const DEFAULT_SLIDES: Slide[] = [
     image_url: null,
     link: null,
     sort_order: 3,
+    is_active: true,
+    created_at: new Date().toISOString(),
   },
 ]
 

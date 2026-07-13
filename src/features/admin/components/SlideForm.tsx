@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { slideSchema, type SlideFormValues } from '../schemas/slide-schema'
 import { createSlide, updateSlide } from '../actions/slides.actions'
+import { ROUTES } from '@/constants/routes'
 import type { Slide } from '@/services/slides'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
@@ -26,9 +27,9 @@ export default function SlideForm({ slide }: SlideFormProps) {
   const form = useForm<SlideFormValues>({
     resolver: zodResolver(slideSchema),
     defaultValues: {
-      title: slide?.title || '',
-      subtitle: slide?.subtitle || '',
-      link: slide?.link || '',
+      title: slide?.title ?? '',
+      subtitle: slide?.subtitle ?? '',
+      link: slide?.link ?? '',
       is_active: slide?.is_active ?? true,
     }
   })
@@ -74,7 +75,7 @@ export default function SlideForm({ slide }: SlideFormProps) {
         toast.error(result.error)
       } else {
         toast.success(slide ? 'Slide güncellendi' : 'Slide eklendi')
-        router.push('/admin/slider')
+        router.push(ROUTES.ADMIN.SLIDER)
       }
     })
   }
@@ -152,7 +153,7 @@ export default function SlideForm({ slide }: SlideFormProps) {
         <Button 
           type="button" 
           variant="outline" 
-          onClick={() => router.push('/admin/slider')}
+          onClick={() => router.push(ROUTES.ADMIN.SLIDER)}
           disabled={isPending}
         >
           İptal

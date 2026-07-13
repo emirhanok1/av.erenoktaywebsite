@@ -30,7 +30,7 @@ export default async function EditSlidePage({ params }: EditSlidePageProps) {
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-bold tracking-tight text-primary">Slide Düzenle</h1>
-        <p className="text-muted-foreground">Seçili slide'ın bilgilerini güncelleyin.</p>
+        <p className="text-muted-foreground">Seçili slide&apos;ın bilgilerini güncelleyin.</p>
       </div>
 
       <div className="p-6 border rounded-md bg-white">
