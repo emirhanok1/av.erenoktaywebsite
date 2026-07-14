@@ -1,9 +1,11 @@
 import { Metadata } from 'next'
+import { SITE } from '@/constants/site'
 import LegalDisclaimer from '@/components/common/LegalDisclaimer'
 
 export const metadata: Metadata = {
   title: 'Hakkımızda',
   description: 'Eren Oktay Hukuk Bürosu hakkında bilgi edinin.',
+  alternates: { canonical: `${SITE.url}/hakkimizda` },
 }
 
 export default function AboutPage() {

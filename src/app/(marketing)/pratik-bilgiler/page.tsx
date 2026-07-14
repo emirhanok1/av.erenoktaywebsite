@@ -6,11 +6,15 @@ import LegalDisclaimer from '@/components/common/LegalDisclaimer'
 import Pagination from '@/components/common/Pagination'
 import { Badge } from '@/components/ui/badge'
 
+import { SITE } from '@/constants/site'
+import { BLUR_DATA_URL } from '@/lib/blur'
+
 export const revalidate = 3600
 
 export const metadata: Metadata = {
   title: 'Pratik Bilgiler',
   description: 'Hukuki konular hakkında faydalı bilgiler ve makaleler.',
+  alternates: { canonical: `${SITE.url}/pratik-bilgiler` },
 }
 
 interface PageProps {
@@ -60,6 +64,8 @@ export default async function ArticlesPage({ searchParams }: PageProps) {
                           fill 
                           className="object-cover transition-transform group-hover:scale-105"
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          placeholder="blur"
+                          blurDataURL={BLUR_DATA_URL}
                         />
                       </div>
                     )}

@@ -1,6 +1,8 @@
 import { Metadata } from 'next'
 import { getFaqs } from '@/services/faq'
 import { getFaqSchema } from '@/lib/schemas/faq-schema'
+import { JsonLd } from '@/components/JsonLd'
+import { SITE } from '@/constants/site'
 import LegalDisclaimer from '@/components/common/LegalDisclaimer'
 import {
   Accordion,
@@ -14,6 +16,7 @@ export const revalidate = 3600
 export const metadata: Metadata = {
   title: 'Sıkça Sorulan Sorular',
   description: 'Hukuki süreçlerle ilgili en çok merak edilen sorular ve yanıtları.',
+  alternates: { canonical: `${SITE.url}/sss` },
 }
 
 type FAQ = {
@@ -37,12 +40,7 @@ export default async function FAQPage() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(schema).replace(/</g, '\\u003c')
-        }}
-      />
+      <JsonLd data={schema} />
       <section className="bg-navy pt-32 pb-20 text-white">
         <div className="container max-w-4xl text-center">
           <h1 className="font-heading text-fluid-h1 mb-4">Sıkça Sorulan Sorular</h1>

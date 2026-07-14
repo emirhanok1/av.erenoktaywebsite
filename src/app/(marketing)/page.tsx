@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import { getActiveSlides } from '@/services/slides'
 import { getLegalServiceSchema } from '@/lib/schemas/legal-service'
+import { JsonLd } from '@/components/JsonLd'
 
 import HeroSlider from '@/features/home/components/HeroSlider'
 import TrustBar from '@/features/home/components/TrustBar'
@@ -30,12 +31,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(schema).replace(/</g, '\\u003c')
-        }}
-      />
+      <JsonLd data={schema} />
       <div className="flex flex-col w-full overflow-hidden">
         <HeroSlider slides={slides} />
         <TrustBar />

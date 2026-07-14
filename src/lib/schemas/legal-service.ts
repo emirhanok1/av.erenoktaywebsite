@@ -1,15 +1,18 @@
+import { SITE } from '@/constants/site'
+
 export function getLegalServiceSchema() {
   return {
     '@context': 'https://schema.org',
-    '@type': 'LegalService',
-    name: 'Eren Oktay Hukuk Bürosu',
-    url: 'https://erenokay.av.tr',
-    telephone: '',
+    '@type': ['LegalService', 'LocalBusiness'],
+    name: SITE.name,
+    url: SITE.url,
+    telephone: '+90 555 555 5555',
     address: {
       '@type': 'PostalAddress',
       addressCountry: 'TR',
       addressLocality: 'İstanbul',
     },
+    areaServed: 'İstanbul',
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',

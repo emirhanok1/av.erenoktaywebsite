@@ -10,6 +10,7 @@ import { Slide } from '@/services/slides'
 import { cn } from '@/lib/utils'
 import { buttonVariants } from '@/components/ui/button'
 import { ROUTES } from '@/constants/routes'
+import { BLUR_DATA_URL } from '@/lib/blur'
 
 interface HeroSliderProps {
   slides: Slide[]
@@ -160,6 +161,8 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
                         priority={index === 0}
                         sizes="100vw"
                         className="object-cover"
+                        placeholder="blur"
+                        blurDataURL={BLUR_DATA_URL}
                       />
                       {/* Lacivert overlay - metin okunabilirliği için */}
                       <div className="absolute inset-0 bg-navy/75" />

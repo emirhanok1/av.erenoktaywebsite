@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
 
@@ -26,14 +26,43 @@ const inter = localFont({
   display: 'swap',
 })
 
+import { SITE } from '@/constants/site'
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE.url),
   title: {
-    template: '%s | Avukat Eren Oktay',
-    default: 'Avukat Eren Oktay — Hukuk Bürosu',
+    default: SITE.title,
+    template: `%s | ${SITE.name}`,
   },
-  description:
-    'Eren Oktay Hukuk Bürosu – Profesyonel hukuki danışmanlık ve avukatlık hizmetleri.',
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  description: SITE.description,
+  openGraph: {
+    type: 'website',
+    locale: SITE.locale,
+    url: SITE.url,
+    siteName: SITE.name,
+    title: SITE.title,
+    description: SITE.description,
+    images: [{
+      url: '/og-image.jpg',
+      width: 1200, 
+      height: 630,
+      alt: SITE.name,
+    }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: SITE.title,
+    description: SITE.description,
+    images: ['/og-image.jpg'],
+  },
+  robots: { index: true, follow: true },
+  alternates: { canonical: SITE.url },
+}
+
+export const viewport: Viewport = {
+  themeColor: '#0f172a', // navy
+  width: 'device-width',
+  initialScale: 1,
 }
 
 import { Toaster } from '@/components/ui/sonner'

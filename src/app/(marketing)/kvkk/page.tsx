@@ -1,7 +1,9 @@
 import { Metadata } from 'next'
+import { SITE } from '@/constants/site'
 
 export const metadata: Metadata = {
   title: 'KVKK Aydınlatma Metni',
+  alternates: { canonical: `${SITE.url}/kvkk` },
 }
 
 export default function KVKKPage() {

@@ -4,13 +4,25 @@ import Link from 'next/link'
 import Image from 'next/image'
 import LegalDisclaimer from '@/components/common/LegalDisclaimer'
 import { Badge } from '@/components/ui/badge'
+import { JsonLd } from '@/components/JsonLd'
+import { SITE } from '@/constants/site'
+import { BLUR_DATA_URL } from '@/lib/blur'
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const article = await getArticleBySlug(params.slug)
   if (!article) return { title: 'Bulunamadı' }
+  const url = `${SITE.url}/pratik-bilgiler/${params.slug}`
   return {
     title: article.title,
-    description: article.excerpt ?? '',
+    description: article.excerpt || SITE.description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: 'article',
+      url,
+      title: article.title,
+      description: article.excerpt || SITE.description,
+      images: article.cover_image ? [{ url: article.cover_image, width: 1200, height: 630 }] : [],
+    },
   }
 }
 
@@ -21,8 +33,43 @@ export default async function ArticleDetailPage({ params }: { params: { slug: st
     notFound()
   }
 
+  const url = `${SITE.url}/pratik-bilgiler/${params.slug}`
+
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: article.title,
+    datePublished: article.published_at,
+    dateModified: article.published_at,
+    author: {
+      '@type': 'Organization',
+      name: SITE.name,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: SITE.name,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE.url}/logo.png`,
+      },
+    },
+    image: article.cover_image ? [article.cover_image] : undefined,
+  }
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Anasayfa', item: SITE.url },
+      { '@type': 'ListItem', position: 2, name: 'Pratik Bilgiler', item: `${SITE.url}/pratik-bilgiler` },
+      { '@type': 'ListItem', position: 3, name: article.title, item: url },
+    ],
+  }
+
   return (
     <div className="flex flex-col min-h-screen bg-white">
+      <JsonLd data={articleSchema} />
+      <JsonLd data={breadcrumbSchema} />
       <div className="container max-w-3xl pt-32 pb-24">
         <Link 
           href="/pratik-bilgiler" 
@@ -58,6 +105,8 @@ export default async function ArticleDetailPage({ params }: { params: { slug: st
                 className="object-cover"
                 sizes="(max-width: 1200px) 100vw, 800px"
                 priority
+                placeholder="blur"
+                blurDataURL={BLUR_DATA_URL}
               />
             </div>
           )}

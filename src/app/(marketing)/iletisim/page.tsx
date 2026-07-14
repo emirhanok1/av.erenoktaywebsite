@@ -1,8 +1,10 @@
 import { Metadata } from 'next'
+import { SITE } from '@/constants/site'
 
 export const metadata: Metadata = {
   title: 'İletişim',
   description: 'Bizimle iletişime geçin ve randevu oluşturun.',
+  alternates: { canonical: `${SITE.url}/iletisim` },
 }
 
 export default function ContactPage() {
