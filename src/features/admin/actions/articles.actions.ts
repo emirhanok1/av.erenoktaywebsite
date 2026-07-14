@@ -37,7 +37,7 @@ export async function createArticle(formData: FormData) {
     excerpt: formData.get('excerpt') as string,
     content: formData.get('content') as string,
     category: formData.get('category') as string,
-    read_time: formData.get('read_time') as string,
+    read_time: formData.get('read_time') && formData.get('read_time') !== 'undefined' ? Number(formData.get('read_time')) : undefined,
     is_published: formData.get('is_published') === 'true' || formData.get('is_published') === 'on',
   }
 
@@ -124,7 +124,7 @@ export async function updateArticle(id: string, formData: FormData) {
     excerpt: formData.get('excerpt') as string,
     content: formData.get('content') as string,
     category: formData.get('category') as string,
-    read_time: formData.get('read_time') as string,
+    read_time: formData.get('read_time') && formData.get('read_time') !== 'undefined' ? Number(formData.get('read_time')) : undefined,
     is_published: formData.get('is_published') === 'true' || formData.get('is_published') === 'on',
   }
 

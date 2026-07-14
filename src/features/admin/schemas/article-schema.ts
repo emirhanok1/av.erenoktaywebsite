@@ -5,7 +5,7 @@ export const articleSchema = z.object({
   excerpt: z.string().max(300, 'Özet en fazla 300 karakter olmalıdır').optional().or(z.literal('')),
   content: z.string().min(10, 'İçerik en az 10 karakter olmalıdır'),
   category: z.string().min(2, 'Kategori en az 2 karakter olmalıdır').max(50, 'Kategori en fazla 50 karakter olmalıdır'),
-  read_time: z.number().int('Tam sayı olmalıdır').min(1, 'En az 1 dakika').max(60, 'En fazla 60 dakika').optional(),
+  read_time: z.number().int('Tam sayı olmalıdır').min(1, 'En az 1 dakika').max(60, 'En fazla 60 dakika').nullable().optional(),
   is_published: z.boolean(),
 })
 

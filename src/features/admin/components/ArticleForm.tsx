@@ -128,7 +128,7 @@ export function ArticleForm({ article }: ArticleFormProps) {
             id="read_time" 
             type="number"
             {...form.register('read_time', { 
-              setValueAs: v => v === "" || v === null ? undefined : parseInt(v, 10) 
+              setValueAs: v => v === '' ? undefined : Number(v) 
             })} 
             placeholder="Otomatik hesaplanması için boş bırakın" 
           />
