@@ -25,8 +25,8 @@ export default function ContactPage() {
             <div className="bg-slate-50 p-8 rounded-xl border border-border">
               <h2 className="font-heading text-2xl text-navy mb-6">İletişim Bilgileri</h2>
               <div className="space-y-4 text-muted-foreground">
-                <p><strong>Adres:</strong> Placeholder Adres Mah. No:1 İstanbul</p>
-                <p><strong>Telefon:</strong> +90 (555) 000 00 00</p>
+                <p><strong>Adres:</strong> Aşağı Öveçler Mahallesi, 1331. Cadde No: 3/3, Çankaya / Ankara</p>
+                <p><strong>Telefon:</strong> +90 507 400 71 40</p>
                 <p><strong>E-posta:</strong> info@erenokay.av.tr</p>
               </div>
             </div>
@@ -34,8 +34,7 @@ export default function ContactPage() {
               <h2 className="font-heading text-2xl text-navy mb-6">Çalışma Saatleri</h2>
               <div className="space-y-4 text-muted-foreground">
                 <p className="flex justify-between"><span>Pazartesi - Cuma:</span> <span>09:00 - 18:00</span></p>
-                <p className="flex justify-between"><span>Cumartesi:</span> <span>Randevu ile</span></p>
-                <p className="flex justify-between"><span>Pazar:</span> <span>Kapalı</span></p>
+                <p className="flex justify-between"><span>Cumartesi - Pazar:</span> <span>Kapalı</span></p>
               </div>
             </div>
           </div>

@@ -6,19 +6,21 @@ export function getLegalServiceSchema() {
     '@type': ['LegalService', 'LocalBusiness'],
     name: SITE.name,
     url: SITE.url,
-    telephone: '+90 555 555 5555',
+    telephone: '+90 507 400 71 40',
     address: {
       '@type': 'PostalAddress',
       addressCountry: 'TR',
-      addressLocality: 'İstanbul',
+      addressLocality: 'Ankara',
+      addressRegion: 'Ankara',
+      streetAddress: 'Aşağı Öveçler Mahallesi, 1331. Cadde No: 3/3, Çankaya',
     },
-    areaServed: 'İstanbul',
+    areaServed: 'Ankara',
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',
         dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
         opens: '09:00',
-        closes: '18:30',
+        closes: '18:00',
       },
     ],
   }

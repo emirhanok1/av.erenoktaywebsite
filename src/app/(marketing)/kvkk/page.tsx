@@ -20,7 +20,7 @@ export default function KVKKPage() {
           <div className="prose prose-lg prose-slate max-w-none prose-headings:font-heading prose-headings:text-navy">
             <h2>1. Veri Sorumlusu</h2>
             <p>
-              Kişisel verileriniz, veri sorumlusu sıfatıyla [Avukat Adı/Büro Adı Placeholder] tarafından aşağıda açıklanan kapsamda işlenebilecektir.
+              Kişisel verileriniz, veri sorumlusu sıfatıyla Av. Eren Oktay (Aşağı Öveçler Mahallesi, 1331. Cadde No: 3/3, Çankaya / Ankara, Tel: +90 507 400 71 40) tarafından aşağıda açıklanan kapsamda işlenebilecektir.
             </p>
 
             <h2>2. İşlenen Kişisel Veriler</h2>
@@ -51,7 +51,7 @@ export default function KVKKPage() {
 
             <h2>6. İletişim</h2>
             <p>
-              KVKK kapsamındaki taleplerinizi [E-posta Placeholder] adresi üzerinden yazılı olarak iletebilirsiniz.
+              KVKK kapsamındaki taleplerinizi info@erenoktayhukuk.com adresi üzerinden yazılı olarak iletebilirsiniz.
             </p>
           </div>
         </div>

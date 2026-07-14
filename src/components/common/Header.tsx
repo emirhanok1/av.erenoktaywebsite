@@ -57,9 +57,9 @@ export default function Header() {
       >
         <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="flex items-center gap-6">
-            <a href="tel:+902125550000" className="flex items-center gap-2 hover:text-accent transition-colors">
+            <a href="tel:+905074007140" className="flex items-center gap-2 hover:text-accent transition-colors">
               <Phone size={14} className="text-accent" />
-              <span>+90 212 555 00 00</span>
+              <span>+90 507 400 71 40</span>
             </a>
             <a href="mailto:info@erenoktayhukuk.com" className="flex items-center gap-2 hover:text-accent transition-colors">
               <Mail size={14} className="text-accent" />
@@ -67,16 +67,10 @@ export default function Header() {
             </a>
             <div className="flex items-center gap-2">
               <Clock size={14} className="text-accent" />
-              <span>Pzt - Cum 09:00 - 18:30</span>
+              <span>Pzt - Cum 09:00 - 18:00</span>
             </div>
           </div>
-          <div className="flex items-center gap-4">
-            <span className="cursor-pointer hover:text-accent transition-colors text-accent font-medium">TR</span>
-            <span className="opacity-30">/</span>
-            <span className="cursor-pointer hover:text-accent transition-colors">EN</span>
-            <span className="opacity-30">/</span>
-            <span className="cursor-pointer hover:text-accent transition-colors">DE</span>
-          </div>
+          {/* Diller kaldirildi */}
         </div>
       </div>
 

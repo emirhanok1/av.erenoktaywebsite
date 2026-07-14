@@ -17,7 +17,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Sol: Görsel */}
             <div className="relative aspect-[4/5] bg-gradient-to-tr from-navy to-navy/80 rounded-lg overflow-hidden shadow-xl flex items-center justify-center">
-              <span className="text-white/20 text-4xl font-heading font-bold absolute">EST. 2007</span>
+              <span className="text-white/20 text-4xl font-heading font-bold absolute">E·O</span>
               {/* Buraya gerçek görsel eklenecektir */}
             </div>
 
@@ -39,21 +39,16 @@ export default function AboutPage() {
                 <div>
                   <h3 className="font-bold text-navy mb-3">Uzmanlık Alanları</h3>
                   <ul className="space-y-2 text-muted-foreground text-sm">
-                    <li>• Ticaret Hukuku</li>
-                    <li>• Aile ve Miras Hukuku</li>
-                    <li>• İş Hukuku</li>
-                    <li>• Gayrimenkul Hukuku</li>
+                    <li>• İcra ve İflas Hukuku</li>
+                    <li>• Haciz İşlemleri</li>
+                    <li>• Kira Hukuku</li>
+                    <li>• Ceza Hukuku</li>
+                    <li>• Hukuki Danışmanlık</li>
                   </ul>
                 </div>
                 <div>
-                  <h3 className="font-bold text-navy mb-3">Diller</h3>
-                  <ul className="space-y-2 text-muted-foreground text-sm mb-6">
-                    <li>• Türkçe (Anadil)</li>
-                    <li>• İngilizce (İleri Düzey)</li>
-                    <li>• Almanca (Orta Düzey)</li>
-                  </ul>
                   <h3 className="font-bold text-navy mb-3">Baro Kaydı</h3>
-                  <p className="text-sm text-muted-foreground">İstanbul Barosu - Sicil No: 12345</p>
+                  <p className="text-sm text-muted-foreground">Ankara Barosu - Sicil No: 50178</p>
                 </div>
               </div>
             </div>
@@ -77,8 +72,8 @@ export default function AboutPage() {
               <p className="text-muted-foreground">Farklı sektörlerdeki uyuşmazlıklarda edindiğimiz derin tecrübe ile öngörülebilir stratejiler kuruyoruz.</p>
             </div>
             <div className="bg-white p-8 rounded-xl shadow-sm border border-border">
-              <h3 className="text-xl font-heading text-navy mb-4">Çok Dilli Hizmet</h3>
-              <p className="text-muted-foreground">Yabancı müvekkillerimiz için anadillerinde kesintisiz ve şeffaf iletişim ile hukuki süreçlerini yönetiyoruz.</p>
+              <h3 className="text-xl font-heading text-navy mb-4">Şeffaf İletişim</h3>
+              <p className="text-muted-foreground">Müvekkillerimiz için kesintisiz ve şeffaf iletişim ile hukuki süreçlerini yönetiyoruz.</p>
             </div>
           </div>
         </div>

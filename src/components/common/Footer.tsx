@@ -47,30 +47,31 @@ const SOCIAL_ICONS = [
 
 export default function Footer() {
   return (
-    <footer className="bg-secondary text-white/70 pt-20">
+    <footer className="bg-secondary text-white/70 pt-8 md:pt-12">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 pb-8 md:pb-10 text-center md:text-left">
+          
           {/* COLUMN 1: BRAND */}
-          <div className="space-y-6">
+          <div className="space-y-4 md:space-y-5 flex flex-col items-center md:items-start">
             <Link href={ROUTES.HOME} className="flex items-center gap-4 outline-none">
-              <div className="relative w-11 h-11 border-[1.5px] border-white/70 flex items-center justify-center">
+              <div className="relative w-10 h-10 md:w-11 md:h-11 border-[1.5px] border-white/70 flex items-center justify-center">
                 <div className="absolute inset-1 border border-white/30" />
-                <span className="font-heading italic font-medium text-lg text-white relative z-10">E·O</span>
+                <span className="font-heading italic font-medium text-base md:text-lg text-white relative z-10">E·O</span>
               </div>
-              <div className="flex flex-col leading-tight">
-                <span className="font-heading font-medium text-lg tracking-[0.08em] text-white">EREN OKTAY</span>
-                <span className="text-[10px] tracking-[0.32em] text-white/50 uppercase mt-0.5">Hukuk Bürosu</span>
+              <div className="flex flex-col leading-tight text-left">
+                <span className="font-heading font-medium text-base md:text-lg tracking-[0.08em] text-white">EREN OKTAY</span>
+                <span className="text-[9px] md:text-[10px] tracking-[0.32em] text-white/50 uppercase mt-0.5">Hukuk Bürosu</span>
               </div>
             </Link>
-            <p className="text-sm leading-relaxed max-w-sm">
-              Eren Oktay Hukuk Bürosu olarak, ticaret hukuku ve aile hukuku başta olmak üzere geniş bir yelpazede profesyonel hukuki danışmanlık hizmeti sunuyoruz.
+            <p className="text-xs md:text-sm leading-relaxed max-w-sm hidden md:block">
+              İcra, kira ve ceza hukuku başta olmak üzere profesyonel hukuki danışmanlık hizmeti.
             </p>
-            <div className="flex items-center gap-4 pt-4">
+            <div className="flex items-center gap-3 pt-2">
               {SOCIAL_ICONS.map((social, i) => (
                 <a
                   key={i}
                   href={social.href}
-                  className="w-10 h-10 border border-white/10 flex items-center justify-center hover:bg-accent hover:border-accent hover:text-navy transition-all duration-300"
+                  className="w-9 h-9 border border-white/10 flex items-center justify-center hover:bg-accent hover:border-accent hover:text-navy transition-all duration-300"
                   aria-label={social.name}
                 >
                   {social.icon}
@@ -80,9 +81,9 @@ export default function Footer() {
           </div>
 
           {/* COLUMN 2: QUICK LINKS */}
-          <div className="space-y-6">
-            <h4 className="text-white font-semibold text-xs tracking-[0.22em] uppercase">Hızlı Linkler</h4>
-            <ul className="space-y-4">
+          <div className="space-y-4 md:space-y-5">
+            <h4 className="text-white font-semibold text-xs tracking-[0.22em] uppercase hidden md:block">Hızlı Linkler</h4>
+            <ul className="flex flex-wrap justify-center gap-x-4 gap-y-3 md:flex-col md:space-y-3 md:gap-0">
               {[
                 { label: 'Anasayfa', href: ROUTES.HOME },
                 { label: 'Hakkımızda', href: ROUTES.ABOUT },
@@ -90,13 +91,14 @@ export default function Footer() {
                 { label: 'Pratik Bilgiler', href: ROUTES.ARTICLES },
                 { label: 'S.S.S.', href: ROUTES.FAQ },
                 { label: 'İletişim', href: ROUTES.CONTACT },
+                { label: 'KVKK', href: ROUTES.PRIVACY },
               ].map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm hover:text-accent flex items-center gap-3 transition-colors group"
+                    className="text-xs md:text-sm hover:text-accent flex items-center gap-3 transition-colors group"
                   >
-                    <div className="w-1.5 h-0.5 bg-accent opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-x-2 group-hover:translate-x-0" />
+                    <div className="w-1.5 h-0.5 bg-accent opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-x-2 group-hover:translate-x-0 hidden md:block" />
                     {item.label}
                   </Link>
                 </li>
@@ -104,64 +106,45 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* COLUMN 3: WORKING HOURS */}
-          <div className="space-y-6">
-            <h4 className="text-white font-semibold text-xs tracking-[0.22em] uppercase">Çalışma Saatleri</h4>
-            <ul className="space-y-4 text-sm">
-              <li className="flex justify-between border-b border-white/5 pb-2">
-                <span>Pazartesi - Cuma</span>
-                <span className="text-white">09:00 - 18:30</span>
-              </li>
-              <li className="flex justify-between border-b border-white/5 pb-2">
-                <span>Cumartesi</span>
-                <span className="text-white">10:00 - 14:00</span>
-              </li>
-              <li className="flex justify-between border-b border-white/5 pb-2">
-                <span>Pazar</span>
-                <span className="text-accent italic font-medium">Kapalı</span>
-              </li>
-            </ul>
-            <p className="text-xs italic opacity-60">* Randevu için lütfen iletişime geçiniz.</p>
-          </div>
-
-          {/* COLUMN 4: CONTACT */}
-          <div className="space-y-6">
-            <h4 className="text-white font-semibold text-xs tracking-[0.22em] uppercase">İletişim Bilgileri</h4>
-            <div className="space-y-5">
-              <div className="flex gap-4">
-                <MapPin size={18} className="text-accent shrink-0 mt-1" />
-                <div className="space-y-1 text-sm">
-                  <span className="text-[11px] font-bold tracking-widest text-accent uppercase block">Adres</span>
-                  <p>Merkez Mahallesi, No: 123, Kat: 5, PK: 34000 Şişli / İstanbul</p>
+          {/* COLUMN 3: CONTACT & HOURS */}
+          <div className="space-y-4 md:space-y-5 flex flex-col items-center md:items-start">
+            <h4 className="text-white font-semibold text-xs tracking-[0.22em] uppercase hidden md:block">İletişim</h4>
+            
+            <div className="space-y-2 md:space-y-4 text-xs md:text-sm text-center md:text-left flex flex-col items-center md:items-start">
+              
+              <div className="flex gap-3 md:gap-4 items-center md:items-start">
+                <MapPin size={16} className="text-accent shrink-0 hidden md:block mt-0.5" />
+                <div>
+                  <p>Aşağı Öveçler Mahallesi, 1331. Cadde No: 3/3, Çankaya / Ankara</p>
                 </div>
               </div>
-              <div className="flex gap-4">
-                <Phone size={18} className="text-accent shrink-0 mt-1" />
-                <div className="space-y-1 text-sm">
-                  <span className="text-[11px] font-bold tracking-widest text-accent uppercase block">Telefon</span>
-                  <p>+90 212 555 00 00</p>
+              
+              <div className="flex gap-3 md:gap-4 items-center md:items-start">
+                <Phone size={16} className="text-accent shrink-0 hidden md:block mt-0.5" />
+                <div>
+                  <p>+90 507 400 71 40</p>
                 </div>
               </div>
-              <div className="flex gap-4">
-                <Mail size={18} className="text-accent shrink-0 mt-1" />
-                <div className="space-y-1 text-sm">
-                  <span className="text-[11px] font-bold tracking-widest text-accent uppercase block">Email</span>
+              
+              <div className="flex gap-3 md:gap-4 items-center md:items-start">
+                <Mail size={16} className="text-accent shrink-0 hidden md:block mt-0.5" />
+                <div>
                   <p>info@erenoktayhukuk.com</p>
                 </div>
               </div>
+
+              <div className="pt-2 md:pt-3 text-xs md:text-sm text-white/90">
+                <p>Pzt - Cum 09:00 - 18:00</p>
+              </div>
+
             </div>
           </div>
+
         </div>
 
         {/* BOTTOM BAR */}
-        <div className="border-t border-white/10 py-8 flex flex-col md:row justify-between items-center gap-4 text-[12.5px] opacity-40">
-          <p>© {new Date().getFullYear()} Av. Eren Oktay Hukuk Bürosu. Tüm hakları saklıdır.</p>
-          <div className="flex gap-6">
-            <Link href={ROUTES.PRIVACY} className="hover:text-accent transition-colors underline-offset-4 hover:underline">
-              KVKK Aydınlatma Metni
-            </Link>
-            <span>Tasarım: Gemini Deepmind</span>
-          </div>
+        <div className="border-t border-white/10 py-5 text-center text-[11px] md:text-xs opacity-50">
+          <p>© 2026 Eren Oktay Hukuk Bürosu. Tüm hakları saklıdır.</p>
         </div>
       </div>
     </footer>
