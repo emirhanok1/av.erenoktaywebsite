@@ -18,6 +18,8 @@ export const ROUTES = {
     ARTICLES_NEW: '/admin/pratik-bilgiler/yeni',
     ARTICLES_EDIT: (id: string) => `/admin/pratik-bilgiler/${id}`,
     FAQ: '/admin/sss',
+    FAQ_NEW: '/admin/sss/yeni',
+    FAQ_EDIT: (id: string) => `/admin/sss/${id}`,
     MESSAGES: '/admin/mesajlar',
     APPOINTMENTS: '/admin/randevular',
   },
