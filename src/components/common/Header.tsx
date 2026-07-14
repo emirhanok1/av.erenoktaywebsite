@@ -32,9 +32,18 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const TOPBAR_HEIGHT = 40
 
-  const isHomePage = pathname === '/'
+  const TRANSPARENT_HERO_ROUTES = [
+    '/',
+    '/duyurular',
+    '/pratik-bilgiler',
+    '/sss',
+    '/iletisim',
+    '/kvkk',
+  ]
+
+  const hasTransparentHero = TRANSPARENT_HERO_ROUTES.includes(pathname)
   const isScrolled = scrollY > 60
-  const showTransparent = isHomePage && !isScrolled
+  const showTransparent = hasTransparentHero && !isScrolled
 
   return (
     <>
