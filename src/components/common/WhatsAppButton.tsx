@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { MessageCircle } from 'lucide-react'
 
 export default function WhatsAppButton() {
@@ -8,7 +8,7 @@ export default function WhatsAppButton() {
   const whatsappUrl = `https://wa.me/${whatsappNumber}`
 
   return (
-    <motion.a
+    <m.a
       href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
@@ -25,6 +25,6 @@ export default function WhatsAppButton() {
       <span className="absolute right-full mr-4 bg-navy text-white text-xs px-3 py-1.5 rounded-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none hidden lg:block">
         WhatsApp ile iletişim
       </span>
-    </motion.a>
+    </m.a>
   )
 }

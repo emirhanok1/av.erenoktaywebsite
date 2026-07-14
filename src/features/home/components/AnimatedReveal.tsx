@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { useReveal } from '../hooks/useReveal'
 
 interface AnimatedRevealProps {
@@ -14,7 +14,7 @@ export function AnimatedReveal({ children, className, delay = 0 }: AnimatedRevea
   const { ref, motionProps } = useReveal()
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       className={className}
       initial={motionProps.initial}
@@ -22,6 +22,6 @@ export function AnimatedReveal({ children, className, delay = 0 }: AnimatedRevea
       transition={{ ...motionProps.transition, delay }}
     >
       {children}
-    </motion.div>
+    </m.div>
   )
 }
