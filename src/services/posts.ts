@@ -84,7 +84,7 @@ export const getAdminPostById = cache(async (id: string): Promise<Post | null> =
     const supabase = await createClient()
     const { data, error } = await supabase
       .from('posts')
-      .select('*')
+      .select('id, title, slug, excerpt, content, cover_image, is_published, published_at, created_at')
       .eq('id', id)
       .single()
 
