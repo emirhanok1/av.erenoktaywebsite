@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Phone, Mail, Clock, Menu } from 'lucide-react'
+import { Phone, Clock, Menu } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { ROUTES } from '@/constants/routes'
 import { useScrollPosition } from '@/hooks/use-scroll-position'
@@ -61,10 +61,7 @@ export default function Header() {
               <Phone size={14} className="text-accent" />
               <span>+90 507 400 71 40</span>
             </a>
-            <a href="mailto:info@erenoktayhukuk.com" className="flex items-center gap-2 hover:text-accent transition-colors">
-              <Mail size={14} className="text-accent" />
-              <span>info@erenoktayhukuk.com</span>
-            </a>
+
             <div className="flex items-center gap-2">
               <Clock size={14} className="text-accent" />
               <span>Pzt - Cum 09:00 - 18:00</span>
