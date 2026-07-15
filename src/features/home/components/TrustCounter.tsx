@@ -51,11 +51,11 @@ export function TrustCounter({ end, suffix = '', label }: TrustCounterProps) {
         <span className="font-heading text-[42px] font-medium text-navy leading-none">
           {count}
         </span>
-        <span className="font-heading text-[32px] font-medium text-accent leading-none mb-0.5">
+        <span className="font-heading text-[32px] font-medium text-navy leading-none mb-0.5">
           {suffix}
         </span>
       </div>
-      <span className="text-[11px] font-bold tracking-[0.2em] text-muted-foreground uppercase">
+      <span className="text-[11px] font-bold tracking-[0.2em] text-navy/70 uppercase">
         {label}
       </span>
     </div>

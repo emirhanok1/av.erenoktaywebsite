@@ -7,6 +7,7 @@ export function getLegalServiceSchema() {
     name: SITE.name,
     url: SITE.url,
     telephone: '+90 507 400 71 40',
+    email: SITE.email,
     address: {
       '@type': 'PostalAddress',
       addressCountry: 'TR',

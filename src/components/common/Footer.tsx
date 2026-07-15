@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { Phone, MapPin } from 'lucide-react'
+import { Phone, MapPin, Mail } from 'lucide-react'
+import { SITE } from '@/constants/site'
 import { ROUTES } from '@/constants/routes'
 
 const SOCIAL_ICONS = [
@@ -47,7 +48,7 @@ const SOCIAL_ICONS = [
 
 export default function Footer() {
   return (
-    <footer className="bg-secondary text-white/70 pt-6 md:pt-12">
+    <footer className="bg-secondary text-white/85 pt-6 md:pt-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-12 pb-5 md:pb-10 text-center md:text-left">
           
@@ -60,7 +61,7 @@ export default function Footer() {
               </div>
               <div className="flex flex-col leading-tight text-left">
                 <span className="font-heading font-medium text-sm md:text-lg tracking-[0.08em] text-white">EREN OKTAY</span>
-                <span className="text-[8px] md:text-[10px] tracking-[0.32em] text-white/50 uppercase mt-0.5">Hukuk Bürosu</span>
+                <span className="text-[8px] md:text-[10px] tracking-[0.32em] text-white/85 uppercase mt-0.5">Hukuk Bürosu</span>
               </div>
             </Link>
             <p className="text-sm leading-relaxed max-w-sm hidden md:block">
@@ -126,6 +127,15 @@ export default function Footer() {
                 </div>
               </div>
               
+              <div className="flex gap-3 md:gap-4 items-center md:items-start">
+                <Mail size={16} className="text-accent shrink-0 hidden md:block mt-0.5" />
+                <div>
+                  <a href={`mailto:${SITE.email}`} className="hover:text-accent transition-colors">
+                    {SITE.email}
+                  </a>
+                </div>
+              </div>
+              
               <div className="pt-0.5 md:pt-3 text-[11px] md:text-sm text-white/90">
                 <p>Pzt - Cum 09:00 - 18:00</p>
               </div>
@@ -136,7 +146,7 @@ export default function Footer() {
         </div>
 
         {/* BOTTOM BAR */}
-        <div className="border-t border-white/10 py-4 text-center text-[10px] md:text-xs opacity-50">
+        <div className="border-t border-white/10 py-4 text-center text-[10px] md:text-xs opacity-85">
           <p>© 2026 Eren Oktay Hukuk Bürosu. Tüm hakları saklıdır.</p>
         </div>
       </div>

@@ -6,17 +6,18 @@ const playfair = localFont({
   src: [
     { path: '../styles/fonts/playfair-400.woff2', weight: '400', style: 'normal' },
     { path: '../styles/fonts/playfair-500.woff2', weight: '500', style: 'normal' },
-    { path: '../styles/fonts/playfair-600.woff2', weight: '600', style: 'normal' },
     { path: '../styles/fonts/playfair-700.woff2', weight: '700', style: 'normal' },
     { path: '../styles/fonts/playfair-italic.woff2', weight: '400', style: 'italic' },
   ],
   variable: '--font-playfair',
   display: 'swap',
+  fallback: ['system-ui', 'arial'],
+  adjustFontFallback: 'Arial',
+  preload: true,
 })
 
 const inter = localFont({
   src: [
-    { path: '../styles/fonts/inter-300.woff2', weight: '300', style: 'normal' },
     { path: '../styles/fonts/inter-400.woff2', weight: '400', style: 'normal' },
     { path: '../styles/fonts/inter-500.woff2', weight: '500', style: 'normal' },
     { path: '../styles/fonts/inter-600.woff2', weight: '600', style: 'normal' },
@@ -24,6 +25,9 @@ const inter = localFont({
   ],
   variable: '--font-inter',
   display: 'swap',
+  fallback: ['system-ui', 'arial'],
+  adjustFontFallback: 'Arial',
+  preload: true,
 })
 
 import { SITE } from '@/constants/site'

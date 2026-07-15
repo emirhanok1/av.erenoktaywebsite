@@ -27,7 +27,7 @@ export default function ContactPage() {
               <div className="space-y-4 text-muted-foreground">
                 <p><strong>Adres:</strong> Aşağı Öveçler Mahallesi, 1331. Cadde No: 3/3, Çankaya / Ankara</p>
                 <p><strong>Telefon:</strong> +90 507 400 71 40</p>
-
+                <p><strong>E-posta:</strong> <a href={`mailto:${SITE.email}`} className="text-accent hover:underline">{SITE.email}</a></p>
               </div>
             </div>
             <div className="bg-slate-50 p-8 rounded-xl border border-border">

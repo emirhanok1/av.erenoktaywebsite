@@ -181,13 +181,15 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
                         {slide.subtitle || 'KURUMSAL HUKUK · TECRÜBELİ EKİP'}
                       </span>
 
-                      {/* H1 */}
-                      <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-heading leading-[1.1] tracking-tight">
-                        {titleStart}{' '}
-                        {lastWord && (
-                          <em className="text-accent italic font-light">{lastWord}</em>
-                        )}
-                      </h1>
+                      {/* H1 Bloğu: Font swap kaymalarını (CLS) önlemek için sabit min-height verildi */}
+                      <div className="flex flex-col justify-center items-center min-h-[120px] md:min-h-[160px] lg:min-h-[200px] w-full">
+                        <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-heading leading-[1.1] tracking-tight">
+                          {titleStart}{' '}
+                          {lastWord && (
+                            <em className="text-accent italic font-light">{lastWord}</em>
+                          )}
+                        </h1>
+                      </div>
 
                       {/* Diamond separator */}
                       <div className="flex items-center justify-center gap-5">

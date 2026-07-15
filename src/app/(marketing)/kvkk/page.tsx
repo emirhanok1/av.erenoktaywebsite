@@ -51,7 +51,7 @@ export default function KVKKPage() {
 
             <h2>6. İletişim</h2>
             <p>
-              KVKK kapsamındaki taleplerinizi iletişim kanallarımız üzerinden yazılı olarak iletebilirsiniz.
+              KVKK kapsamındaki taleplerinizi <a href={`mailto:${SITE.email}`} className="text-accent hover:underline">{SITE.email}</a> adresi üzerinden yazılı olarak iletebilirsiniz.
             </p>
           </div>
         </div>

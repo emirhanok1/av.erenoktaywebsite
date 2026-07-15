@@ -20,7 +20,7 @@ export default function StickyCTABar() {
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex-1 min-h-[56px] bg-[#25D366] text-white flex items-center justify-center gap-3 text-sm font-semibold tracking-wide active:bg-[#1ebd5e] transition-colors"
+        className="flex-1 min-h-[56px] bg-[#25D366] text-white flex items-center justify-center gap-3 text-sm font-bold tracking-wide drop-shadow-md active:bg-[#1ebd5e] transition-colors"
       >
         <MessageCircle size={18} fill="currentColor" />
         <span>WhatsApp</span>

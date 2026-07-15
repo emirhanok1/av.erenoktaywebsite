@@ -12,15 +12,17 @@ import CTABand from '@/features/home/components/CTABand'
 // Revalidate home page every hour
 export const revalidate = 3600
 
+import { SITE } from '@/constants/site'
+
 export const metadata: Metadata = {
   title: 'Avukat Eren Oktay — Hukuk Bürosu',
-  description: 'Eren Oktay Hukuk Bürosu olarak, ticaret hukuku ve aile hukuku başta olmak üzere geniş bir yelpazede profesyonel hukuki danışmanlık hizmeti sunuyoruz.',
+  description: SITE.description,
   openGraph: {
     title: 'Avukat Eren Oktay — Hukuk Bürosu',
-    description: 'Eren Oktay Hukuk Bürosu olarak, ticaret hukuku ve aile hukuku başta olmak üzere geniş bir yelpazede profesyonel hukuki danışmanlık hizmeti sunuyoruz.',
-    url: 'https://erenokay.av.tr',
-    siteName: 'Eren Oktay Hukuk Bürosu',
-    locale: 'tr_TR',
+    description: SITE.description,
+    url: SITE.url,
+    siteName: SITE.name,
+    locale: SITE.locale,
     type: 'website',
   },
 }

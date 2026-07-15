@@ -75,7 +75,7 @@ export default function AboutSection() {
                 {/* The Main Image Placeholder/Content */}
                 <div className="absolute inset-0 bg-[linear-gradient(135deg,var(--navy-light)_0%,var(--navy)_100%)]">
                   {/* Optional Pattern Overlay */}
-                  <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" />
+
                 </div>
               </div>
 
