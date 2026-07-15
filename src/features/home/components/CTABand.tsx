@@ -1,6 +1,4 @@
 import React from 'react'
-import Link from 'next/link'
-import { ROUTES } from '@/constants/routes'
 import { buttonVariants } from '@/components/ui/button'
 
 export default function CTABand() {
@@ -26,12 +24,14 @@ export default function CTABand() {
 
           {/* Right Button */}
           <div className="shrink-0">
-            <Link 
-              href={ROUTES.CONTACT} 
-              className={buttonVariants({ variant: 'default', className: "bg-accent hover:bg-white text-navy font-bold tracking-widest uppercase px-10 py-7 rounded-none transition-colors border border-accent" })}
+            <a 
+              href="https://wa.me/905074007140"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={buttonVariants({ variant: 'default', className: "bg-accent hover:bg-white text-navy font-bold tracking-widest uppercase px-10 py-7 rounded-none transition-colors border border-accent inline-flex items-center justify-center" })}
             >
               İletişime Geçin
-            </Link>
+            </a>
           </div>
 
         </div>

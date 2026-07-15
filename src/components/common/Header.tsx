@@ -7,7 +7,6 @@ import { Phone, Clock, Menu } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { ROUTES } from '@/constants/routes'
 import { useScrollPosition } from '@/hooks/use-scroll-position'
-import { Button } from '@/components/ui/button'
 import {
   Sheet,
   SheetContent,
@@ -141,13 +140,22 @@ export default function Header() {
 
           {/* CTA & MOBILE TRIGGER */}
           <div className="flex items-center gap-4">
-            <Button className={cn(
-              "hidden sm:flex rounded-none px-6 py-6 text-xs font-semibold tracking-widest uppercase items-center gap-3 transition-colors duration-300",
-              !showTransparent ? "bg-navy hover:bg-secondary text-white" : "bg-white hover:bg-white/90 text-navy"
-            )}>
-              <div className="w-1.5 h-1.5 bg-accent rounded-full" />
-              Randevu Al
-            </Button>
+            <a
+              href="https://wa.me/905074007140"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                "group hidden sm:flex rounded-none px-6 py-6 text-xs font-semibold tracking-widest uppercase items-center gap-3 transition-colors duration-300",
+                !showTransparent 
+                  ? "bg-navy hover:bg-secondary text-white" 
+                  : "bg-transparent border border-accent text-white hover:bg-accent hover:text-navy"
+              )}>
+              <div className={cn(
+                "w-1.5 h-1.5 rounded-full transition-colors duration-300",
+                !showTransparent ? "bg-accent" : "bg-accent group-hover:bg-navy"
+              )} />
+              İletişime Geç
+            </a>
 
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
@@ -187,9 +195,14 @@ export default function Header() {
                     ))}
                   </nav>
                   <div className="p-6 mt-auto">
-                    <Button className="w-full bg-accent hover:bg-accent-dark text-navy rounded-none py-7 text-sm font-bold tracking-widest uppercase">
-                      Randevu Al
-                    </Button>
+                    <a
+                      href="https://wa.me/905074007140"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full bg-accent hover:bg-accent-dark text-navy rounded-none py-7 text-sm font-bold tracking-widest uppercase flex items-center justify-center"
+                    >
+                      İletişime Geç
+                    </a>
                   </div>
                 </div>
               </SheetContent>

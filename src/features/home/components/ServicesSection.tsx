@@ -1,27 +1,27 @@
 import React from 'react'
 import Link from 'next/link'
-import { Scale, Building2, Shield, ArrowRight } from 'lucide-react'
+import { Scale, Car, Shield, ArrowRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { AnimatedReveal } from './AnimatedReveal'
 
 const SERVICES = [
   {
     id: 1,
-    title: 'Ticaret & Şirketler Hukuku',
+    title: 'İcra ve Haciz Hukuku',
     icon: <Scale className="text-accent" strokeWidth={1.5} size={28} />,
-    items: ['Ticari sözleşmeler', 'M&A işlemleri', 'Şirket kuruluşu'],
+    items: ['Dosyadan haciz kaldırma', 'İcra takibi', 'Ödeme emri itirazları'],
   },
   {
     id: 2,
-    title: 'Gayrimenkul & İnşaat Hukuku',
-    icon: <Building2 className="text-accent" strokeWidth={1.5} size={28} />,
-    items: ['Kat karşılığı sözleşmeler', 'Kentsel dönüşüm', 'Tapu davaları'],
+    title: 'Araç Değer Kaybı',
+    icon: <Car className="text-accent" strokeWidth={1.5} size={28} />,
+    items: ['Değer kaybı hesaplama', 'Sigorta başvuruları', 'Tazminat davaları'],
   },
   {
     id: 3,
-    title: 'Aile & Miras Hukuku',
+    title: 'Ceza & Kira Hukuku',
     icon: <Shield className="text-accent" strokeWidth={1.5} size={28} />,
-    items: ['Boşanma davaları', 'Vasiyetname', 'Mal paylaşımı'],
+    items: ['Ceza davaları', 'Kira uyuşmazlıkları', 'Tahliye davaları'],
   },
 ]
 
@@ -87,7 +87,7 @@ export default function ServicesSection() {
 
               {/* Footer Link */}
               <Link 
-                href="/pratik-bilgiler" 
+                href="/iletisim" 
                 className="inline-flex items-center gap-3 text-navy font-semibold text-xs tracking-widest uppercase mt-auto group/link"
               >
                 <span>Detaylı Bilgi</span>

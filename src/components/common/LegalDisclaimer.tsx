@@ -19,7 +19,7 @@ export default function LegalDisclaimer({
           "text-center max-w-prose mx-auto text-muted-foreground leading-relaxed",
           variant === 'prominent' ? "text-sm" : "text-xs"
         )}>
-          Bu sitedeki bilgiler genel bilgilendirme amaçlı olup hukuki tavsiye niteliği taşımamaktadır. Somut hukuki durumunuz için bir avukattan danışmanlık almanız tavsiye edilir.
+          Bu sitedeki bilgiler genel bilgilendirme amaçlıdır ve somut olayınıza dair hukuki görüş yerine geçmez. Durumunuza özel bir değerlendirme için <a href="https://wa.me/905074007140" target="_blank" rel="noopener noreferrer" className="underline hover:text-navy transition-colors">bizimle iletişime geçebilirsiniz</a>.
         </p>
       </div>
     </div>

@@ -41,12 +41,9 @@ export default async function FAQPage() {
   return (
     <div className="flex flex-col min-h-screen">
       <JsonLd data={schema} />
-      <section className="bg-navy pt-32 pb-20 text-white">
-        <div className="container max-w-4xl text-center">
-          <h1 className="font-heading text-fluid-h1 mb-4">Sıkça Sorulan Sorular</h1>
-          <p className="text-fluid-body text-slate-300">
-            Hukuki süreçler hakkında merak ettiğiniz temel soruların yanıtlarını burada bulabilirsiniz.
-          </p>
+      <section className="bg-navy pt-32 pb-16 text-white text-center">
+        <div className="container">
+          <h1 className="font-heading text-3xl md:text-4xl text-white">Sıkça Sorulan Sorular</h1>
         </div>
       </section>
 

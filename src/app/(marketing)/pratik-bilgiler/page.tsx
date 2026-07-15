@@ -31,12 +31,9 @@ export default async function ArticlesPage({ searchParams }: PageProps) {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <section className="bg-navy pt-32 pb-20 text-white">
+      <section className="bg-navy pt-32 pb-16 text-white text-center">
         <div className="container">
-          <h1 className="font-heading text-fluid-h1 mb-4">Pratik Bilgiler</h1>
-          <p className="text-fluid-body text-slate-300 max-w-2xl">
-            Sık karşılaşılan hukuki sorunlara dair bilgilendirici makaleler ve pratik çözümler.
-          </p>
+          <h1 className="font-heading text-3xl md:text-4xl text-white">Pratik Bilgiler</h1>
         </div>
       </section>
 

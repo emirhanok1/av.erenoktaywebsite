@@ -31,12 +31,9 @@ export default async function NewsPage({ searchParams }: PageProps) {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Sayfa Hero */}
-      <section className="bg-navy pt-32 pb-20 text-white">
+      <section className="bg-navy pt-32 pb-16 text-white text-center">
         <div className="container">
-          <h1 className="font-heading text-fluid-h1 mb-4">Duyurular</h1>
-          <p className="text-fluid-body text-slate-300 max-w-2xl">
-            Büromuzdan güncel haberler ve hukuki dünyaya dair önemli gelişmeler.
-          </p>
+          <h1 className="font-heading text-3xl md:text-4xl text-white">Duyurular</h1>
         </div>
       </section>
 

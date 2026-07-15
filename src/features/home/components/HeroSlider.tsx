@@ -9,7 +9,6 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { Slide } from '@/services/slides'
 import { cn } from '@/lib/utils'
 import { buttonVariants } from '@/components/ui/button'
-import { ROUTES } from '@/constants/routes'
 import { BLUR_DATA_URL } from '@/lib/blur'
 
 interface HeroSliderProps {
@@ -206,15 +205,17 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
 
                       {/* CTAs */}
                       <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2 w-full sm:w-auto">
-                        <Link
-                          href={ROUTES.CONTACT}
+                        <a
+                          href="https://wa.me/905074007140"
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className={cn(
                             buttonVariants({ variant: 'default' }),
                             'bg-accent hover:bg-white text-navy font-bold tracking-wider uppercase px-8 py-4 rounded-none w-full sm:w-auto transition-colors text-sm'
                           )}
                         >
-                          Randevu Al
-                        </Link>
+                          İletişime Geç
+                        </a>
                         <Link
                           href="#services-title"
                           className={cn(
