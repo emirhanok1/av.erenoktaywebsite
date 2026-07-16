@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
-import { Camera } from 'lucide-react'
+import Image from 'next/image'
 import { SITE } from '@/constants/site'
+import { BLUR_DATA_URL } from '@/lib/blur'
 
 export const metadata: Metadata = {
   title: 'İletişim',
@@ -43,19 +44,30 @@ export default function ContactPage() {
               Çankaya&apos;daki ofisimizde görüşmelerinizi gerçekleştiriyoruz.
             </p>
             
-            {/* Fotoğraf Grid'i (Placeholder) */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[1, 2, 3].map((index) => (
-                <div 
-                  key={index} 
-                  className="bg-slate-100 rounded-xl aspect-[4/3] flex flex-col items-center justify-center border-2 border-dashed border-slate-200 text-slate-400 transition-colors hover:bg-slate-50"
-                >
-                  <Camera size={40} className="mb-3 opacity-50" strokeWidth={1.5} />
-                  <span className="text-sm font-medium tracking-wide uppercase opacity-70">
-                    Fotoğraf Yakında
-                  </span>
-                </div>
-              ))}
+            {/* Fotoğraf Grid'i */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-sm">
+                <Image
+                  src="/images/ofis-1.webp"
+                  alt="Eren Oktay Hukuk Bürosu Ofis İçi"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  placeholder="blur"
+                  blurDataURL={BLUR_DATA_URL}
+                />
+              </div>
+              <div className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-sm">
+                <Image
+                  src="/images/ofis-2.webp"
+                  alt="Eren Oktay Hukuk Bürosu Çalışma Alanı"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  placeholder="blur"
+                  blurDataURL={BLUR_DATA_URL}
+                />
+              </div>
             </div>
           </div>
         </div>

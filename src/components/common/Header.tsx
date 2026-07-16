@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Phone, Clock, Menu } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -94,15 +95,18 @@ export default function Header() {
         <div className="container mx-auto px-4 flex justify-between items-center">
           {/* LOGO */}
           <Link href={ROUTES.HOME} className="group flex items-center gap-4 outline-none">
-            <div className={cn(
-              "relative w-11 h-11 border-[1.5px] flex items-center justify-center transition-transform group-hover:scale-105 duration-300",
-              !showTransparent ? "border-accent" : "border-white/80"
-            )}>
-              <div className={cn("absolute inset-1 border transition-colors duration-300", !showTransparent ? "border-navy" : "border-white")} />
-              <span className={cn(
-                "font-heading italic font-medium text-lg relative z-10 transition-colors duration-300",
-                !showTransparent ? "text-navy" : "text-white"
-              )}>E·O</span>
+            <div className="relative flex items-center justify-center transition-transform group-hover:scale-105 duration-300">
+              <Image
+                src="/images/logo.png"
+                alt="Eren Oktay Hukuk Bürosu"
+                width={44}
+                height={41}
+                priority
+                className={cn(
+                  "transition-all duration-300",
+                  showTransparent ? "brightness-0 invert" : ""
+                )}
+              />
             </div>
             <div className="flex flex-col leading-tight">
               <span className={cn(

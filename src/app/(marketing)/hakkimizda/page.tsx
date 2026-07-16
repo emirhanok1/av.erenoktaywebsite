@@ -1,5 +1,7 @@
 import { Metadata } from 'next'
+import Image from 'next/image'
 import { SITE } from '@/constants/site'
+import { BLUR_DATA_URL } from '@/lib/blur'
 import LegalDisclaimer from '@/components/common/LegalDisclaimer'
 
 export const metadata: Metadata = {
@@ -16,9 +18,16 @@ export default function AboutPage() {
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Sol: Görsel */}
-            <div className="relative aspect-[4/5] bg-gradient-to-tr from-navy to-navy/80 rounded-lg overflow-hidden shadow-xl flex items-center justify-center">
-              <span className="text-white/20 text-4xl font-heading font-bold absolute">E·O</span>
-              {/* Buraya gerçek görsel eklenecektir */}
+            <div className="relative aspect-[4/5] rounded-lg overflow-hidden shadow-xl">
+              <Image
+                src="/images/eren-oktay.webp"
+                alt="Av. Eren Oktay"
+                fill
+                className="object-cover object-center"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                placeholder="blur"
+                blurDataURL={BLUR_DATA_URL}
+              />
             </div>
 
             {/* Sağ: Bilgiler */}
