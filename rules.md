@@ -127,9 +127,13 @@ Tablo listesi (güncel — mesaj/randevu sistemi kaldırıldı, bkz. madde 9):
 - `articles` — pratik bilgiler/blog
 - `faq` — sıkça sorulan sorular
 
-Ayrıca `media` storage bucket'ı (kapak görselleri için) kullanılır. Ayrı bir
-`profiles` tablosu yok — admin tek kullanıcı olduğu için doğrudan Supabase
-Auth (`auth.users`) kullanılıyor, ek profil tablosuna gerek duyulmadı.
+Ayrıca `media` storage bucket'ı (kapak görselleri için) kullanılır.
+
+Veritabanında bir de `profiles` tablosu var (RLS'i açık, `auth.uid()` ile
+kendi satırına erişim politikaları tanımlı) ama uygulama kodunun hiçbir
+yerinde sorgulanmıyor — admin girişi doğrudan Supabase Auth (`auth.users`)
+üzerinden yürüyor. 2026-07-28 itibarıyla kullanılmayan/yetim bir tablo;
+silinmedi çünkü bu kasıtlı bir karar gerektiriyor (bkz. proje notları).
 
 ### Middleware
 ```typescript
