@@ -24,6 +24,7 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     locale: SITE.locale,
     type: 'website',
+    images: [{ url: SITE.ogImage, width: 1200, height: 630, alt: SITE.name }],
   },
 }
 

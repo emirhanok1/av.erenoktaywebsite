@@ -155,12 +155,13 @@ export function ArticleForm({ article }: ArticleFormProps) {
 
       <div className="space-y-2">
         <Label htmlFor="content">İçerik *</Label>
-        <Textarea 
-          id="content" 
-          {...form.register('content')} 
-          placeholder="İçerik metni..."
+        <Textarea
+          id="content"
+          {...form.register('content')}
+          placeholder="İçerik metni (düz metin)..."
           className="min-h-[300px]"
         />
+        <p className="text-xs text-muted-foreground">Paragraf arası boşluk bırakmak için boş bir satır kullanın.</p>
         {form.formState.errors.content && (
           <p className="text-sm text-destructive">{form.formState.errors.content.message}</p>
         )}

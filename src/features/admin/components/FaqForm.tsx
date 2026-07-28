@@ -89,13 +89,14 @@ export function FaqForm({ faq }: FaqFormProps) {
 
         <div className="space-y-2">
           <Label htmlFor="answer">Cevap *</Label>
-          <Textarea 
-            id="answer" 
-            {...form.register('answer')} 
-            placeholder="Soruya verilecek detaylı cevap..."
+          <Textarea
+            id="answer"
+            {...form.register('answer')}
+            placeholder="Soruya verilecek detaylı cevap (düz metin)..."
             className="min-h-[150px]"
             rows={6}
           />
+          <p className="text-xs text-muted-foreground">Paragraf arası boşluk bırakmak için boş bir satır kullanın.</p>
           {form.formState.errors.answer && (
             <p className="text-sm text-destructive">{form.formState.errors.answer.message}</p>
           )}

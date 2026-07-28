@@ -107,12 +107,13 @@ export default function PostForm({ post }: PostFormProps) {
 
         <div className="space-y-2">
           <Label htmlFor="content">İçerik *</Label>
-          <Textarea 
-            id="content" 
-            {...form.register('content')} 
-            placeholder="Duyuru içeriği (Düz metin)" 
+          <Textarea
+            id="content"
+            {...form.register('content')}
+            placeholder="Duyuru içeriği (düz metin)"
             rows={12}
           />
+          <p className="text-xs text-muted-foreground">Paragraf arası boşluk bırakmak için boş bir satır kullanın.</p>
           {form.formState.errors.content && (
             <p className="text-sm text-destructive">{form.formState.errors.content.message}</p>
           )}

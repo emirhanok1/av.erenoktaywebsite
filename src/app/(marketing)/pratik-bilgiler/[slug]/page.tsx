@@ -21,7 +21,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       url,
       title: article.title,
       description: article.excerpt || SITE.description,
-      images: article.cover_image ? [{ url: article.cover_image, width: 1200, height: 630 }] : [],
+      images: article.cover_image
+        ? [{ url: article.cover_image, width: 1200, height: 630 }]
+        : [{ url: SITE.ogImage, width: 1200, height: 630, alt: SITE.name }],
     },
   }
 }
@@ -111,10 +113,9 @@ export default async function ArticleDetailPage({ params }: { params: { slug: st
             </div>
           )}
 
-          <div 
-            className="prose prose-lg prose-slate max-w-none mb-16 prose-headings:font-heading prose-headings:text-navy prose-a:text-accent hover:prose-a:text-navy"
-            dangerouslySetInnerHTML={{ __html: article.content ?? '' }}
-          />
+          <div className="prose prose-lg prose-slate max-w-none mb-16 whitespace-pre-line">
+            {article.content}
+          </div>
         </article>
       </div>
 

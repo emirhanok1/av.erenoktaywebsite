@@ -64,8 +64,8 @@ export default async function FAQPage() {
                         <AccordionTrigger className="text-left font-bold text-navy hover:text-accent">
                           {faq.question}
                         </AccordionTrigger>
-                        <AccordionContent className="text-muted-foreground leading-relaxed">
-                          <div dangerouslySetInnerHTML={{ __html: faq.answer }} />
+                        <AccordionContent className="text-muted-foreground leading-relaxed whitespace-pre-line">
+                          {faq.answer}
                         </AccordionContent>
                       </AccordionItem>
                     ))}
