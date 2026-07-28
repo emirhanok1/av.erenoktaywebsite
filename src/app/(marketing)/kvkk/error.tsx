@@ -1,5 +1,7 @@
 'use client'
 
+import Link from 'next/link'
+
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 export default function Error({
@@ -17,10 +19,10 @@ export default function Error({
         Bir sorun oluştu. Lütfen daha sonra 
         tekrar deneyiniz.
       </p>
-      <a href="/" className="text-navy 
+      <Link href="/" className="text-navy 
         underline text-sm">
         Anasayfaya Dön
-      </a>
+      </Link>
     </div>
   )
 }

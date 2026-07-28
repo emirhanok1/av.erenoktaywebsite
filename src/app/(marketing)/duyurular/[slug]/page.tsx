@@ -7,7 +7,8 @@ import { JsonLd } from '@/components/JsonLd'
 import { SITE } from '@/constants/site'
 import { BLUR_DATA_URL } from '@/lib/blur'
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
+export async function generateMetadata(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   const post = await getPostBySlug(params.slug)
   if (!post) return { title: 'Bulunamadı' }
   const url = `${SITE.url}/duyurular/${params.slug}`
@@ -27,9 +28,10 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
-export default async function PostDetailPage({ params }: { params: { slug: string } }) {
+export default async function PostDetailPage(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   const post = await getPostBySlug(params.slug)
-  
+
   if (!post) {
     notFound()
   }

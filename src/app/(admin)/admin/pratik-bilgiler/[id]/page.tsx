@@ -8,12 +8,13 @@ export const metadata: Metadata = {
 }
 
 interface PageProps {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
-export default async function EditArticlePage({ params }: PageProps) {
+export default async function EditArticlePage(props: PageProps) {
+  const params = await props.params;
   const article = await getAdminArticleById(params.id)
 
   if (!article) {

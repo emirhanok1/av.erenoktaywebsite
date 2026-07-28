@@ -62,9 +62,9 @@ export default function ServicesSection() {
 
               {/* Icon Box */}
               <div className="w-14 h-14 border border-accent/30 rounded-lg flex items-center justify-center mb-8 bg-white transition-all duration-500 group-hover:bg-gold group-hover:border-gold group-hover:-translate-y-1 group-hover:-rotate-[4deg]">
-                {React.cloneElement(service.icon as React.ReactElement, {
+                {React.cloneElement(service.icon as React.ReactElement<{ className?: string }>, {
                   className: cn(
-                    (service.icon as React.ReactElement).props.className,
+                    (service.icon as React.ReactElement<{ className?: string }>).props.className,
                     "group-hover:text-navy"
                   )
                 })}

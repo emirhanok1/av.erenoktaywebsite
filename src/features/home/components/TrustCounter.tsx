@@ -19,6 +19,9 @@ export function TrustCounter({ end, suffix = '', label }: TrustCounterProps) {
     if (!isInView) return
 
     if (shouldReduceMotion) {
+      // Reduced-motion preference is only known post-mount; jump straight
+      // to the final value instead of animating.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setCount(end)
       return
     }

@@ -7,12 +7,13 @@ export const metadata = {
 }
 
 interface EditPostPageProps {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
-export default async function EditPostPage({ params }: EditPostPageProps) {
+export default async function EditPostPage(props: EditPostPageProps) {
+  const params = await props.params;
   const post = await getAdminPostById(params.id)
 
   if (!post) {

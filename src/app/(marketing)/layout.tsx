@@ -1,13 +1,7 @@
 import Header from '@/components/common/Header'
 import Footer from '@/components/common/Footer'
 import StickyCTABar from '@/components/common/StickyCTABar'
-import dynamic from 'next/dynamic'
-
-const WhatsAppButton = dynamic(
-  () => import('@/components/common/WhatsAppButton'),
-  { ssr: false }
-)
-
+import WhatsAppButton from '@/components/common/WhatsAppButtonLazy'
 import { MotionProvider } from '@/components/common/MotionProvider'
 
 export default function MarketingLayout({

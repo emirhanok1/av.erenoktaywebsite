@@ -18,12 +18,13 @@ export const metadata: Metadata = {
 }
 
 interface PageProps {
-  searchParams?: { page?: string }
+  searchParams?: Promise<{ page?: string }>
 }
 
-export default async function ArticlesPage({ searchParams }: PageProps) {
+export default async function ArticlesPage(props: PageProps) {
+  const searchParams = await props.searchParams;
   const allArticles = await getArticles()
-  
+
   const page = Number(searchParams?.page ?? '1')
   const perPage = 9
   const totalPages = Math.ceil(allArticles.length / perPage)

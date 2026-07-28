@@ -8,12 +8,13 @@ export const metadata = {
 }
 
 interface EditSlidePageProps {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
-export default async function EditSlidePage({ params }: EditSlidePageProps) {
+export default async function EditSlidePage(props: EditSlidePageProps) {
+  const params = await props.params;
   const supabase = await createClient()
 
   const { data: slide, error } = await supabase

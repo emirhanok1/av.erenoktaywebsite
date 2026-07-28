@@ -85,6 +85,8 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
 
   useEffect(() => {
     if (!emblaApi) return
+    // Sync initial index from Embla (only known post-mount), then subscribe.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     onSelect()
     emblaApi.on('select', onSelect)
     emblaApi.on('reInit', onSelect)
