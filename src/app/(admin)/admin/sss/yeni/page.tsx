@@ -15,7 +15,7 @@ export default function NewFaqPage() {
         </p>
       </div>
 
-      <div className="border rounded-lg bg-white dark:bg-slate-950 p-6">
+      <div className="border rounded-lg bg-white p-6">
         <FaqForm />
       </div>
     </div>

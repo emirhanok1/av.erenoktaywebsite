@@ -30,7 +30,7 @@ export default async function EditArticlePage(props: PageProps) {
         </p>
       </div>
 
-      <div className="border rounded-lg bg-white dark:bg-slate-950 p-6">
+      <div className="border rounded-lg bg-white p-6">
         <ArticleForm article={article} />
       </div>
     </div>

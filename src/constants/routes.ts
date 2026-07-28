@@ -20,8 +20,6 @@ export const ROUTES = {
     FAQ: '/admin/sss',
     FAQ_NEW: '/admin/sss/yeni',
     FAQ_EDIT: (id: string) => `/admin/sss/${id}`,
-    MESSAGES: '/admin/mesajlar',
-    APPOINTMENTS: '/admin/randevular',
   },
   AUTH: {
     LOGIN: '/giris',

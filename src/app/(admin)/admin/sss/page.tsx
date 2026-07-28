@@ -40,7 +40,7 @@ export default async function AdminFaqPage() {
         </Button>
       </div>
 
-      <div className="border rounded-lg bg-white dark:bg-slate-950">
+      <div className="border rounded-lg bg-white">
         <Table>
           <TableHeader>
             <TableRow>

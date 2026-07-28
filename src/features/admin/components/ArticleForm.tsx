@@ -167,7 +167,7 @@ export function ArticleForm({ article }: ArticleFormProps) {
         )}
       </div>
 
-      <div className="space-y-2 border p-6 rounded-lg bg-slate-50 dark:bg-slate-900">
+      <div className="space-y-2 border p-6 rounded-lg bg-slate-50">
         <Label htmlFor="image" className="block mb-2">Kapak Görseli</Label>
         <p className="text-sm text-muted-foreground mb-4">
           JPG, PNG veya WEBP. Maksimum 2MB. İçerik sayfasının başında görünür.

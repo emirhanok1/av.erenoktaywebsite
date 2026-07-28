@@ -28,7 +28,7 @@ export default async function EditFaqPage({ params }: EditFaqPageProps) {
         </p>
       </div>
 
-      <div className="border rounded-lg bg-white dark:bg-slate-950 p-6">
+      <div className="border rounded-lg bg-white p-6">
         <FaqForm faq={faq} />
       </div>
     </div>

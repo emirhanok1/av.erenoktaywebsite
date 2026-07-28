@@ -46,8 +46,7 @@ src/
 ├── hooks/               # Custom React hook'ları
 ├── constants/
 │   ├── routes.ts        # Tüm URL'ler burada — magic string YASAK
-│   ├── site.ts          # Sistem sabitleri (SITE objesi)
-│   └── animations.ts    # Framer Motion variant'ları
+│   └── site.ts          # Sistem sabitleri (SITE objesi)
 ├── types/               # TypeScript arayüzleri ve şemaları
 ├── styles/
 │   └── fonts/           # .woff2 font dosyaları — Google CDN YASAK
@@ -425,27 +424,14 @@ uygulanan bir mekanizma tarif etmiyor.
 ## 10. ANİMASYON
 
 ### Framer Motion Kuralları
-- Animasyon tanımları `src/constants/animations.ts`'de merkezi
+- Animasyon değerleri kullanıldığı bileşende inline tanımlanır (ayrı bir
+  merkezi dosya yok — `src/constants/animations.ts` hiç kullanılmadığı
+  için kaldırıldı, bkz. proje notları)
 - Sayfa geçişleri `app/template.tsx` üzerinden
 - `useReducedMotion` hook'u her animasyonda kontrol edilir
 - Animasyon süresi: max 400ms (kurumsal, sade)
 - Aşırı veya dikkat dağıtıcı animasyonlar YASAK
 - Yanıp sönen veya dönen elementler YASAK (TBB mevzuatı)
-
-### Standart Animasyon Değerleri
-```typescript
-// src/constants/animations.ts
-export const fadeIn = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.4, ease: 'easeOut' }
-}
-export const slideUp = {
-  initial: { opacity: 0, y: 40 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5, ease: 'easeOut' }
-}
-```
 
 ---
 
