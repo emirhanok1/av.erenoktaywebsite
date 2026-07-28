@@ -1,5 +1,6 @@
 import { cache } from 'react'
 import { createClient } from '@/lib/supabase/server'
+import { createClient as createPublicClient } from '@/lib/supabase/public'
 
 export type Slide = {
   id: string
@@ -14,8 +15,8 @@ export type Slide = {
 
 export const getActiveSlides = cache(async (): Promise<Slide[]> => {
   try {
-    const supabase = await createClient()
-    
+    const supabase = createPublicClient()
+
     const { data, error } = await supabase
       .from('slides')
       .select('id, title, subtitle, image_url, link, sort_order')

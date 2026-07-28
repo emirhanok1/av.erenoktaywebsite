@@ -9,7 +9,7 @@ export default function StickyCTABar() {
   return (
     <div className="fixed bottom-0 left-0 right-0 z-ctabar lg:hidden flex bg-white border-t-2 border-accent">
       <a
-        href="tel:+902125550000"
+        href="tel:+905074007140"
         className="flex-1 min-h-[56px] bg-secondary text-white flex items-center justify-center gap-3 text-sm font-semibold tracking-wide active:bg-navy transition-colors"
       >
         <Phone size={18} />

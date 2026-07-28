@@ -1,5 +1,6 @@
 import { cache } from 'react'
 import { createClient } from '@/lib/supabase/server'
+import { createClient as createPublicClient } from '@/lib/supabase/public'
 
 export interface Faq {
   id: string
@@ -14,7 +15,7 @@ export interface Faq {
 }
 
 export const getFaqs = cache(async (): Promise<Faq[]> => {
-  const supabase = await createClient()
+  const supabase = createPublicClient()
   const { data, error } = await supabase
     .from('faq')
     .select('id, question, answer, category, sort_order, is_published, is_archived, created_at, updated_at')

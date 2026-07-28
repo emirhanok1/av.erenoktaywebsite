@@ -1,5 +1,6 @@
 import { cache } from 'react'
 import { createClient } from '@/lib/supabase/server'
+import { createClient as createPublicClient } from '@/lib/supabase/public'
 
 export type Post = {
   id: string
@@ -20,7 +21,7 @@ export type AdminPost = Pick<Post, 'id' | 'title' | 'slug' | 'excerpt' | 'publis
 
 export const getPosts = cache(async () => {
   try {
-    const supabase = await createClient()
+    const supabase = createPublicClient()
     const { data, error } = await supabase
       .from('posts')
       .select('id, title, slug, excerpt, cover_image, published_at')
@@ -40,7 +41,7 @@ export const getPosts = cache(async () => {
 
 export const getPostBySlug = cache(async (slug: string) => {
   try {
-    const supabase = await createClient()
+    const supabase = createPublicClient()
     const { data, error } = await supabase
       .from('posts')
       .select('id, title, slug, content, excerpt, cover_image, published_at')

@@ -1,9 +1,10 @@
 import { cache } from 'react'
 import { createClient } from '@/lib/supabase/server'
+import { createClient as createPublicClient } from '@/lib/supabase/public'
 
 export const getArticles = cache(async () => {
   try {
-    const supabase = await createClient()
+    const supabase = createPublicClient()
     const { data, error } = await supabase
       .from('articles')
       .select('id, title, slug, excerpt, cover_image, category, read_time, published_at')
@@ -23,7 +24,7 @@ export const getArticles = cache(async () => {
 
 export const getArticleBySlug = cache(async (slug: string) => {
   try {
-    const supabase = await createClient()
+    const supabase = createPublicClient()
     const { data, error } = await supabase
       .from('articles')
       .select('id, title, slug, content, excerpt, cover_image, category, read_time, published_at')

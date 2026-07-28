@@ -1,4 +1,4 @@
-import { getArticleBySlug } from '@/services/articles'
+import { getArticleBySlug, getArticles } from '@/services/articles'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -7,6 +7,13 @@ import { Badge } from '@/components/ui/badge'
 import { JsonLd } from '@/components/JsonLd'
 import { SITE } from '@/constants/site'
 import { BLUR_DATA_URL } from '@/lib/blur'
+
+export const revalidate = 3600
+
+export async function generateStaticParams() {
+  const articles = await getArticles()
+  return articles.map((article) => ({ slug: article.slug }))
+}
 
 export async function generateMetadata(props: { params: Promise<{ slug: string }> }) {
   const params = await props.params;
