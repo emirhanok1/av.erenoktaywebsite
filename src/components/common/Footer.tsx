@@ -3,49 +3,6 @@ import { Phone, MapPin, Mail } from 'lucide-react'
 import { SITE } from '@/constants/site'
 import { ROUTES } from '@/constants/routes'
 
-const SOCIAL_ICONS = [
-  { 
-    name: 'Facebook', 
-    href: '#',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3 md:w-4 md:h-4">
-        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-      </svg>
-    )
-  },
-  { 
-    name: 'Instagram', 
-    href: '#',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3 md:w-4 md:h-4">
-        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-      </svg>
-    )
-  },
-  { 
-    name: 'Twitter', 
-    href: '#',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3 md:w-4 md:h-4">
-        <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.2-18 11.6 7.2.1 11.6-4.1 11.6-4.1-3.4-1-4.8-2.7-5.4-4 .7.2 1.2 0 1.2 0-3.3-1.1-4.7-3.9-4.8-5.3.7.4 1.2.5 1.7.5-3.3-2.3-1.6-5.8-1.5-6 3.9 4.6 9.1 5.3 9.1 5.3-1.5-6.8 6.4-9.3 10-5.8 1.4-.2 2.8-.8 2.8-.8-1.2 1.8-2.1 2.3-2.1 2.3 1.2-.2 2.5-.7 2.5-.7-.7 1.1-2 2.4-2 2.4z" />
-      </svg>
-    )
-  },
-  { 
-    name: 'Linkedin', 
-    href: '#',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3 md:w-4 md:h-4">
-        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-        <rect x="2" y="9" width="4" height="12" />
-        <circle cx="4" cy="4" r="2" />
-      </svg>
-    )
-  },
-]
-
 export default function Footer() {
   return (
     <footer className="bg-secondary text-white/85 pt-6 md:pt-12">
@@ -67,18 +24,6 @@ export default function Footer() {
             <p className="text-sm leading-relaxed max-w-sm hidden md:block">
               İcra, kira ve ceza hukuku başta olmak üzere profesyonel hukuki danışmanlık hizmeti.
             </p>
-            <div className="flex items-center gap-2 md:gap-3 pt-1 md:pt-2">
-              {SOCIAL_ICONS.map((social, i) => (
-                <a
-                  key={i}
-                  href={social.href}
-                  className="w-7 h-7 md:w-9 md:h-9 border border-white/10 flex items-center justify-center hover:bg-accent hover:border-accent hover:text-navy transition-all duration-300"
-                  aria-label={social.name}
-                >
-                  {social.icon}
-                </a>
-              ))}
-            </div>
           </div>
 
           {/* COLUMN 2: QUICK LINKS */}

@@ -6,4 +6,5 @@ export const SITE = {
   locale: 'tr_TR',
   email: 'av.eren.oktay@gmail.com',
   ogImage: '/images/og-image.png',
+  logo: '/images/logo.webp',
 } as const

@@ -83,3 +83,22 @@ export const getAdminArticleById = cache(async (id: string) => {
   if (error) return null
   return data
 })
+
+export const getArticlesCount = cache(async (): Promise<number> => {
+  try {
+    const supabase = await createClient()
+    const { count, error } = await supabase
+      .from('articles')
+      .select('id', { count: 'exact', head: true })
+      .eq('is_archived', false)
+
+    if (error) {
+      console.error('Articles count fetch hatası:', error.message)
+      return 0
+    }
+    return count ?? 0
+  } catch (error) {
+    console.error('getArticlesCount unexpected error:', error)
+    return 0
+  }
+})

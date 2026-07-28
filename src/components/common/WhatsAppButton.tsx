@@ -1,11 +1,25 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { m } from 'framer-motion'
 import { MessageCircle } from 'lucide-react'
 
 export default function WhatsAppButton() {
+  const [visible, setVisible] = useState(false)
   const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER
   const whatsappUrl = `https://wa.me/${whatsappNumber}`
+
+  useEffect(() => {
+    const show = () => setVisible(true)
+    const timer = setTimeout(show, 2000)
+    window.addEventListener('scroll', show, { once: true, passive: true })
+    return () => {
+      clearTimeout(timer)
+      window.removeEventListener('scroll', show)
+    }
+  }, [])
+
+  if (!visible) return null
 
   return (
     <m.a

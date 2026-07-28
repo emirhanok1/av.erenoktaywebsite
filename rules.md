@@ -46,7 +46,7 @@ src/
 ├── hooks/               # Custom React hook'ları
 ├── constants/
 │   ├── routes.ts        # Tüm URL'ler burada — magic string YASAK
-│   ├── config.ts        # Sistem sabitleri
+│   ├── site.ts          # Sistem sabitleri (SITE objesi)
 │   └── animations.ts    # Framer Motion variant'ları
 ├── types/               # TypeScript arayüzleri ve şemaları
 ├── styles/
@@ -121,14 +121,15 @@ Her tabloda şu sütunlar ZORUNLUDUR:
 - `updated_at` (timestamptz, default: now())
 - `is_archived` (boolean, default: false) — TBB kural değişikliklerinde silme yerine arşivleme
 
-Tablo listesi:
-- `profiles` — admin kullanıcı profili
+Tablo listesi (güncel — mesaj/randevu sistemi kaldırıldı, bkz. madde 9):
 - `slides` — hero slider görselleri
 - `posts` — haberler/duyurular
 - `articles` — pratik bilgiler/blog
 - `faq` — sıkça sorulan sorular
-- `messages` — iletişim formu mesajları
-- `appointments` — randevu talepleri
+
+Ayrıca `media` storage bucket'ı (kapak görselleri için) kullanılır. Ayrı bir
+`profiles` tablosu yok — admin tek kullanıcı olduğu için doğrudan Supabase
+Auth (`auth.users`) kullanılıyor, ek profil tablosuna gerek duyulmadı.
 
 ### Middleware
 ```typescript
@@ -395,7 +396,14 @@ export const metadata: Metadata = {
 
 ## 9. KVKK UYUMU
 
-### İletişim ve Randevu Formları
+### Güncel Durum
+İletişim, mesaj ve randevu formları (KVKK onay kutuları dahil) bilinçli olarak
+kaldırıldı — İletişim sayfası şu an sadece statik bilgi (adres/telefon/e-posta)
+ve WhatsApp yönlendirmesi kullanıyor, form yok. Aşağıdaki form kuralları
+ileride bir form eklenirse geçerli olacak referans kurallardır, şu an
+uygulanan bir mekanizma tarif etmiyor.
+
+### İletişim ve Randevu Formları (ileride eklenirse)
 - Aydınlatma Metni linki form altında ZORUNLU
 - Açık rıza onay kutusu ZORUNLU
 - Onay kutuları önceden işaretli OLAMAZ (pre-checked YASAK)
@@ -438,6 +446,10 @@ export const slideUp = {
 ---
 
 ## 11. EMAIL (RESEND)
+
+**Güncel durum:** Email/mesaj sistemi kaldırıldı, `resend` paketi kurulu değil
+ve `RESEND_API_KEY` şu an kullanılmıyor. Aşağıdaki kurallar ileride email
+gönderimi eklenirse geçerli olacak referans kurallardır.
 
 - Sadece Resend SDK kullanılır (`resend` paketi)
 - Email şablonları `src/emails/` klasöründe React Email ile

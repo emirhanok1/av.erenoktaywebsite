@@ -98,3 +98,22 @@ export const getAdminPostById = cache(async (id: string): Promise<Post | null> =
     return null
   }
 })
+
+export const getPostsCount = cache(async (): Promise<number> => {
+  try {
+    const supabase = await createClient()
+    const { count, error } = await supabase
+      .from('posts')
+      .select('id', { count: 'exact', head: true })
+      .eq('is_archived', false)
+
+    if (error) {
+      console.error('Posts count fetch hatası:', error.message)
+      return 0
+    }
+    return count ?? 0
+  } catch (error) {
+    console.error('getPostsCount unexpected error:', error)
+    return 0
+  }
+})

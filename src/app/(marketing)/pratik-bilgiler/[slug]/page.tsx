@@ -52,7 +52,7 @@ export default async function ArticleDetailPage({ params }: { params: { slug: st
       name: SITE.name,
       logo: {
         '@type': 'ImageObject',
-        url: `${SITE.url}/logo.png`,
+        url: `${SITE.url}${SITE.logo}`,
       },
     },
     image: article.cover_image ? [article.cover_image] : undefined,

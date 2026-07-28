@@ -51,7 +51,7 @@ export default async function PostDetailPage({ params }: { params: { slug: strin
       name: SITE.name,
       logo: {
         '@type': 'ImageObject',
-        url: `${SITE.url}/logo.png`,
+        url: `${SITE.url}${SITE.logo}`,
       },
     },
     image: post.cover_image ? [post.cover_image] : undefined,

@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation'
 import { Phone, Clock, Menu } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { ROUTES } from '@/constants/routes'
+import { SITE } from '@/constants/site'
 import { useScrollPosition } from '@/hooks/use-scroll-position'
 import {
   Sheet,
@@ -97,7 +98,7 @@ export default function Header() {
           <Link href={ROUTES.HOME} className="group flex items-center gap-4 outline-none">
             <div className="relative flex items-center justify-center transition-transform group-hover:scale-105 duration-300">
               <Image
-                src="/images/logo.png"
+                src={SITE.logo}
                 alt="Eren Oktay Hukuk Bürosu"
                 width={44}
                 height={41}

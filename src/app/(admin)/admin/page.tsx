@@ -1,26 +1,19 @@
 import Link from 'next/link'
-import { createClient } from '@/lib/supabase/server'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Newspaper, FileText, ImageIcon, HelpCircle } from 'lucide-react'
 import { ROUTES } from '@/constants/routes'
+import { getPostsCount } from '@/services/posts'
+import { getArticlesCount } from '@/services/articles'
 
 export const metadata = {
   title: 'Dashboard | Admin',
 }
 
 export default async function AdminDashboardPage() {
-  const supabase = await createClient()
-
-  // Get counts directly
-  const { count: postsCount } = await supabase
-    .from('posts')
-    .select('*', { count: 'exact', head: true })
-    .eq('is_archived', false)
-
-  const { count: articlesCount } = await supabase
-    .from('articles')
-    .select('*', { count: 'exact', head: true })
-    .eq('is_archived', false)
+  const [postsCount, articlesCount] = await Promise.all([
+    getPostsCount(),
+    getArticlesCount(),
+  ])
 
   return (
     <div className="space-y-8">
@@ -50,7 +43,7 @@ export default async function AdminDashboardPage() {
               <Newspaper className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{postsCount || 0}</div>
+              <div className="text-2xl font-bold">{postsCount}</div>
               <p className="text-xs text-muted-foreground mt-1">Aktif duyurular</p>
             </CardContent>
           </Card>
@@ -63,7 +56,7 @@ export default async function AdminDashboardPage() {
               <FileText className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{articlesCount || 0}</div>
+              <div className="text-2xl font-bold">{articlesCount}</div>
               <p className="text-xs text-muted-foreground mt-1">Hukuki makaleler</p>
             </CardContent>
           </Card>
