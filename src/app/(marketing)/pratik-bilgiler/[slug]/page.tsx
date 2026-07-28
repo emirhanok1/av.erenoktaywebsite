@@ -5,6 +5,7 @@ import Image from 'next/image'
 import LegalDisclaimer from '@/components/common/LegalDisclaimer'
 import { Badge } from '@/components/ui/badge'
 import { JsonLd } from '@/components/JsonLd'
+import { getBreadcrumbSchema } from '@/lib/schemas/breadcrumb'
 import { SITE } from '@/constants/site'
 import { BLUR_DATA_URL } from '@/lib/blur'
 
@@ -49,6 +50,7 @@ export default async function ArticleDetailPage(props: { params: Promise<{ slug:
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'Article',
+    mainEntityOfPage: url,
     headline: article.title,
     datePublished: article.published_at,
     dateModified: article.published_at,
@@ -67,15 +69,11 @@ export default async function ArticleDetailPage(props: { params: Promise<{ slug:
     image: article.cover_image ? [article.cover_image] : undefined,
   }
 
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Anasayfa', item: SITE.url },
-      { '@type': 'ListItem', position: 2, name: 'Pratik Bilgiler', item: `${SITE.url}/pratik-bilgiler` },
-      { '@type': 'ListItem', position: 3, name: article.title, item: url },
-    ],
-  }
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: 'Anasayfa', path: '/' },
+    { name: 'Pratik Bilgiler', path: '/pratik-bilgiler' },
+    { name: article.title, path: `/pratik-bilgiler/${params.slug}` },
+  ])
 
   return (
     <div className="flex flex-col min-h-screen bg-white">

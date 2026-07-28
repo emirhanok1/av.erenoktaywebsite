@@ -5,6 +5,8 @@ import { getArticles } from '@/services/articles'
 import LegalDisclaimer from '@/components/common/LegalDisclaimer'
 import Pagination from '@/components/common/Pagination'
 import { Badge } from '@/components/ui/badge'
+import { JsonLd } from '@/components/JsonLd'
+import { getBreadcrumbSchema } from '@/lib/schemas/breadcrumb'
 
 import { SITE } from '@/constants/site'
 import { BLUR_DATA_URL } from '@/lib/blur'
@@ -30,8 +32,14 @@ export default async function ArticlesPage(props: PageProps) {
   const totalPages = Math.ceil(allArticles.length / perPage)
   const articles = allArticles.slice((page - 1) * perPage, page * perPage)
 
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: 'Anasayfa', path: '/' },
+    { name: 'Pratik Bilgiler', path: '/pratik-bilgiler' },
+  ])
+
   return (
     <div className="flex flex-col min-h-screen">
+      <JsonLd data={breadcrumbSchema} />
       <section className="bg-navy pt-32 pb-16 text-white text-center">
         <div className="container">
           <h1 className="font-heading text-3xl md:text-4xl text-white">Pratik Bilgiler</h1>

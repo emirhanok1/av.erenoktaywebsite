@@ -4,6 +4,8 @@ import Image from 'next/image'
 import { getPosts } from '@/services/posts'
 import LegalDisclaimer from '@/components/common/LegalDisclaimer'
 import Pagination from '@/components/common/Pagination'
+import { JsonLd } from '@/components/JsonLd'
+import { getBreadcrumbSchema } from '@/lib/schemas/breadcrumb'
 
 import { SITE } from '@/constants/site'
 import { BLUR_DATA_URL } from '@/lib/blur'
@@ -29,8 +31,14 @@ export default async function NewsPage(props: PageProps) {
   const totalPages = Math.ceil(allPosts.length / perPage)
   const posts = allPosts.slice((page - 1) * perPage, page * perPage)
 
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: 'Anasayfa', path: '/' },
+    { name: 'Duyurular', path: '/duyurular' },
+  ])
+
   return (
     <div className="flex flex-col min-h-screen">
+      <JsonLd data={breadcrumbSchema} />
       {/* Sayfa Hero */}
       <section className="bg-navy pt-32 pb-16 text-white text-center">
         <div className="container">

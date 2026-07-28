@@ -3,6 +3,9 @@ import Image from 'next/image'
 import { SITE } from '@/constants/site'
 import { BLUR_DATA_URL } from '@/lib/blur'
 import LegalDisclaimer from '@/components/common/LegalDisclaimer'
+import { JsonLd } from '@/components/JsonLd'
+import { getAttorneyPersonSchema } from '@/lib/schemas/attorney'
+import { getBreadcrumbSchema } from '@/lib/schemas/breadcrumb'
 
 export const metadata: Metadata = {
   title: 'Hakkımızda',
@@ -11,8 +14,16 @@ export const metadata: Metadata = {
 }
 
 export default function AboutPage() {
+  const personSchema = getAttorneyPersonSchema()
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: 'Anasayfa', path: '/' },
+    { name: 'Hakkımızda', path: '/hakkimizda' },
+  ])
+
   return (
     <div className="flex flex-col min-h-screen">
+      <JsonLd data={personSchema} />
+      <JsonLd data={breadcrumbSchema} />
       {/* 1. Avukat Profili */}
       <section className="pt-32 pb-24 bg-white">
         <div className="container">
@@ -33,8 +44,8 @@ export default function AboutPage() {
             {/* Sağ: Bilgiler */}
             <div className="flex flex-col justify-center">
               <span className="text-accent text-sm font-bold tracking-wider uppercase mb-4 block">Kurucu Avukat</span>
-              <h2 className="font-heading text-fluid-h2 text-navy mb-8">Av. Eren Oktay</h2>
-              
+              <h1 className="font-heading text-fluid-h2 text-navy mb-8">Av. Eren Oktay</h1>
+
               <div className="prose max-w-none text-muted-foreground mb-8">
                 <p>
                   Eren Oktay Hukuk Bürosu&apos;nun kurucusu olan Avukat Eren Oktay, meslek hayatı boyunca ticaret hukuku, borçlar hukuku ve aile hukuku başta olmak üzere birçok alanda ulusal ve uluslararası müvekkillerine hizmet vermiştir.
@@ -46,7 +57,7 @@ export default function AboutPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 <div>
-                  <h3 className="font-bold text-navy mb-3">Uzmanlık Alanları</h3>
+                  <h2 className="font-bold text-navy mb-3">Uzmanlık Alanları</h2>
                   <ul className="space-y-2 text-muted-foreground text-sm">
                     <li>• İcra ve İflas Hukuku</li>
                     <li>• Haciz İşlemleri</li>
@@ -56,7 +67,7 @@ export default function AboutPage() {
                   </ul>
                 </div>
                 <div>
-                  <h3 className="font-bold text-navy mb-3">Baro Kaydı</h3>
+                  <h2 className="font-bold text-navy mb-3">Baro Kaydı</h2>
                   <p className="text-sm text-muted-foreground">Ankara Barosu - Sicil No: 50178</p>
                 </div>
               </div>

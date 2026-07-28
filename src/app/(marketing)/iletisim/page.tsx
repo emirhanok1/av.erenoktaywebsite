@@ -2,6 +2,8 @@ import { Metadata } from 'next'
 import Image from 'next/image'
 import { SITE } from '@/constants/site'
 import { BLUR_DATA_URL } from '@/lib/blur'
+import { JsonLd } from '@/components/JsonLd'
+import { getBreadcrumbSchema } from '@/lib/schemas/breadcrumb'
 
 export const metadata: Metadata = {
   title: 'İletişim',
@@ -10,8 +12,14 @@ export const metadata: Metadata = {
 }
 
 export default function ContactPage() {
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: 'Anasayfa', path: '/' },
+    { name: 'İletişim', path: '/iletisim' },
+  ])
+
   return (
     <div className="flex flex-col min-h-screen">
+      <JsonLd data={breadcrumbSchema} />
       <section className="bg-navy pt-32 pb-16 text-white text-center">
         <div className="container">
           <h1 className="font-heading text-3xl md:text-4xl text-white">İletişim</h1>

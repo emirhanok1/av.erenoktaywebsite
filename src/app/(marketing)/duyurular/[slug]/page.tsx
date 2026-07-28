@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import LegalDisclaimer from '@/components/common/LegalDisclaimer'
 import { JsonLd } from '@/components/JsonLd'
+import { getBreadcrumbSchema } from '@/lib/schemas/breadcrumb'
 import { SITE } from '@/constants/site'
 import { BLUR_DATA_URL } from '@/lib/blur'
 
@@ -48,6 +49,7 @@ export default async function PostDetailPage(props: { params: Promise<{ slug: st
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'Article',
+    mainEntityOfPage: url,
     headline: post.title,
     datePublished: post.published_at,
     dateModified: post.published_at,
@@ -66,15 +68,11 @@ export default async function PostDetailPage(props: { params: Promise<{ slug: st
     image: post.cover_image ? [post.cover_image] : undefined,
   }
 
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Anasayfa', item: SITE.url },
-      { '@type': 'ListItem', position: 2, name: 'Duyurular', item: `${SITE.url}/duyurular` },
-      { '@type': 'ListItem', position: 3, name: post.title, item: url },
-    ],
-  }
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: 'Anasayfa', path: '/' },
+    { name: 'Duyurular', path: '/duyurular' },
+    { name: post.title, path: `/duyurular/${params.slug}` },
+  ])
 
   return (
     <div className="flex flex-col min-h-screen bg-white">

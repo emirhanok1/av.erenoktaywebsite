@@ -70,6 +70,8 @@ export const viewport: Viewport = {
 }
 
 import { Toaster } from '@/components/ui/sonner'
+import { JsonLd } from '@/components/JsonLd'
+import { getOrganizationSchema } from '@/lib/schemas/organization'
 
 export default function RootLayout({
   children,
@@ -79,6 +81,7 @@ export default function RootLayout({
   return (
     <html lang="tr" className={`${playfair.variable} ${inter.variable}`}>
       <body className="font-sans antialiased">
+        <JsonLd data={getOrganizationSchema()} />
         {children}
         <Toaster />
       </body>
