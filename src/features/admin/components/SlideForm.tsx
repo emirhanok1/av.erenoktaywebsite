@@ -60,16 +60,9 @@ export default function SlideForm({ slide }: SlideFormProps) {
         formData.append('image', imageInput.files[0])
       }
 
-      let result
-      if (slide) {
-        result = await updateSlide(slide.id, formData)
-      } else {
-        if (!imageInput?.files?.[0]) {
-          toast.error('Lütfen bir görsel seçin')
-          return
-        }
-        result = await createSlide(formData)
-      }
+      const result = slide
+        ? await updateSlide(slide.id, formData)
+        : await createSlide(formData)
 
       if (result.error) {
         toast.error(result.error)
@@ -120,7 +113,7 @@ export default function SlideForm({ slide }: SlideFormProps) {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="image">Görsel {!slide && '*'}</Label>
+          <Label htmlFor="image">Görsel (Opsiyonel)</Label>
           <Input 
             id="image" 
             name="image" 

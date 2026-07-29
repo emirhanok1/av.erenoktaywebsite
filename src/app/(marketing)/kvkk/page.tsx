@@ -37,15 +37,13 @@ export default function KVKKPage() {
             </p>
 
             <h2>3. Verilerin İşlenme Amacı</h2>
-            <p>
-              Kişisel verileriniz;
-              <ul>
-                <li>Hukuki danışmanlık ve avukatlık hizmetlerinin sunulması,</li>
-                <li>İletişim faaliyetlerinin yürütülmesi,</li>
-                <li>Randevu süreçlerinin yönetilmesi,</li>
-                <li>Yasal yükümlülüklerimizin yerine getirilmesi amaçlarıyla işlenmektedir.</li>
-              </ul>
-            </p>
+            <p>Kişisel verileriniz;</p>
+            <ul>
+              <li>Hukuki danışmanlık ve avukatlık hizmetlerinin sunulması,</li>
+              <li>İletişim faaliyetlerinin yürütülmesi,</li>
+              <li>Randevu süreçlerinin yönetilmesi,</li>
+              <li>Yasal yükümlülüklerimizin yerine getirilmesi amaçlarıyla işlenmektedir.</li>
+            </ul>
 
             <h2>4. Verilerin Aktarıldığı Taraflar</h2>
             <p>
