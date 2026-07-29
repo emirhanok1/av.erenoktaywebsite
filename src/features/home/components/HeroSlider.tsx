@@ -106,11 +106,7 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
       aria-roledescription="carousel"
     >
       {/* Diagonal doku - kendi ekseninde yavaşça, kesintisiz kayar */}
-      <div className="absolute inset-0 pointer-events-none z-[1] overflow-hidden">
-        <div className="hero-texture-drift-wrap">
-          <div className="hero-texture-drift-layer" />
-        </div>
-      </div>
+      <div className="hero-texture-drift z-[1]" />
 
       {/* Vignette */}
       <div

@@ -67,29 +67,21 @@
     font-family: var(--font-inter), sans-serif;
   }
 
-  /* Oversized + centered + rotated wrapper so a plain vertical stripe
-     pattern can animate with a perfectly seamless loop, then land on the
-     site's -55deg diagonal via rotation. 170vmax covers the full box at any
-     viewport/aspect ratio (half-extent 85vmax vs. the ~70.7vmax a full-screen
-     box's half-diagonal ever needs) while staying far smaller than the
-     original 250vmax, which was tiling so many repeats across such a huge
-     rotated+animated canvas that the gradient rasterized with visibly uneven
-     spacing at that scale. */
-  .hero-texture-drift-wrap {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 170vmax;
-    height: 170vmax;
-    transform: translate(-50%, -50%) rotate(-55deg);
-    pointer-events: none;
-  }
-
-  .hero-texture-drift-layer {
+  /* Same repeating-linear-gradient as the original static texture (angle
+     baked into the gradient itself, no transform: rotate() involved) - an
+     earlier version rotated a plain vertical-stripe pattern with a CSS
+     transform instead, which rasterizes/animates a rotated tile and visibly
+     beat every few lines (moire from sub-pixel sampling on 1px lines at an
+     angle). Animating background-position directly along the gradient's own
+     -55deg axis avoids that: the shift below is exactly one 52px period
+     projected onto that axis (52 * sin55, -52 * cos55), so it loops
+     seamlessly with zero drift perpendicular to the lines. */
+  .hero-texture-drift {
     position: absolute;
     inset: 0;
+    pointer-events: none;
     background-image: repeating-linear-gradient(
-      to bottom,
+      -55deg,
       rgba(201, 168, 76, 0.09) 0px,
       rgba(201, 168, 76, 0.09) 1px,
       transparent 1px,
@@ -99,7 +91,7 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .hero-texture-drift-layer {
+    .hero-texture-drift {
       animation: none;
     }
   }
@@ -107,5 +99,5 @@
 
 @keyframes hero-texture-drift {
   from { background-position: 0 0; }
-  to   { background-position: 0 52px; }
+  to   { background-position: -42.6px -29.83px; }
 }
