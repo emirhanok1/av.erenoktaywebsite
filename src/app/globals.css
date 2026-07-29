@@ -66,4 +66,42 @@
   .font-sans {
     font-family: var(--font-inter), sans-serif;
   }
+
+  /* Oversized (250vmax) + centered + rotated wrapper so a plain vertical
+     stripe pattern can animate with a perfectly seamless loop, then land on
+     the site's -55deg diagonal via rotation. vmax sizing keeps it covering
+     the full box at any viewport/aspect ratio, not just the ones tested. */
+  .hero-texture-drift-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 250vmax;
+    height: 250vmax;
+    transform: translate(-50%, -50%) rotate(-55deg);
+    pointer-events: none;
+  }
+
+  .hero-texture-drift-layer {
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      rgba(201, 168, 76, 0.09) 0px,
+      rgba(201, 168, 76, 0.09) 1px,
+      transparent 1px,
+      transparent 52px
+    );
+    animation: hero-texture-drift 22s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-texture-drift-layer {
+      animation: none;
+    }
+  }
+}
+
+@keyframes hero-texture-drift {
+  from { background-position: 0 0; }
+  to   { background-position: 0 52px; }
 }

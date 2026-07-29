@@ -105,19 +105,12 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
       aria-label="Öne çıkan başlıklar"
       aria-roledescription="carousel"
     >
-      {/* Diagonal doku */}
-      <div
-        className="absolute inset-0 pointer-events-none z-[1]"
-        style={{
-          backgroundImage: `repeating-linear-gradient(
-            -55deg,
-            rgba(201,168,76,0.07) 0px,
-            rgba(201,168,76,0.07) 1px,
-            transparent 1px,
-            transparent 52px
-          )`,
-        }}
-      />
+      {/* Diagonal doku - kendi ekseninde yavaşça, kesintisiz kayar */}
+      <div className="absolute inset-0 pointer-events-none z-[1] overflow-hidden">
+        <div className="hero-texture-drift-wrap">
+          <div className="hero-texture-drift-layer" />
+        </div>
+      </div>
 
       {/* Vignette */}
       <div
