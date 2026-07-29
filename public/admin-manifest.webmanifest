@@ -1,0 +1,15 @@
+{
+  "name": "Eren Oktay Hukuk Bürosu - Yönetim Paneli",
+  "short_name": "Admin Panel",
+  "description": "Eren Oktay Hukuk Bürosu içerik yönetim paneli",
+  "start_url": "/admin",
+  "scope": "/admin",
+  "display": "standalone",
+  "background_color": "#f9fafb",
+  "theme_color": "#0f172a",
+  "lang": "tr",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

@@ -1,8 +1,13 @@
+import { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import AdminSidebar from '@/features/admin/components/AdminSidebar'
 import AdminHeader from '@/features/admin/components/AdminHeader'
 import { SidebarProvider } from '@/components/ui/sidebar'
+
+export const metadata: Metadata = {
+  manifest: '/admin-manifest.webmanifest',
+}
 
 export default async function AdminLayout({
   children,
