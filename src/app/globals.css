@@ -67,16 +67,20 @@
     font-family: var(--font-inter), sans-serif;
   }
 
-  /* Oversized (250vmax) + centered + rotated wrapper so a plain vertical
-     stripe pattern can animate with a perfectly seamless loop, then land on
-     the site's -55deg diagonal via rotation. vmax sizing keeps it covering
-     the full box at any viewport/aspect ratio, not just the ones tested. */
+  /* Oversized + centered + rotated wrapper so a plain vertical stripe
+     pattern can animate with a perfectly seamless loop, then land on the
+     site's -55deg diagonal via rotation. 170vmax covers the full box at any
+     viewport/aspect ratio (half-extent 85vmax vs. the ~70.7vmax a full-screen
+     box's half-diagonal ever needs) while staying far smaller than the
+     original 250vmax, which was tiling so many repeats across such a huge
+     rotated+animated canvas that the gradient rasterized with visibly uneven
+     spacing at that scale. */
   .hero-texture-drift-wrap {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 250vmax;
-    height: 250vmax;
+    width: 170vmax;
+    height: 170vmax;
     transform: translate(-50%, -50%) rotate(-55deg);
     pointer-events: none;
   }
