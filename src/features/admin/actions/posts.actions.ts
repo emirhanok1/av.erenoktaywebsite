@@ -46,10 +46,11 @@ export async function createPost(formData: FormData) {
     return { error: 'Doğrulama hatası: ' + result.error.issues[0].message }
   }
 
-  const baseSlug = slugify(result.data.title)
+  const baseSlug = slugify(result.data.title) || `icerik-${Date.now()}`
   const finalSlug = await generateUniqueSlug(supabase, baseSlug)
 
   let cover_image = null
+  let uploadedPath: string | undefined = undefined
   const image = formData.get('image') as File | null
 
   if (image && image.size > 0) {
@@ -71,6 +72,7 @@ export async function createPost(formData: FormData) {
       return { error: 'Görsel yüklenemedi: ' + uploadError.message }
     }
 
+    uploadedPath = fileName
     const { data: publicUrlData } = supabase.storage
       .from('media')
       .getPublicUrl(fileName)
@@ -93,6 +95,9 @@ export async function createPost(formData: FormData) {
     })
 
   if (insertError) {
+    if (uploadedPath) {
+      await supabase.storage.from('media').remove([uploadedPath])
+    }
     return { error: 'Veritabanına kaydedilemedi: ' + insertError.message }
   }
 
@@ -123,7 +128,14 @@ export async function updatePost(id: string, formData: FormData) {
     return { error: 'Doğrulama hatası: ' + result.error.issues[0].message }
   }
 
+  const { data: currentPost } = await supabase
+    .from('posts')
+    .select('published_at, is_published, cover_image')
+    .eq('id', id)
+    .single()
+
   let cover_image = undefined
+  let uploadedPath: string | undefined = undefined
   const image = formData.get('image') as File | null
 
   if (image && image.size > 0) {
@@ -145,35 +157,13 @@ export async function updatePost(id: string, formData: FormData) {
       return { error: 'Görsel yüklenemedi: ' + uploadError.message }
     }
 
+    uploadedPath = fileName
     const { data: publicUrlData } = supabase.storage
       .from('media')
       .getPublicUrl(fileName)
 
     cover_image = publicUrlData.publicUrl
-
-    const { data: oldPost } = await supabase
-      .from('posts')
-      .select('cover_image')
-      .eq('id', id)
-      .single()
-
-    if (oldPost?.cover_image) {
-      const parts = oldPost.cover_image.split('/media/')
-      if (parts.length > 1) {
-        const oldPath = parts[1]
-        const { error: removeError } = await supabase.storage.from('media').remove([oldPath])
-        if (removeError) {
-          console.error('Eski görsel silinemedi:', removeError.message)
-        }
-      }
-    }
   }
-
-  const { data: currentPost } = await supabase
-    .from('posts')
-    .select('published_at, is_published')
-    .eq('id', id)
-    .single()
 
   let published_at = currentPost?.published_at
   if (result.data.is_published && !currentPost?.is_published && !published_at) {
@@ -207,7 +197,21 @@ export async function updatePost(id: string, formData: FormData) {
     .eq('id', id)
 
   if (updateError) {
+    if (uploadedPath) {
+      await supabase.storage.from('media').remove([uploadedPath])
+    }
     return { error: 'Güncellenemedi: ' + updateError.message }
+  }
+
+  if (uploadedPath && currentPost?.cover_image) {
+    const parts = currentPost.cover_image.split('/media/')
+    if (parts.length > 1) {
+      const oldPath = parts[1]
+      const { error: removeError } = await supabase.storage.from('media').remove([oldPath])
+      if (removeError) {
+        console.error('Eski görsel silinemedi:', removeError.message)
+      }
+    }
   }
 
   revalidatePath('/duyurular')

@@ -27,6 +27,7 @@ export async function createSlide(formData: FormData) {
   }
 
   let image_url = null
+  let uploadedPath: string | undefined = undefined
   const image = formData.get('image') as File | null
 
   if (image && image.size > 0) {
@@ -48,6 +49,7 @@ export async function createSlide(formData: FormData) {
       return { error: 'Görsel yüklenemedi: ' + uploadError.message }
     }
 
+    uploadedPath = fileName
     const { data: publicUrlData } = supabase.storage
       .from('media')
       .getPublicUrl(fileName)
@@ -76,6 +78,9 @@ export async function createSlide(formData: FormData) {
     })
 
   if (insertError) {
+    if (uploadedPath) {
+      await supabase.storage.from('media').remove([uploadedPath])
+    }
     return { error: 'Veritabanına kaydedilemedi: ' + insertError.message }
   }
 
@@ -106,7 +111,14 @@ export async function updateSlide(id: string, formData: FormData) {
     return { error: 'Doğrulama hatası: ' + result.error.issues[0].message }
   }
 
+  const { data: currentSlideRow } = await supabase
+    .from('slides')
+    .select('image_url')
+    .eq('id', id)
+    .single()
+
   let image_url = undefined
+  let uploadedPath: string | undefined = undefined
   const image = formData.get('image') as File | null
 
   if (image && image.size > 0) {
@@ -128,28 +140,12 @@ export async function updateSlide(id: string, formData: FormData) {
       return { error: 'Görsel yüklenemedi: ' + uploadError.message }
     }
 
+    uploadedPath = fileName
     const { data: publicUrlData } = supabase.storage
       .from('media')
       .getPublicUrl(fileName)
 
     image_url = publicUrlData.publicUrl
-
-    const { data: oldSlide } = await supabase
-      .from('slides')
-      .select('image_url')
-      .eq('id', id)
-      .single()
-
-    if (oldSlide?.image_url) {
-      const parts = oldSlide.image_url.split('/media/')
-      if (parts.length > 1) {
-        const oldPath = parts[1]
-        const { error: removeError } = await supabase.storage.from('media').remove([oldPath])
-        if (removeError) {
-          console.error('Eski görsel silinemedi:', removeError.message)
-        }
-      }
-    }
   }
 
   type SlideUpdate = {
@@ -177,7 +173,21 @@ export async function updateSlide(id: string, formData: FormData) {
     .eq('id', id)
 
   if (updateError) {
+    if (uploadedPath) {
+      await supabase.storage.from('media').remove([uploadedPath])
+    }
     return { error: 'Güncellenemedi: ' + updateError.message }
+  }
+
+  if (uploadedPath && currentSlideRow?.image_url) {
+    const parts = currentSlideRow.image_url.split('/media/')
+    if (parts.length > 1) {
+      const oldPath = parts[1]
+      const { error: removeError } = await supabase.storage.from('media').remove([oldPath])
+      if (removeError) {
+        console.error('Eski görsel silinemedi:', removeError.message)
+      }
+    }
   }
 
   revalidatePath('/')
@@ -260,10 +270,13 @@ export async function moveSlide(id: string, direction: 'up' | 'down') {
 
   if (finalTarget && finalTarget.length > 0) {
     const target = finalTarget[0]
-    
+
     // Swap
-    await supabase.from('slides').update({ sort_order: target.sort_order }).eq('id', id)
-    await supabase.from('slides').update({ sort_order: currentOrder }).eq('id', target.id)
+    const { error: err1 } = await supabase.from('slides').update({ sort_order: target.sort_order }).eq('id', id)
+    if (err1) return { error: 'Sıralama güncellenemedi: ' + err1.message }
+
+    const { error: err2 } = await supabase.from('slides').update({ sort_order: currentOrder }).eq('id', target.id)
+    if (err2) return { error: 'Sıralama güncellenemedi: ' + err2.message }
   }
 
   revalidatePath('/')

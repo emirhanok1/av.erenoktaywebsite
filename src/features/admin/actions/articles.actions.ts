@@ -47,10 +47,11 @@ export async function createArticle(formData: FormData) {
     return { error: 'Doğrulama hatası: ' + result.error.issues[0].message }
   }
 
-  const baseSlug = slugify(result.data.title)
+  const baseSlug = slugify(result.data.title) || `icerik-${Date.now()}`
   const finalSlug = await generateUniqueSlug(supabase, baseSlug)
 
   let cover_image = null
+  let uploadedPath: string | undefined = undefined
   const image = formData.get('image') as File | null
 
   if (image && image.size > 0) {
@@ -72,6 +73,7 @@ export async function createArticle(formData: FormData) {
       return { error: 'Görsel yüklenemedi: ' + uploadError.message }
     }
 
+    uploadedPath = fileName
     const { data: publicUrlData } = supabase.storage
       .from('media')
       .getPublicUrl(fileName)
@@ -80,7 +82,7 @@ export async function createArticle(formData: FormData) {
   }
 
   const published_at = result.data.is_published ? new Date().toISOString() : null
-  
+
   let read_time = result.data.read_time
   if (!read_time) {
     const wordCount = result.data.content.trim().split(/\s+/).length
@@ -102,6 +104,9 @@ export async function createArticle(formData: FormData) {
     })
 
   if (insertError) {
+    if (uploadedPath) {
+      await supabase.storage.from('media').remove([uploadedPath])
+    }
     return { error: 'Veritabanına kaydedilemedi: ' + insertError.message }
   }
 
@@ -134,7 +139,14 @@ export async function updateArticle(id: string, formData: FormData) {
     return { error: 'Doğrulama hatası: ' + result.error.issues[0].message }
   }
 
+  const { data: currentArticle } = await supabase
+    .from('articles')
+    .select('published_at, is_published, cover_image')
+    .eq('id', id)
+    .single()
+
   let cover_image = undefined
+  let uploadedPath: string | undefined = undefined
   const image = formData.get('image') as File | null
 
   if (image && image.size > 0) {
@@ -156,35 +168,13 @@ export async function updateArticle(id: string, formData: FormData) {
       return { error: 'Görsel yüklenemedi: ' + uploadError.message }
     }
 
+    uploadedPath = fileName
     const { data: publicUrlData } = supabase.storage
       .from('media')
       .getPublicUrl(fileName)
 
     cover_image = publicUrlData.publicUrl
-
-    const { data: oldArticle } = await supabase
-      .from('articles')
-      .select('cover_image')
-      .eq('id', id)
-      .single()
-
-    if (oldArticle?.cover_image) {
-      const parts = oldArticle.cover_image.split('/media/')
-      if (parts.length > 1) {
-        const oldPath = parts[1]
-        const { error: removeError } = await supabase.storage.from('media').remove([oldPath])
-        if (removeError) {
-          console.error('Eski görsel silinemedi:', removeError.message)
-        }
-      }
-    }
   }
-
-  const { data: currentArticle } = await supabase
-    .from('articles')
-    .select('published_at, is_published')
-    .eq('id', id)
-    .single()
 
   let published_at = currentArticle?.published_at
   if (result.data.is_published && !currentArticle?.is_published && !published_at) {
@@ -228,7 +218,21 @@ export async function updateArticle(id: string, formData: FormData) {
     .eq('id', id)
 
   if (updateError) {
+    if (uploadedPath) {
+      await supabase.storage.from('media').remove([uploadedPath])
+    }
     return { error: 'Güncellenemedi: ' + updateError.message }
+  }
+
+  if (uploadedPath && currentArticle?.cover_image) {
+    const parts = currentArticle.cover_image.split('/media/')
+    if (parts.length > 1) {
+      const oldPath = parts[1]
+      const { error: removeError } = await supabase.storage.from('media').remove([oldPath])
+      if (removeError) {
+        console.error('Eski görsel silinemedi:', removeError.message)
+      }
+    }
   }
 
   revalidatePath('/pratik-bilgiler')

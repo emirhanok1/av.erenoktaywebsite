@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useCallback, useEffect, useState, useMemo } from 'react'
-import Link from 'next/link'
 import Image from 'next/image'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
@@ -218,15 +217,18 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
                         >
                           İletişime Geç
                         </a>
-                        <Link
-                          href="#services-title"
+                        <a
+                          href={slide.link || '#services-title'}
+                          {...(slide.link?.startsWith('http')
+                            ? { target: '_blank', rel: 'noopener noreferrer' }
+                            : {})}
                           className={cn(
                             buttonVariants({ variant: 'outline' }),
                             'border-white/40 hover:border-white text-white bg-transparent hover:bg-white/10 font-bold tracking-wider uppercase px-8 py-4 rounded-none w-full sm:w-auto transition-colors text-sm'
                           )}
                         >
                           Hizmetlerimiz
-                        </Link>
+                        </a>
                       </div>
                     </div>
                   </div>

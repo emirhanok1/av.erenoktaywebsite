@@ -169,10 +169,13 @@ export async function moveFaq(id: string, direction: 'up' | 'down') {
 
   if (finalTarget && finalTarget.length > 0) {
     const target = finalTarget[0]
-    
+
     // Swap
-    await supabase.from('faq').update({ sort_order: target.sort_order }).eq('id', id)
-    await supabase.from('faq').update({ sort_order: currentOrder }).eq('id', target.id)
+    const { error: err1 } = await supabase.from('faq').update({ sort_order: target.sort_order }).eq('id', id)
+    if (err1) return { error: 'Sıralama güncellenemedi: ' + err1.message }
+
+    const { error: err2 } = await supabase.from('faq').update({ sort_order: currentOrder }).eq('id', target.id)
+    if (err2) return { error: 'Sıralama güncellenemedi: ' + err2.message }
   }
 
   revalidatePath('/sss')
