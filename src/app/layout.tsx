@@ -72,6 +72,8 @@ export const viewport: Viewport = {
 import { Toaster } from '@/components/ui/sonner'
 import { JsonLd } from '@/components/JsonLd'
 import { getOrganizationSchema } from '@/lib/schemas/organization'
+import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 export default function RootLayout({
   children,
@@ -84,6 +86,8 @@ export default function RootLayout({
         <JsonLd data={getOrganizationSchema()} />
         {children}
         <Toaster />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
