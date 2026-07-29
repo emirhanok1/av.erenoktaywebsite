@@ -72,13 +72,17 @@
      earlier version rotated a plain vertical-stripe pattern with a CSS
      transform instead, which rasterizes/animates a rotated tile and visibly
      beat every few lines (moire from sub-pixel sampling on 1px lines at an
-     angle). Animating background-position directly along the gradient's own
-     -55deg axis avoids that: the shift below is exactly one 52px period
-     projected onto that axis (52 * sin55, -52 * cos55), so it loops
-     seamlessly with zero drift perpendicular to the lines. */
+     angle). The background itself is static; motion comes from animating
+     transform: translate() on the (slightly oversized, so the translate
+     never reveals an edge) element instead of animating background-position.
+     translate() is compositor-only (no repaint every frame), whereas an
+     earlier background-position version cost ~150ms of extra paint work
+     that showed up in Lighthouse (FCP 1.4s->2.0s, TBT +50ms). The distance
+     is exactly one 52px period projected onto the gradient's own -55deg
+     axis (52 * sin55, -52 * cos55), so it loops seamlessly. */
   .hero-texture-drift {
     position: absolute;
-    inset: 0;
+    inset: -60px;
     pointer-events: none;
     background-image: repeating-linear-gradient(
       -55deg,
@@ -88,6 +92,7 @@
       transparent 52px
     );
     animation: hero-texture-drift 22s linear infinite;
+    will-change: transform;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -98,6 +103,6 @@
 }
 
 @keyframes hero-texture-drift {
-  from { background-position: 0 0; }
-  to   { background-position: -42.6px -29.83px; }
+  from { transform: translate(0, 0); }
+  to   { transform: translate(-42.6px, -29.83px); }
 }
