@@ -6,6 +6,10 @@ export const ROUTES = {
   FAQ: '/sss',
   CONTACT: '/iletisim',
   PRIVACY: '/kvkk',
+  TOOLS: '/hesaplama-araclari',
+  TOOLS_SEVERANCE: '/hesaplama-araclari/kidem-ihbar-tazminati',
+  TOOLS_VEHICLE_VALUE_LOSS: '/hesaplama-araclari/arac-deger-kaybi',
+  TOOLS_BODILY_INJURY: '/hesaplama-araclari/trafik-kazasi-bedeni-hasar',
   ADMIN: {
     DASHBOARD: '/admin',
     SLIDER: '/admin/slider',
@@ -20,6 +24,8 @@ export const ROUTES = {
     FAQ: '/admin/sss',
     FAQ_NEW: '/admin/sss/yeni',
     FAQ_EDIT: (id: string) => `/admin/sss/${id}`,
+    SUBMISSIONS: '/admin/formlar',
+    SUBMISSIONS_DETAIL: (id: string) => `/admin/formlar/${id}`,
   },
   AUTH: {
     LOGIN: '/giris',
