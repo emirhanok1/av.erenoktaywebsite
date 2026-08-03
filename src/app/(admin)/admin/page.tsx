@@ -1,18 +1,20 @@
 import Link from 'next/link'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Newspaper, FileText, ImageIcon, HelpCircle } from 'lucide-react'
+import { Newspaper, FileText, ImageIcon, HelpCircle, Inbox } from 'lucide-react'
 import { ROUTES } from '@/constants/routes'
 import { getPostsCount } from '@/services/posts'
 import { getArticlesCount } from '@/services/articles'
+import { getUnreadSubmissionsCount } from '@/services/submissions'
 
 export const metadata = {
   title: 'Dashboard | Admin',
 }
 
 export default async function AdminDashboardPage() {
-  const [postsCount, articlesCount] = await Promise.all([
+  const [postsCount, articlesCount, unreadSubmissionsCount] = await Promise.all([
     getPostsCount(),
     getArticlesCount(),
+    getUnreadSubmissionsCount(),
   ])
 
   return (
@@ -71,6 +73,19 @@ export default async function AdminDashboardPage() {
             <CardContent>
               <div className="text-2xl font-bold">Sorular</div>
               <p className="text-xs text-muted-foreground mt-1">Sık sorulan soruları yönetin</p>
+            </CardContent>
+          </Card>
+        </Link>
+
+        <Link href={ROUTES.ADMIN.SUBMISSIONS} className="block group">
+          <Card className="hover:shadow-md transition-shadow h-full border-transparent hover:border-primary/50 group-hover:border-primary/50 cursor-pointer">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Gelen Formlar</CardTitle>
+              <Inbox className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{unreadSubmissionsCount}</div>
+              <p className="text-xs text-muted-foreground mt-1">Okunmamış talep</p>
             </CardContent>
           </Card>
         </Link>
