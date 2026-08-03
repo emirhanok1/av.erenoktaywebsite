@@ -213,6 +213,42 @@ export interface Database {
         }
         Relationships: []
       }
+      submissions: {
+        Row: {
+          id: string
+          type: string
+          full_name: string
+          phone: string
+          email: string
+          payload: Json
+          is_read: boolean
+          is_archived: boolean
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          type: string
+          full_name: string
+          phone: string
+          email: string
+          payload?: Json
+          is_read?: boolean
+          is_archived?: boolean
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          type?: string
+          full_name?: string
+          phone?: string
+          email?: string
+          payload?: Json
+          is_read?: boolean
+          is_archived?: boolean
+          created_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: Record<string, never>
     Functions: Record<string, never>
