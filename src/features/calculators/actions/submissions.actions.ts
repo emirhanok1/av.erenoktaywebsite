@@ -1,6 +1,6 @@
 'use server'
 
-import { createClient } from '@/lib/supabase/server'
+import { createServiceClient } from '@/lib/supabase/service'
 import { revalidatePath } from 'next/cache'
 import { ROUTES } from '@/constants/routes'
 import { degerKaybiSchema } from '../schemas/deger-kaybi-schema'
@@ -16,7 +16,11 @@ async function insertSubmission(
   email: string,
   payload: Record<string, string>
 ): Promise<SubmissionOutcome> {
-  const supabase = await createClient()
+  // Anon-role RLS insert on this table is unreliable (see migration
+  // 20260803111220's comment) - service client is used here specifically
+  // because this action already validates everything via Zod + honeypot
+  // before this point, so RLS isn't the security boundary for this write.
+  const supabase = createServiceClient()
   const { error } = await supabase
     .from('submissions')
     .insert({ type, full_name: fullName, phone, email, payload })
