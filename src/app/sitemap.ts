@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import { SITE } from '@/constants/site'
+import { ROUTES } from '@/constants/routes'
 import { getPosts } from '@/services/posts'
 import { getArticles } from '@/services/articles'
 
@@ -31,6 +32,30 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${SITE.url}/sss`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${SITE.url}${ROUTES.TOOLS}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${SITE.url}${ROUTES.TOOLS_SEVERANCE}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${SITE.url}${ROUTES.TOOLS_VEHICLE_VALUE_LOSS}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${SITE.url}${ROUTES.TOOLS_BODILY_INJURY}`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,

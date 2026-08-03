@@ -23,6 +23,7 @@ const NAV_ITEMS = [
   { label: 'Hakkımızda', href: ROUTES.ABOUT },
   { label: 'Duyurular', href: ROUTES.NEWS },
   { label: 'Pratik Bilgiler', href: ROUTES.ARTICLES },
+  { label: 'Hesaplama Araçları', href: ROUTES.TOOLS },
   { label: 'S.S.S.', href: ROUTES.FAQ },
   { label: 'İletişim', href: ROUTES.CONTACT },
 ]
@@ -40,6 +41,10 @@ export default function Header() {
     '/sss',
     '/iletisim',
     '/kvkk',
+    ROUTES.TOOLS,
+    ROUTES.TOOLS_SEVERANCE,
+    ROUTES.TOOLS_VEHICLE_VALUE_LOSS,
+    ROUTES.TOOLS_BODILY_INJURY,
   ]
 
   const hasTransparentHero = TRANSPARENT_HERO_ROUTES.includes(pathname)

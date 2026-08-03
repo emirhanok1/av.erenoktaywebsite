@@ -35,6 +35,7 @@ export default function Footer() {
                 { label: 'Hakkımızda', href: ROUTES.ABOUT },
                 { label: 'Duyurular', href: ROUTES.NEWS },
                 { label: 'Pratik Bilgiler', href: ROUTES.ARTICLES },
+                { label: 'Hesaplama Araçları', href: ROUTES.TOOLS },
                 { label: 'S.S.S.', href: ROUTES.FAQ },
                 { label: 'İletişim', href: ROUTES.CONTACT },
                 { label: 'KVKK', href: ROUTES.PRIVACY },
