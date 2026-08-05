@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import { getActiveSlides } from '@/services/slides'
+import { getPosts } from '@/services/posts'
 import { getLegalServiceSchema } from '@/lib/schemas/legal-service'
 import { JsonLd } from '@/components/JsonLd'
 
@@ -7,6 +8,7 @@ import HeroSlider from '@/features/home/components/HeroSlider'
 import TrustBar from '@/features/home/components/TrustBar'
 import ServicesSection from '@/features/home/components/ServicesSection'
 import AboutSection from '@/features/home/components/AboutSection'
+import RecentNewsSection from '@/features/home/components/RecentNewsSection'
 import CTABand from '@/features/home/components/CTABand'
 
 // Revalidate home page every hour
@@ -29,7 +31,8 @@ export const metadata: Metadata = {
 }
 
 export default async function HomePage() {
-  const slides = await getActiveSlides()
+  const [slides, allPosts] = await Promise.all([getActiveSlides(), getPosts()])
+  const recentPosts = allPosts.slice(0, 3)
   const schema = getLegalServiceSchema()
 
   return (
@@ -40,6 +43,7 @@ export default async function HomePage() {
         <TrustBar />
         <ServicesSection />
         <AboutSection />
+        <RecentNewsSection posts={recentPosts} />
         <CTABand />
       </div>
     </>

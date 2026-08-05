@@ -18,7 +18,7 @@ import SeveranceResultCard from './SeveranceResultCard'
 const FESIH_SECENEKLERI: { value: FesihTuru; label: string; hint: string }[] = [
   { value: 'isveren_haksiz', label: 'İşveren çıkardı (haksız)', hint: 'Kıdem ve ihbar tazminatı hesaplanır' },
   { value: 'hakli_neden_ayrilma', label: 'Haklı nedenle ayrıldım', hint: 'Sadece kıdem tazminatı hesaplanır' },
-  { value: 'istifa', label: 'İstifa ettim', hint: 'Sadece kıdem tazminatı hesaplanır' },
+  { value: 'istifa', label: 'İstifa ettim', hint: 'Kural olarak kıdem tazminatı hakkı doğmaz; yalnızca kanundaki istisnai hallerde (emeklilik, askerlik, evlilik vb.) hak doğabilir' },
 ]
 
 export default function SeveranceCalculatorForm() {

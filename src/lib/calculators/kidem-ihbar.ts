@@ -19,6 +19,7 @@ export interface TenureBreakdown {
 }
 
 export interface SeveranceResult {
+  terminationType: FesihTuru
   dressedGrossSalary: number
   tenure: TenureBreakdown
   capApplied: number | null
@@ -111,6 +112,7 @@ export function calculateSeverance(input: SeveranceInput): SeveranceCalcOutcome 
   return {
     success: true,
     result: {
+      terminationType: input.terminationType,
       dressedGrossSalary,
       tenure,
       capApplied,

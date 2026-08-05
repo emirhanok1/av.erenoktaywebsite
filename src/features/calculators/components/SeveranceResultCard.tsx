@@ -7,6 +7,7 @@ const formatCurrency = (value: number) =>
 
 export default function SeveranceResultCard({ result }: { result: SeveranceResult }) {
   const {
+    terminationType,
     tenure,
     capApplied,
     grossSeverance,
@@ -26,6 +27,12 @@ export default function SeveranceResultCard({ result }: { result: SeveranceResul
         </p>
       </CardHeader>
       <CardContent className="space-y-8">
+        {terminationType === 'istifa' && (
+          <p className="text-xs bg-amber-50 border border-amber-200 rounded-md p-3 text-amber-900">
+            <strong>Önemli:</strong> İş Kanunu&apos;na göre düz istifa, kural olarak kıdem tazminatı hakkı doğurmaz. Aşağıdaki tutar, yalnızca emeklilik şartlarının sağlanması, askerlik veya evlilik sonrası ayrılma gibi kanuni istisnalardan biri geçerliyse anlamlıdır. Durumunuzun bu istisnalardan birine girip girmediğini teyit etmek için bizimle iletişime geçin.
+          </p>
+        )}
+
         {capApplied !== null && (
           <p className="text-xs bg-slate-50 border border-border rounded-md p-3 text-muted-foreground">
             Giydirilmiş ücretiniz, fesih tarihinizde geçerli olan yasal tavanı ({formatCurrency(capApplied)}) aştığı için hesaplama tavan tutarı üzerinden yapılmıştır.
