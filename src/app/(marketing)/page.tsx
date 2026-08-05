@@ -42,8 +42,8 @@ export default async function HomePage() {
         <HeroSlider slides={slides} />
         <TrustBar />
         <ServicesSection />
-        <AboutSection />
         <RecentNewsSection posts={recentPosts} />
+        <AboutSection />
         <CTABand />
       </div>
     </>
