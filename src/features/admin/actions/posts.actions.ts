@@ -102,6 +102,7 @@ export async function createPost(formData: FormData) {
   }
 
   revalidatePath('/duyurular')
+  revalidatePath('/')
   revalidatePath(ROUTES.ADMIN.POSTS)
 
   return { success: true }
@@ -215,6 +216,7 @@ export async function updatePost(id: string, formData: FormData) {
   }
 
   revalidatePath('/duyurular')
+  revalidatePath('/')
   revalidatePath(ROUTES.ADMIN.POSTS)
 
   return { success: true }
@@ -236,6 +238,7 @@ export async function archivePost(id: string) {
   if (error) return { error: error.message }
 
   revalidatePath('/duyurular')
+  revalidatePath('/')
   revalidatePath(ROUTES.ADMIN.POSTS)
   return { success: true }
 }
