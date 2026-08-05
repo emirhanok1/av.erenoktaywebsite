@@ -57,7 +57,7 @@ export default function VehicleValueLossPage() {
       <section className="bg-white py-20 lg:py-[100px]" aria-labelledby="deger-kaybi-title">
         <div className="container mx-auto px-4">
           <AnimatedReveal className="max-w-2xl mb-16">
-            <span className="text-accent font-heading font-medium tracking-[0.2em] text-xs uppercase flex items-center gap-4 mb-6">
+            <span className="text-gold-700 font-heading font-semibold tracking-[0.2em] text-xs uppercase flex items-center gap-4 mb-6">
               <span className="w-12 h-[1px] bg-accent inline-block" />
               ARAÇ DEĞER KAYBI NEDİR
             </span>

@@ -72,7 +72,7 @@ export default async function NewsPage(props: PageProps) {
                       </div>
                     )}
                     <div className="p-6 flex flex-col flex-grow">
-                      <time className="text-xs text-accent font-bold mb-3 uppercase tracking-wider">
+                      <time className="text-xs text-gold-700 font-bold mb-3 uppercase tracking-wider">
                         {new Date(post.published_at!).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' })}
                       </time>
                       <h2 className="font-heading text-xl text-navy mb-3 line-clamp-2">

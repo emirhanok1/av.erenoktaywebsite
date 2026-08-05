@@ -21,7 +21,7 @@ export default function RecentNewsSection({ posts }: RecentNewsSectionProps) {
 
         <AnimatedReveal className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14 lg:mb-20">
           <div className="max-w-xl">
-            <span className="text-accent font-heading font-medium tracking-[0.2em] text-xs uppercase flex items-center gap-4 mb-6">
+            <span className="text-gold-700 font-heading font-semibold tracking-[0.2em] text-xs uppercase flex items-center gap-4 mb-6">
               <span className="w-12 h-[1px] bg-accent inline-block" />
               GÜNCEL GELİŞMELER
             </span>

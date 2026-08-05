@@ -32,7 +32,7 @@ export default function ServicesSection() {
         
         {/* Header */}
         <AnimatedReveal className="max-w-2xl mb-16 lg:mb-24">
-          <span className="text-accent font-heading font-medium tracking-[0.2em] text-xs uppercase flex items-center gap-4 mb-6">
+          <span className="text-gold-700 font-heading font-semibold tracking-[0.2em] text-xs uppercase flex items-center gap-4 mb-6">
             <span className="w-12 h-[1px] bg-accent inline-block" />
             UZMANLIK ALANLARIMIZ
           </span>

@@ -77,7 +77,7 @@ export default async function ArticlesPage(props: PageProps) {
                     )}
                     <div className="p-6 flex flex-col flex-grow">
                       <div className="flex items-center text-xs text-muted-foreground mb-3 uppercase tracking-wider space-x-3">
-                        <time className="font-bold text-accent">
+                        <time className="font-bold text-gold-700">
                           {new Date(article.published_at!).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' })}
                         </time>
                         {article.read_time && (

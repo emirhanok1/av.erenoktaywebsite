@@ -37,7 +37,7 @@ export default function BodilyInjuryPage() {
       <section className="bg-white py-20 lg:py-[100px]" aria-labelledby="bedeni-hasar-title">
         <div className="container mx-auto px-4 max-w-3xl text-center">
           <AnimatedReveal>
-            <span className="text-accent font-heading font-medium tracking-[0.2em] text-xs uppercase flex items-center justify-center gap-4 mb-6">
+            <span className="text-gold-700 font-heading font-semibold tracking-[0.2em] text-xs uppercase flex items-center justify-center gap-4 mb-6">
               <span className="w-12 h-[1px] bg-accent inline-block" />
               BU FORM NE İŞE YARAR
               <span className="w-12 h-[1px] bg-accent inline-block" />

@@ -20,7 +20,7 @@ export default function AboutSection() {
           {/* Left Content */}
           <div className="space-y-10">
             <AnimatedReveal>
-              <span className="text-accent font-heading font-medium tracking-[0.2em] text-xs uppercase flex items-center gap-4 mb-6">
+              <span className="text-gold-700 font-heading font-semibold tracking-[0.2em] text-xs uppercase flex items-center gap-4 mb-6">
                 <span className="w-12 h-[1px] bg-accent inline-block" />
                 HAKKIMIZDA
               </span>

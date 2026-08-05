@@ -88,7 +88,7 @@ export default async function PostDetailPage(props: { params: Promise<{ slug: st
 
         <article>
           <header className="mb-10">
-            <time className="text-sm text-accent font-bold mb-4 uppercase tracking-wider block">
+            <time className="text-sm text-gold-700 font-bold mb-4 uppercase tracking-wider block">
               {new Date(post.published_at!).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' })}
             </time>
             <h1 className="font-heading text-fluid-h2 text-navy leading-tight">{post.title}</h1>

@@ -44,7 +44,7 @@ export default function SeveranceCalculatorPage() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-20 items-start">
             <AnimatedReveal>
-              <span className="text-accent font-heading font-medium tracking-[0.2em] text-xs uppercase flex items-center gap-4 mb-6">
+              <span className="text-gold-700 font-heading font-semibold tracking-[0.2em] text-xs uppercase flex items-center gap-4 mb-6">
                 <span className="w-12 h-[1px] bg-accent inline-block" />
                 BU ARAÇ NE İŞE YARAR
               </span>

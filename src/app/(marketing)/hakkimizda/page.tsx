@@ -43,7 +43,7 @@ export default function AboutPage() {
 
             {/* Sağ: Bilgiler */}
             <div className="flex flex-col justify-center">
-              <span className="text-accent text-sm font-bold tracking-wider uppercase mb-4 block">Kurucu Avukat</span>
+              <span className="text-gold-700 text-sm font-bold tracking-wider uppercase mb-4 block">Kurucu Avukat</span>
               <h1 className="font-heading text-fluid-h2 text-navy mb-8">Av. Eren Oktay</h1>
 
               <div className="prose max-w-none text-muted-foreground mb-8">

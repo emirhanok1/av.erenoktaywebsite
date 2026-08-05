@@ -41,6 +41,7 @@ const config: Config = {
   			},
   			gold: {
   				'600': '#b4932f',
+  				'700': '#8a6d1f',
   				DEFAULT: '#c9a84c'
   			},
   			accent: {
