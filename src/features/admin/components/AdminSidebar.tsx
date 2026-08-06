@@ -26,6 +26,7 @@ const ITEMS = [
   { title: "Pratik Bilgiler", url: ROUTES.ADMIN.ARTICLES, icon: "📝" },
   { title: "SSS", url: ROUTES.ADMIN.FAQ, icon: "❓" },
   { title: "Gelen Formlar", url: ROUTES.ADMIN.SUBMISSIONS, icon: "📥" },
+  { title: "Ayarlar", url: ROUTES.ADMIN.SETTINGS, icon: "⚙️" },
 ]
 
 export default function AdminSidebar({ userEmail }: { userEmail?: string }) {

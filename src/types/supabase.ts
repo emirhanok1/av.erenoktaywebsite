@@ -174,6 +174,24 @@ export interface Database {
         }
         Relationships: []
       }
+      site_settings: {
+        Row: {
+          id: number
+          attorney_photo_url: string | null
+          updated_at: string
+        }
+        Insert: {
+          id?: number
+          attorney_photo_url?: string | null
+          updated_at?: string
+        }
+        Update: {
+          id?: number
+          attorney_photo_url?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       slides: {
         Row: {
           id: string

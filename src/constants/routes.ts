@@ -26,6 +26,7 @@ export const ROUTES = {
     FAQ_EDIT: (id: string) => `/admin/sss/${id}`,
     SUBMISSIONS: '/admin/formlar',
     SUBMISSIONS_DETAIL: (id: string) => `/admin/formlar/${id}`,
+    SETTINGS: '/admin/ayarlar',
   },
   AUTH: {
     LOGIN: '/giris',

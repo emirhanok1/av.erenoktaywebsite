@@ -6,6 +6,9 @@ import LegalDisclaimer from '@/components/common/LegalDisclaimer'
 import { JsonLd } from '@/components/JsonLd'
 import { getAttorneyPersonSchema } from '@/lib/schemas/attorney'
 import { getBreadcrumbSchema } from '@/lib/schemas/breadcrumb'
+import { getSiteSettings } from '@/services/site-settings'
+
+export const revalidate = 3600
 
 export const metadata: Metadata = {
   title: 'Hakkımızda',
@@ -13,8 +16,10 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE.url}/hakkimizda` },
 }
 
-export default function AboutPage() {
-  const personSchema = getAttorneyPersonSchema()
+export default async function AboutPage() {
+  const { attorney_photo_url } = await getSiteSettings()
+  const photoUrl = attorney_photo_url || '/images/eren-oktay.webp'
+  const personSchema = getAttorneyPersonSchema(attorney_photo_url)
   const breadcrumbSchema = getBreadcrumbSchema([
     { name: 'Anasayfa', path: '/' },
     { name: 'Hakkımızda', path: '/hakkimizda' },
@@ -31,7 +36,7 @@ export default function AboutPage() {
             {/* Sol: Görsel */}
             <div className="relative aspect-[4/5] rounded-lg overflow-hidden shadow-xl">
               <Image
-                src="/images/eren-oktay.webp"
+                src={photoUrl}
                 alt="Av. Eren Oktay"
                 fill
                 className="object-cover object-center"
