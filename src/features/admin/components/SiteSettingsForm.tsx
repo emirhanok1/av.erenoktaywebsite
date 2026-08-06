@@ -49,13 +49,17 @@ export default function SiteSettingsForm({ currentPhotoUrl }: SiteSettingsFormPr
       formData.append('image', selectedFile)
 
       const result = await updateAttorneyPhoto(formData)
+      console.log('[DEBUG] result:', JSON.stringify(result))
 
       if (result.error) {
         toast.error(result.error)
       } else {
         toast.success('Fotoğraf güncellendi')
         setSelectedFile(null)
-        setInputKey((k) => k + 1)
+        setInputKey((k) => {
+          console.log('[DEBUG] bumping inputKey from', k, 'to', k + 1)
+          return k + 1
+        })
       }
     })
   }
