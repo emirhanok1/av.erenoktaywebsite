@@ -69,7 +69,6 @@ export async function updateAttorneyPhoto(formData: FormData) {
   }
 
   revalidatePath(ROUTES.ABOUT)
-  revalidatePath(ROUTES.ADMIN.SETTINGS)
 
   return { success: true, url: publicUrlData.publicUrl }
 }
