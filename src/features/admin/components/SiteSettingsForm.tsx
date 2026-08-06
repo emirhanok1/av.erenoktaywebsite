@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useTransition } from 'react'
+import { useRef, useState, useTransition } from 'react'
 import Image from 'next/image'
 import { toast } from 'sonner'
 import { updateAttorneyPhoto } from '../actions/site-settings.actions'
@@ -16,6 +16,7 @@ export default function SiteSettingsForm({ currentPhotoUrl }: SiteSettingsFormPr
   const [isPending, startTransition] = useTransition()
   const [previewUrl, setPreviewUrl] = useState<string | null>(currentPhotoUrl)
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -54,6 +55,7 @@ export default function SiteSettingsForm({ currentPhotoUrl }: SiteSettingsFormPr
       } else {
         toast.success('Fotoğraf güncellendi')
         setSelectedFile(null)
+        if (fileInputRef.current) fileInputRef.current.value = ''
       }
     })
   }
@@ -63,6 +65,7 @@ export default function SiteSettingsForm({ currentPhotoUrl }: SiteSettingsFormPr
       <div className="space-y-2">
         <Label htmlFor="image">Avukat Fotoğrafı</Label>
         <Input
+          ref={fileInputRef}
           id="image"
           name="image"
           type="file"
