@@ -1,27 +1,27 @@
 import React from 'react'
 import Link from 'next/link'
-import { Scale, Car, Shield, ArrowRight } from 'lucide-react'
+import { Scale, Umbrella, Gavel, ArrowRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { AnimatedReveal } from './AnimatedReveal'
 
 const SERVICES = [
   {
     id: 1,
-    title: 'İcra ve Haciz Hukuku',
+    title: 'İcra ve İflas Hukuku',
     icon: <Scale className="text-accent" strokeWidth={1.5} size={28} />,
     items: ['Dosyadan haciz kaldırma', 'İcra takibi', 'Ödeme emri itirazları'],
   },
   {
     id: 2,
-    title: 'Araç Değer Kaybı',
-    icon: <Car className="text-accent" strokeWidth={1.5} size={28} />,
-    items: ['Değer kaybı hesaplama', 'Sigorta başvuruları', 'Tazminat davaları'],
+    title: 'Sigorta Tahkim Hukuku',
+    icon: <Umbrella className="text-accent" strokeWidth={1.5} size={28} />,
+    items: ['Sigorta tahkim başvuruları', 'Değer kaybı tazminatı', 'Hasar ve poliçe itirazları'],
   },
   {
     id: 3,
-    title: 'Ceza & Kira Hukuku',
-    icon: <Shield className="text-accent" strokeWidth={1.5} size={28} />,
-    items: ['Ceza davaları', 'Kira uyuşmazlıkları', 'Tahliye davaları'],
+    title: 'Ceza Hukuku',
+    icon: <Gavel className="text-accent" strokeWidth={1.5} size={28} />,
+    items: ['Ceza davaları', 'Soruşturma ve kovuşturma', 'Sanık ve mağdur vekilliği'],
   },
 ]
 
