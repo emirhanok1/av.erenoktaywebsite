@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import { getActiveSlides } from '@/services/slides'
 import { getPosts } from '@/services/posts'
+import { getSiteSettings } from '@/services/site-settings'
 import { getLegalServiceSchema } from '@/lib/schemas/legal-service'
 import { JsonLd } from '@/components/JsonLd'
 
@@ -9,6 +10,7 @@ import TrustBar from '@/features/home/components/TrustBar'
 import ServicesSection from '@/features/home/components/ServicesSection'
 import AboutSection from '@/features/home/components/AboutSection'
 import RecentNewsSection from '@/features/home/components/RecentNewsSection'
+import PracticeRibbon from '@/features/home/components/PracticeRibbon'
 import CTABand from '@/features/home/components/CTABand'
 
 // Revalidate home page every hour
@@ -31,9 +33,10 @@ export const metadata: Metadata = {
 }
 
 export default async function HomePage() {
-  const [slides, allPosts] = await Promise.all([getActiveSlides(), getPosts()])
+  const [slides, allPosts, siteSettings] = await Promise.all([getActiveSlides(), getPosts(), getSiteSettings()])
   const recentPosts = allPosts.slice(0, 3)
   const schema = getLegalServiceSchema()
+  const photoUrl = siteSettings.attorney_photo_url || '/images/eren-oktay.webp'
 
   return (
     <>
@@ -43,7 +46,8 @@ export default async function HomePage() {
         <TrustBar />
         <ServicesSection />
         <RecentNewsSection posts={recentPosts} />
-        <AboutSection />
+        <PracticeRibbon />
+        <AboutSection photoUrl={photoUrl} />
         <CTABand />
       </div>
     </>

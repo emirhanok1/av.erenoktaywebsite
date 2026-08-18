@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Scale, Umbrella, Gavel, ArrowRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { AnimatedReveal } from './AnimatedReveal'
+import { HeadingUnderline } from './HeadingUnderline'
 
 const SERVICES = [
   {
@@ -38,9 +39,10 @@ export default function ServicesSection() {
           </span>
           <h2 id="services-title" className="text-3xl md:text-4xl lg:text-5xl font-heading text-navy mb-6 leading-tight">
             Karmaşık Hukuki Süreçlerde <br className="hidden md:block" />
-            <em className="text-accent italic font-light">Stratejik</em> Danışmanlık
+            <em className="text-gold-700 italic font-normal">Stratejik</em> Danışmanlık
           </h2>
-          <p className="text-muted-foreground text-lg leading-relaxed">
+          <HeadingUnderline />
+          <p className="text-muted-foreground text-lg leading-relaxed mt-6">
             Müvekkillerimizin hukuki haklarını korumak ve ticari başarılarını güvence altına almak için proaktif ve sonuç odaklı çözümler üretiyoruz.
           </p>
         </AnimatedReveal>

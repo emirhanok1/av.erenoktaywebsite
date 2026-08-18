@@ -62,7 +62,7 @@ export default function VehicleValueLossPage() {
               ARAÇ DEĞER KAYBI NEDİR
             </span>
             <h2 id="deger-kaybi-title" className="text-2xl md:text-3xl font-heading text-navy mb-6 leading-tight">
-              Onarılmış olsa da aracınızın değeri <em className="text-accent italic font-light">geri gelmeyebilir</em>
+              Onarılmış olsa da aracınızın değeri <em className="text-gold-700 italic font-normal">geri gelmeyebilir</em>
             </h2>
             <p className="text-muted-foreground leading-relaxed">
               Araç değer kaybı tazminatı, karşılaştığınız trafik kazasında oluşan hasarın onarımı tamamlansa dahi, aracınızın ikinci el piyasa değerinde meydana gelen kalıcı düşüşün karşılanmasını amaçlar. Aşağıdaki formu doldurarak durumunuzu tarafımıza iletebilirsiniz.

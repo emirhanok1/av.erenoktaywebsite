@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { AnimatedReveal } from './AnimatedReveal'
+import { HeadingUnderline } from './HeadingUnderline'
 import { ROUTES } from '@/constants/routes'
 import type { Post } from '@/services/posts'
 
@@ -26,8 +27,9 @@ export default function RecentNewsSection({ posts }: RecentNewsSectionProps) {
               GÜNCEL GELİŞMELER
             </span>
             <h2 id="news-title" className="text-3xl md:text-4xl lg:text-5xl font-heading text-navy leading-tight">
-              Bürodan <em className="text-accent italic font-light">Son Duyurular</em>
+              Bürodan <em className="text-gold-700 italic font-normal">Son Duyurular</em>
             </h2>
+            <HeadingUnderline />
           </div>
 
           <Link

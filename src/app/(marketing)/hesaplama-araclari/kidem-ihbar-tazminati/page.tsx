@@ -49,7 +49,7 @@ export default function SeveranceCalculatorPage() {
                 BU ARAÇ NE İŞE YARAR
               </span>
               <h2 id="kidem-nedir-title" className="text-2xl md:text-3xl font-heading text-navy mb-6 leading-tight">
-                Kıdem ve <em className="text-accent italic font-light">ihbar tazminatı</em> nedir?
+                Kıdem ve <em className="text-gold-700 italic font-normal">ihbar tazminatı</em> nedir?
               </h2>
               <div className="space-y-5 text-muted-foreground leading-relaxed">
                 <p>

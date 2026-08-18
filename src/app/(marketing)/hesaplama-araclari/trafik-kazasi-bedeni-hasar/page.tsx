@@ -43,7 +43,7 @@ export default function BodilyInjuryPage() {
               <span className="w-12 h-[1px] bg-accent inline-block" />
             </span>
             <h2 id="bedeni-hasar-title" className="text-2xl md:text-3xl font-heading text-navy mb-6 leading-tight">
-              Yaralanma veya maluliyet durumunda <em className="text-accent italic font-light">haklarınız</em> vardır
+              Yaralanma veya maluliyet durumunda <em className="text-gold-700 italic font-normal">haklarınız</em> vardır
             </h2>
             <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-10">
               Trafik kazası sonucu yaralanma veya kalıcı maluliyet yaşadıysanız; tedavi giderleriniz, kazanç kaybınız ve varsa bakım ihtiyacınız için maddi, ayrıca yaşadığınız acı ve ızdırap için manevi tazminat talep etme hakkınız doğabilir. Süreç genellikle SGK ile başlar, karşı tarafın trafik sigortası ve gerekirse Güvence Hesabı ile devam eder. Bu form, durumunuzu ön bilgilendirme amacıyla değerlendirebilmemiz için hazırlandı; doldurup gönderdiğinizde size dönüş yaparız.

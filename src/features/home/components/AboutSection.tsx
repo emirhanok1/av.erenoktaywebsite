@@ -1,8 +1,11 @@
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 import { AnimatedReveal } from './AnimatedReveal'
+import { HeadingUnderline } from './HeadingUnderline'
 import { ROUTES } from '@/constants/routes'
+import { BLUR_DATA_URL } from '@/lib/blur'
 
 const HIGHLIGHTS = [
   'İlkeli Yaklaşım',
@@ -11,7 +14,11 @@ const HIGHLIGHTS = [
   'Müvekkil Odaklı Çalışma'
 ]
 
-export default function AboutSection() {
+interface AboutSectionProps {
+  photoUrl: string
+}
+
+export default function AboutSection({ photoUrl }: AboutSectionProps) {
   return (
     <section className="bg-[#f8f9fa] py-20 lg:py-[120px] overflow-hidden" aria-labelledby="about-title">
       <div className="container mx-auto px-4">
@@ -27,8 +34,9 @@ export default function AboutSection() {
               
               <h2 id="about-title" className="text-3xl md:text-4xl lg:text-[42px] font-heading text-navy mb-8 leading-[1.2]">
                 Sessiz bir prestijin,<br />
-                <em className="text-accent italic font-light">kararlı bir savunmanın</em> adresi.
+                <em className="text-gold-700 italic font-normal">kararlı bir savunmanın</em> adresi.
               </h2>
+              <HeadingUnderline />
 
               <blockquote className="border-l-2 border-accent pl-6 py-2 mb-8">
                 <p className="font-heading text-xl md:text-2xl italic text-navy/80 leading-relaxed">
@@ -73,10 +81,15 @@ export default function AboutSection() {
             <div className="relative w-full aspect-[4/5]">
               {/* Image Container with overflow hidden */}
               <div className="relative w-full h-full overflow-hidden">
-                {/* The Main Image Placeholder/Content */}
-                <div className="absolute inset-0 bg-[linear-gradient(135deg,var(--navy-light)_0%,var(--navy)_100%)]">
-                  {/* Optional Pattern Overlay */}
-                </div>
+                <Image
+                  src={photoUrl}
+                  alt="Av. Eren Oktay"
+                  fill
+                  className="object-cover object-center"
+                  sizes="(max-width: 1024px) 90vw, 40vw"
+                  placeholder="blur"
+                  blurDataURL={BLUR_DATA_URL}
+                />
               </div>
 
               {/* Overlay Card Bottom Left - stays fixed relative to container */}
