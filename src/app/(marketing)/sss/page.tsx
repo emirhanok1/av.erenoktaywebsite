@@ -5,6 +5,9 @@ import { getBreadcrumbSchema } from '@/lib/schemas/breadcrumb'
 import { JsonLd } from '@/components/JsonLd'
 import { SITE } from '@/constants/site'
 import LegalDisclaimer from '@/components/common/LegalDisclaimer'
+import PageHero from '@/components/common/PageHero'
+import ClosingRibbon from '@/components/common/ClosingRibbon'
+import { AnimatedReveal } from '@/features/home/components/AnimatedReveal'
 import {
   Accordion,
   AccordionContent,
@@ -31,10 +34,11 @@ type FAQ = {
 export default async function FAQPage() {
   const faqs = await getFaqs()
   const schema = getFaqSchema(faqs)
-  const breadcrumbSchema = getBreadcrumbSchema([
+  const breadcrumbItems = [
     { name: 'Anasayfa', path: '/' },
     { name: 'S.S.S.', path: '/sss' },
-  ])
+  ]
+  const breadcrumbSchema = getBreadcrumbSchema(breadcrumbItems)
 
   const grouped = faqs.reduce((acc, faq) => {
     const cat = faq.category ?? 'Genel'
@@ -47,11 +51,11 @@ export default async function FAQPage() {
     <div className="flex flex-col min-h-screen">
       <JsonLd data={schema} />
       <JsonLd data={breadcrumbSchema} />
-      <section className="bg-navy pt-32 pb-16 text-white text-center">
-        <div className="container">
-          <h1 className="font-heading text-3xl md:text-4xl text-white">Sıkça Sorulan Sorular</h1>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Yardım Merkezi"
+        title="Sıkça Sorulan Sorular"
+        breadcrumb={breadcrumbItems}
+      />
 
       <section className="py-24 bg-slate-50 flex-grow">
         <div className="container max-w-3xl">
@@ -61,8 +65,8 @@ export default async function FAQPage() {
             </div>
           ) : (
             <div className="space-y-16">
-              {Object.entries(grouped).map(([category, categoryFaqs]) => (
-                <div key={category}>
+              {Object.entries(grouped).map(([category, categoryFaqs], index) => (
+                <AnimatedReveal key={category} delay={index * 0.1}>
                   <h2 className="font-heading text-2xl text-navy mb-6 border-b border-border pb-4">{category}</h2>
                   <Accordion type="multiple" className="w-full bg-white rounded-xl shadow-sm border border-border px-6">
                     {categoryFaqs.map((faq) => (
@@ -76,13 +80,14 @@ export default async function FAQPage() {
                       </AccordionItem>
                     ))}
                   </Accordion>
-                </div>
+                </AnimatedReveal>
               ))}
             </div>
           )}
         </div>
       </section>
 
+      <ClosingRibbon quote="Aradığınızı bulamadınız mı?" ctaText="WhatsApp'tan Sorun" />
       <LegalDisclaimer variant="default" />
     </div>
   )

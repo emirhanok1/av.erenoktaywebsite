@@ -5,6 +5,7 @@ import { JsonLd } from '@/components/JsonLd'
 import { getBreadcrumbSchema } from '@/lib/schemas/breadcrumb'
 import { AnimatedReveal } from '@/features/home/components/AnimatedReveal'
 import BodilyInjuryForm from '@/features/calculators/components/BodilyInjuryForm'
+import PageHero from '@/components/common/PageHero'
 
 export const metadata: Metadata = {
   title: 'Trafik Kazası Bedeni Hasar Bilgi Formu',
@@ -15,23 +16,22 @@ export const metadata: Metadata = {
 const KAPSAM_ETIKETLERI = ['Maddi Tazminat', 'Manevi Tazminat', 'Tedavi Gideri', 'Kazanç Kaybı', 'SGK Süreci', 'Sigorta Süreci']
 
 export default function BodilyInjuryPage() {
-  const breadcrumbSchema = getBreadcrumbSchema([
+  const breadcrumbItems = [
     { name: 'Anasayfa', path: '/' },
     { name: 'Hesaplama Araçları', path: ROUTES.TOOLS },
     { name: 'Trafik Kazası Bedeni Hasar', path: ROUTES.TOOLS_BODILY_INJURY },
-  ])
+  ]
+  const breadcrumbSchema = getBreadcrumbSchema(breadcrumbItems)
 
   return (
     <div className="flex flex-col min-h-screen">
       <JsonLd data={breadcrumbSchema} />
-      <section className="bg-navy pt-32 pb-16 text-white text-center">
-        <div className="container">
-          <h1 className="font-heading text-3xl md:text-4xl text-white">Trafik Kazası Bedeni Hasar Bilgi Formu</h1>
-          <p className="text-white/70 mt-4 max-w-2xl mx-auto text-sm md:text-base">
-            Kaza bilgilerinizi iletin, durumunuzu değerlendirip sizinle iletişime geçelim.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Hesaplama Aracı"
+        title="Trafik Kazası Bedeni Hasar Bilgi Formu"
+        description="Kaza bilgilerinizi iletin, durumunuzu değerlendirip sizinle iletişime geçelim."
+        breadcrumb={breadcrumbItems}
+      />
 
       {/* Açıklama */}
       <section className="bg-white py-20 lg:py-[100px]" aria-labelledby="bedeni-hasar-title">

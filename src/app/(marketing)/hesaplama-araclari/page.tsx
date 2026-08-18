@@ -6,6 +6,8 @@ import { ROUTES } from '@/constants/routes'
 import { JsonLd } from '@/components/JsonLd'
 import { getBreadcrumbSchema } from '@/lib/schemas/breadcrumb'
 import { AnimatedReveal } from '@/features/home/components/AnimatedReveal'
+import PageHero from '@/components/common/PageHero'
+import ClosingRibbon from '@/components/common/ClosingRibbon'
 
 export const metadata: Metadata = {
   title: 'Hesaplama Araçları',
@@ -38,22 +40,21 @@ const TOOLS = [
 ]
 
 export default function ToolsHubPage() {
-  const breadcrumbSchema = getBreadcrumbSchema([
+  const breadcrumbItems = [
     { name: 'Anasayfa', path: '/' },
     { name: 'Hesaplama Araçları', path: ROUTES.TOOLS },
-  ])
+  ]
+  const breadcrumbSchema = getBreadcrumbSchema(breadcrumbItems)
 
   return (
     <div className="flex flex-col min-h-screen">
       <JsonLd data={breadcrumbSchema} />
-      <section className="bg-navy pt-32 pb-16 text-white text-center">
-        <div className="container">
-          <h1 className="font-heading text-3xl md:text-4xl text-white">Hesaplama Araçları</h1>
-          <p className="text-white/70 mt-4 max-w-2xl mx-auto text-sm md:text-base">
-            Hukuki süreçlerinizde size yol gösterecek araçlar ve bilgi formları.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Ücretsiz Araçlar"
+        title="Hesaplama Araçları"
+        description="Hukuki süreçlerinizde size yol gösterecek araçlar ve bilgi formları."
+        breadcrumb={breadcrumbItems}
+      />
 
       <section className="bg-white py-20 lg:py-[100px] flex-grow">
         <div className="container mx-auto px-4">
@@ -86,6 +87,8 @@ export default function ToolsHubPage() {
           </div>
         </div>
       </section>
+
+      <ClosingRibbon quote="Sonucunuzda net bir yanıt bulamadınız mı?" ctaText="Avukatla Görüşün" />
     </div>
   )
 }

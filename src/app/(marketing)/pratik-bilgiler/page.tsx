@@ -4,9 +4,12 @@ import Image from 'next/image'
 import { getArticles } from '@/services/articles'
 import LegalDisclaimer from '@/components/common/LegalDisclaimer'
 import Pagination from '@/components/common/Pagination'
+import PageHero from '@/components/common/PageHero'
+import ClosingRibbon from '@/components/common/ClosingRibbon'
 import { Badge } from '@/components/ui/badge'
 import { JsonLd } from '@/components/JsonLd'
 import { getBreadcrumbSchema } from '@/lib/schemas/breadcrumb'
+import { AnimatedReveal } from '@/features/home/components/AnimatedReveal'
 
 import { SITE } from '@/constants/site'
 import { BLUR_DATA_URL } from '@/lib/blur'
@@ -32,19 +35,20 @@ export default async function ArticlesPage(props: PageProps) {
   const totalPages = Math.ceil(allArticles.length / perPage)
   const articles = allArticles.slice((page - 1) * perPage, page * perPage)
 
-  const breadcrumbSchema = getBreadcrumbSchema([
+  const breadcrumbItems = [
     { name: 'Anasayfa', path: '/' },
     { name: 'Pratik Bilgiler', path: '/pratik-bilgiler' },
-  ])
+  ]
+  const breadcrumbSchema = getBreadcrumbSchema(breadcrumbItems)
 
   return (
     <div className="flex flex-col min-h-screen">
       <JsonLd data={breadcrumbSchema} />
-      <section className="bg-navy pt-32 pb-16 text-white text-center">
-        <div className="container">
-          <h1 className="font-heading text-3xl md:text-4xl text-white">Pratik Bilgiler</h1>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Bilgi Bankası"
+        title="Pratik Bilgiler"
+        breadcrumb={breadcrumbItems}
+      />
 
       <section className="py-24 bg-white flex-grow">
         <div className="container">
@@ -55,8 +59,12 @@ export default async function ArticlesPage(props: PageProps) {
           ) : (
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {articles.map((article) => (
-                  <article key={article.id} className="group flex flex-col border border-border rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white relative">
+                {articles.map((article, index) => (
+                  <AnimatedReveal
+                    key={article.id}
+                    delay={(index % 3) * 0.12}
+                    className="group flex flex-col border border-border hover:border-accent overflow-hidden transition-colors bg-white relative"
+                  >
                     {article.category && (
                       <Badge className="absolute top-4 right-4 z-10 bg-accent text-white hover:bg-accent/90 border-none">
                         {article.category}
@@ -99,7 +107,7 @@ export default async function ArticlesPage(props: PageProps) {
                         Devamını Oku <span className="ml-2">→</span>
                       </Link>
                     </div>
-                  </article>
+                  </AnimatedReveal>
                 ))}
               </div>
               <Pagination currentPage={page} totalPages={totalPages} basePath="/pratik-bilgiler" />
@@ -108,6 +116,7 @@ export default async function ArticlesPage(props: PageProps) {
         </div>
       </section>
 
+      <ClosingRibbon quote="Merak ettiğiniz başka bir konu mu var?" ctaText="WhatsApp'tan Sorun" />
       <LegalDisclaimer variant="prominent" />
     </div>
   )

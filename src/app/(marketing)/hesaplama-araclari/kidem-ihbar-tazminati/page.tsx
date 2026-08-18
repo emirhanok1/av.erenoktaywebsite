@@ -6,6 +6,7 @@ import { JsonLd } from '@/components/JsonLd'
 import { getBreadcrumbSchema } from '@/lib/schemas/breadcrumb'
 import { AnimatedReveal } from '@/features/home/components/AnimatedReveal'
 import SeveranceCalculatorForm from '@/features/calculators/components/SeveranceCalculatorForm'
+import PageHero from '@/components/common/PageHero'
 
 export const metadata: Metadata = {
   title: 'Kıdem ve İhbar Tazminatı Hesaplama',
@@ -21,23 +22,22 @@ const HAZIRLIK_LISTESI = [
 ]
 
 export default function SeveranceCalculatorPage() {
-  const breadcrumbSchema = getBreadcrumbSchema([
+  const breadcrumbItems = [
     { name: 'Anasayfa', path: '/' },
     { name: 'Hesaplama Araçları', path: ROUTES.TOOLS },
     { name: 'Kıdem ve İhbar Tazminatı', path: ROUTES.TOOLS_SEVERANCE },
-  ])
+  ]
+  const breadcrumbSchema = getBreadcrumbSchema(breadcrumbItems)
 
   return (
     <div className="flex flex-col min-h-screen">
       <JsonLd data={breadcrumbSchema} />
-      <section className="bg-navy pt-32 pb-16 text-white text-center">
-        <div className="container">
-          <h1 className="font-heading text-3xl md:text-4xl text-white">Kıdem ve İhbar Tazminatı Hesaplama</h1>
-          <p className="text-white/70 mt-4 max-w-2xl mx-auto text-sm md:text-base">
-            2026 yılı güncel tavan ve damga vergisi oranlarıyla tahmini hesaplama yapın.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Hesaplama Aracı"
+        title="Kıdem ve İhbar Tazminatı Hesaplama"
+        description="2026 yılı güncel tavan ve damga vergisi oranlarıyla tahmini hesaplama yapın."
+        breadcrumb={breadcrumbItems}
+      />
 
       {/* Açıklama */}
       <section className="bg-white py-20 lg:py-[100px]" aria-labelledby="kidem-nedir-title">

@@ -4,6 +4,7 @@ import { SITE } from '@/constants/site'
 import { BLUR_DATA_URL } from '@/lib/blur'
 import { JsonLd } from '@/components/JsonLd'
 import { getBreadcrumbSchema } from '@/lib/schemas/breadcrumb'
+import PageHero from '@/components/common/PageHero'
 
 export const metadata: Metadata = {
   title: 'İletişim',
@@ -12,19 +13,20 @@ export const metadata: Metadata = {
 }
 
 export default function ContactPage() {
-  const breadcrumbSchema = getBreadcrumbSchema([
+  const breadcrumbItems = [
     { name: 'Anasayfa', path: '/' },
     { name: 'İletişim', path: '/iletisim' },
-  ])
+  ]
+  const breadcrumbSchema = getBreadcrumbSchema(breadcrumbItems)
 
   return (
     <div className="flex flex-col min-h-screen">
       <JsonLd data={breadcrumbSchema} />
-      <section className="bg-navy pt-32 pb-16 text-white text-center">
-        <div className="container">
-          <h1 className="font-heading text-3xl md:text-4xl text-white">İletişim</h1>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Bize Ulaşın"
+        title="İletişim"
+        breadcrumb={breadcrumbItems}
+      />
 
       <section className="py-24 bg-white flex-grow">
         <div className="container max-w-4xl text-center">

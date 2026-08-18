@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { SITE } from '@/constants/site'
 import { JsonLd } from '@/components/JsonLd'
 import { getBreadcrumbSchema } from '@/lib/schemas/breadcrumb'
+import PageHero from '@/components/common/PageHero'
 
 export const metadata: Metadata = {
   title: 'KVKK Aydınlatma Metni',
@@ -9,19 +10,20 @@ export const metadata: Metadata = {
 }
 
 export default function KVKKPage() {
-  const breadcrumbSchema = getBreadcrumbSchema([
+  const breadcrumbItems = [
     { name: 'Anasayfa', path: '/' },
     { name: 'KVKK Aydınlatma Metni', path: '/kvkk' },
-  ])
+  ]
+  const breadcrumbSchema = getBreadcrumbSchema(breadcrumbItems)
 
   return (
     <div className="flex flex-col min-h-screen">
       <JsonLd data={breadcrumbSchema} />
-      <section className="bg-navy pt-32 pb-16 text-white text-center">
-        <div className="container">
-          <h1 className="font-heading text-3xl md:text-4xl text-white">KVKK Aydınlatma Metni</h1>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Gizlilik & Veri"
+        title="KVKK Aydınlatma Metni"
+        breadcrumb={breadcrumbItems}
+      />
 
       <section className="py-24 bg-white flex-grow">
         <div className="container max-w-3xl">
